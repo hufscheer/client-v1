@@ -9,7 +9,7 @@ export default function GameWithTimeStamp({ data }: GameListProps) {
   return (
     <ul>
       {data.map((game) => (
-        <Game key={game.id}>
+        <Game key={game.id} id={game.id}>
           <Game.Label>{game.name}</Game.Label>
           <Game.TeamWrapper gap={2}>
             <Game.TeamLogo

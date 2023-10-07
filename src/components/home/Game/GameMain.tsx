@@ -8,10 +8,11 @@ import GameInform from './GameStatus';
 import GameStatus from './GameStatus';
 
 interface GameMainProps {
+  id: number;
   children?: ReactNode;
 }
 
-export default function GameMain({ children }: GameMainProps) {
+export default function GameMain({ id, children }: GameMainProps) {
   const gameStatus = getGameStatus(children);
   const gameLabel = getGameLabel(children);
   const [firstTeam, secondTeam] = getGameTeam(children);
@@ -19,7 +20,7 @@ export default function GameMain({ children }: GameMainProps) {
   return (
     <li>
       <Link
-        href={`${'id'}`}
+        href={`/detail/${id}`}
         className='flex flex-col gap-1 justify-center p-2 rounded-lg shadow-md '
       >
         {gameLabel && <>{gameLabel}</>}
