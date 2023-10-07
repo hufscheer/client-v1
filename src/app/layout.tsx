@@ -1,14 +1,14 @@
-import Header from "@/components/layout/Header";
-import "./globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import Footer from "@/components/layout/Footer";
+import Header from '@/components/layout/Header';
+import './globals.css';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import Footer from '@/components/layout/Footer';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "HUFS-sport-live",
-  description: "한국외대 스포츠 경기 중계 플랫폼",
+  title: 'HUFS-sport-live',
+  description: '한국외대 스포츠 경기 중계 플랫폼',
 };
 
 export default function RootLayout({
@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang='en'>
+      <body className={`${inter.className} max-w-sm m-auto`}>
         <Header />
         {children}
         <Footer />
