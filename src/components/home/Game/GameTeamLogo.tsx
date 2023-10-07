@@ -6,5 +6,13 @@ interface GameTeamLogoProps {
 }
 
 export default function GameTeamLogo({ src, alt }: GameTeamLogoProps) {
-  return <Image src={src} alt={alt} width={30} height={30} />;
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={30}
+      height={30}
+      className='w-auto h-auto'
+    />
+  );
 }
