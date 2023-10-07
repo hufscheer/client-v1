@@ -1,31 +1,33 @@
 import Link from 'next/link';
 import { Children, ReactNode, isValidElement } from 'react';
-import GameStatus from './GameStatus';
+import GameScore from './GameScore';
 import GameLabel from './GameLabel';
-import GameLogo from './GameLogo';
 import GameTimer from './GameTimer';
+import GameTeam from './GameTeam';
+import GameInform from './GameStatus';
+import GameStatus from './GameStatus';
 
 interface GameMainProps {
+  id: number;
   children?: ReactNode;
 }
 
-export default function GameMain({ children }: GameMainProps) {
+export default function GameMain({ id, children }: GameMainProps) {
   const gameStatus = getGameStatus(children);
-  const gameTimer = getGameTimer(children);
   const gameLabel = getGameLabel(children);
-  const [firstLogo, secondLogo] = getGameLogo(children);
+  const [firstTeam, secondTeam] = getGameTeam(children);
 
   return (
     <li>
       <Link
-        href={`${'id'}`}
+        href={`/detail/${id}`}
         className='flex flex-col gap-1 justify-center p-2 rounded-lg shadow-md '
       >
         {gameLabel && <>{gameLabel}</>}
         <div className='flex justify-between items-center'>
-          {firstLogo && <>{firstLogo}</>}
-          <>{gameStatus ? gameStatus : gameTimer}</>
-          {secondLogo && <>{secondLogo}</>}
+          {firstTeam && <>{firstTeam}</>}
+          {gameStatus && <>{gameStatus}</>}
+          {secondTeam && <>{secondTeam}</>}
         </div>
       </Link>
     </li>
@@ -33,8 +35,7 @@ export default function GameMain({ children }: GameMainProps) {
 }
 
 // ! 중복된 코드가 반복되어서, 재사용 가능할 것 같음
-const GameStatusType = (<GameStatus firstTeamScore={0} secondTeamScore={0} />)
-  .type;
+const GameStatusType = (<GameStatus />).type;
 function getGameStatus(children: ReactNode) {
   const childrenArray = Children.toArray(children);
 
@@ -43,21 +44,12 @@ function getGameStatus(children: ReactNode) {
   );
 }
 
-const GameTimerType = (<GameTimer date={new Date()} />).type;
-function getGameTimer(children: ReactNode) {
+const GameTeamType = (<GameTeam />).type;
+function getGameTeam(children: ReactNode) {
   const childrenArray = Children.toArray(children);
 
   return childrenArray.filter(
-    (child) => isValidElement(child) && child.type === GameTimerType
-  );
-}
-
-const GameLogoType = (<GameLogo src={''} alt={''} direction={'row'} />).type;
-function getGameLogo(children: ReactNode) {
-  const childrenArray = Children.toArray(children);
-
-  return childrenArray.filter(
-    (child) => isValidElement(child) && child.type === GameLogoType
+    (child) => isValidElement(child) && child.type === GameTeamType
   );
 }
 
@@ -69,10 +61,3 @@ function getGameLabel(children: ReactNode) {
     (child) => isValidElement(child) && child.type === GameLabelType
   );
 }
-
-export const Game = Object.assign(GameMain, {
-  Label: GameLabel,
-  Status: GameStatus,
-  Logo: GameLogo,
-  Timer: GameTimer,
-});

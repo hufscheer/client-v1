@@ -6,6 +6,7 @@ interface GameTimerProps {
 
 export default function GameTimer({ date }: GameTimerProps) {
   const { month, day, hour, minute } = useDate(date);
+
   return (
     <div>
       <p>
