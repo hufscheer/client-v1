@@ -6,9 +6,11 @@ import GameTeamLogo from './GameTeamLogo';
 import GameTeamName from './GameTeamName';
 import GameTimer from './GameTimer';
 import GameStatus from './GameStatus';
+import GameLive from './GameLive';
 
 export const Game = Object.assign(GameMain, {
   Label: GameLabel,
+  Live: GameLive,
   Score: GameScore,
   Status: GameStatus,
   TeamWrapper: GameTeam,
