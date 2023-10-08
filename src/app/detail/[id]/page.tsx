@@ -1,6 +1,6 @@
 'use client';
 
-import { getAllGames, getEachGame } from '@/api/game';
+import { getEachGame } from '@/api/game';
 import GameComments from '@/components/detail/GameComments';
 import GameInfo from '@/components/detail/GameInfo';
 import GameTimeline from '@/components/detail/GameTimeline';

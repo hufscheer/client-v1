@@ -7,14 +7,17 @@ export default function GameInfo({ game }: { game: EachGameResponse }) {
       <Game>
         <Game.Label>
           <div
-            className={`text-center text-red-400 ${
-              game.gameStatus === 'END' ||
-              (game.gameStatus === 'BEFORE' && 'text-gray-400')
+            className={`text-center  ${
+              game.gameStatus === 'FIRST_HALF' ||
+              game.gameStatus === 'SECOND_HALF'
+                ? 'text-red-400'
+                : 'text-gray-400'
             }`}
           >
             {game.gameStatus === 'BEFORE' && '경기 예정'}
-            {game.gameStatus === 'FIRST_HALF' ||
-              (game.gameStatus === 'SECOND_HALF' && 'Live')}
+            {(game.gameStatus === 'FIRST_HALF' ||
+              game.gameStatus === 'SECOND_HALF') &&
+              'LIVE'}
             {game.gameStatus === 'END' && '경기 종료'}
             {game.gameStatus === 'BREAK_TIME' && '휴식 시간'}
           </div>

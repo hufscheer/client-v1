@@ -5,8 +5,6 @@ import { getEachGame } from '@/api/game';
 import { Game } from '@/components/common/Game';
 import Input from '@/components/common/Input/Input';
 import Select from '@/components/common/Select/Select';
-import useDate from '@/hooks/useDate';
-
 import { DetailOfGameResponse } from '@/types/game';
 import { getUtcHours } from '@/utils/utc-times';
 import { useParams, useRouter } from 'next/navigation';
@@ -18,7 +16,7 @@ export default function GameModify() {
   const id = Number(params.id);
   const [gameData, setGameData] = useState({
     playerName: '',
-    team: -1,
+    team: 0,
     hour: new Date().getHours(),
     minute: new Date().getMinutes(),
   });
@@ -39,7 +37,7 @@ export default function GameModify() {
 
     postGameScore(id, {
       playerName: gameData.playerName,
-      team: 1,
+      team: gameData.team,
       scoredAt: date,
     }).then(() => router.push('/'));
   };
@@ -63,8 +61,10 @@ export default function GameModify() {
         <Game.Label>
           <div
             className={`text-red-400 ${
-              detailOfGame?.gameStatus === 'END' ||
-              (detailOfGame?.gameStatus === 'BEFORE' && 'text-gray-400')
+              detailOfGame?.gameStatus === 'FIRST_HALF' ||
+              detailOfGame?.gameStatus === 'SECOND_HALF'
+                ? 'text-red-400'
+                : 'text-gray-400'
             }`}
           >
             {detailOfGame?.gameStatus === 'BEFORE' && '경기 예정'}
@@ -110,6 +110,7 @@ export default function GameModify() {
       <Select
         name="team"
         value={gameData.team}
+        onChange={handleChange}
         required
         placeholder="팀을 선택해주세요."
       >
