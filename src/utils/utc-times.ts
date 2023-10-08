@@ -25,6 +25,6 @@ export const getUtcHours = (props: UtcHoursProps) => {
   );
 };
 
-const parseTime = (value: number) => {
+export const parseTime = (value: number) => {
   return value.toString().padStart(2, '0');
 };
