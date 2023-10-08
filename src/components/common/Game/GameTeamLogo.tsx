@@ -3,16 +3,23 @@ import Image from 'next/image';
 interface GameTeamLogoProps {
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
 }
 
-export default function GameTeamLogo({ src, alt }: GameTeamLogoProps) {
+export default function GameTeamLogo({
+  src,
+  alt,
+  width = 30,
+  height = 30,
+}: GameTeamLogoProps) {
   return (
     <Image
       src={src}
       alt={alt}
-      width={30}
-      height={30}
-      className='w-auto h-auto'
+      width={width}
+      height={height}
+      className="w-auto h-auto"
     />
   );
 }

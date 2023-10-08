@@ -11,16 +11,17 @@ type GameTimelineProps = {
 export default function GameTimeline({ records, status }: GameTimelineProps) {
   return (
     <ul className="flex flex-col gap-2">
-      <div>타임라인</div>
+      <p className="text-xl font-bold">타임라인</p>
       {status !== 'BEFORE' ? (
         records.map(record => (
-          <li>
-            <div>
+          <li className="flex gap-4 items-center justify-center p-4 rounded-lg shadow-md bg-white">
+            <span className="text-lg text-center">
               {record.playerName} 선수 {record.score}골 득점!
-            </div>
-            <div>
-              {useDate(record.scoredAt).hour}:{useDate(record.scoredAt).minute}
-            </div>
+            </span>
+            <span className="text-xs opacity-50 text-center">
+              {useDate(record.scoredAt).hour}시{' '}
+              {useDate(record.scoredAt).minute}분
+            </span>
           </li>
         ))
       ) : (
