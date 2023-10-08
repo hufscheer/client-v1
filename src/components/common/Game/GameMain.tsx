@@ -1,36 +1,27 @@
-import Link from 'next/link';
 import { Children, ReactNode, isValidElement } from 'react';
-import GameScore from './GameScore';
+
 import GameLabel from './GameLabel';
-import GameTimer from './GameTimer';
 import GameTeam from './GameTeam';
-import GameInform from './GameStatus';
 import GameStatus from './GameStatus';
 
 interface GameMainProps {
-  id: number;
   children?: ReactNode;
 }
 
-export default function GameMain({ id, children }: GameMainProps) {
+export default function GameMain({ children }: GameMainProps) {
   const gameStatus = getGameStatus(children);
   const gameLabel = getGameLabel(children);
   const [firstTeam, secondTeam] = getGameTeam(children);
 
   return (
-    <li>
-      <Link
-        href={`/detail/${id}`}
-        className='flex flex-col gap-1 justify-center p-2 rounded-lg shadow-md '
-      >
-        {gameLabel && <>{gameLabel}</>}
-        <div className='flex justify-between items-center'>
-          {firstTeam && <>{firstTeam}</>}
-          {gameStatus && <>{gameStatus}</>}
-          {secondTeam && <>{secondTeam}</>}
-        </div>
-      </Link>
-    </li>
+    <>
+      {gameLabel && <>{gameLabel}</>}
+      <div className="flex justify-between items-center">
+        {firstTeam && <>{firstTeam}</>}
+        {gameStatus && <>{gameStatus}</>}
+        {secondTeam && <>{secondTeam}</>}
+      </div>
+    </>
   );
 }
 
@@ -40,7 +31,7 @@ function getGameStatus(children: ReactNode) {
   const childrenArray = Children.toArray(children);
 
   return childrenArray.filter(
-    (child) => isValidElement(child) && child.type === GameStatusType
+    child => isValidElement(child) && child.type === GameStatusType,
   );
 }
 
@@ -49,7 +40,7 @@ function getGameTeam(children: ReactNode) {
   const childrenArray = Children.toArray(children);
 
   return childrenArray.filter(
-    (child) => isValidElement(child) && child.type === GameTeamType
+    child => isValidElement(child) && child.type === GameTeamType,
   );
 }
 
@@ -58,6 +49,6 @@ function getGameLabel(children: ReactNode) {
   const childrenArray = Children.toArray(children);
 
   return childrenArray.filter(
-    (child) => isValidElement(child) && child.type === GameLabelType
+    child => isValidElement(child) && child.type === GameLabelType,
   );
 }
