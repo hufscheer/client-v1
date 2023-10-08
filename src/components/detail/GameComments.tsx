@@ -32,7 +32,7 @@ export default function GameComments({ gameID }: { gameID: number }) {
         {comments &&
           comments.map((comment, idx) => <Comment {...comment} key={idx} />)}
       </ul>
-      <form onSubmit={CommentSubmitHandler} className="flex flex-col gap-1">
+      <form onSubmit={CommentSubmitHandler} className="space-y-1">
         <input
           type="text"
           name="comment"
@@ -41,15 +41,13 @@ export default function GameComments({ gameID }: { gameID: number }) {
           placeholder="댓글을 작성하세요"
           className="p-4 border-2 border-slate-400 rounded-lg w-full"
         />
-        <div className="flex justify-end">
-          <button
-            type="submit"
-            className="border border-slate-200 rounded-lg bg-green-600 text-white py-2 px-4  disabled:opacity-70 disabled:pointer-none"
-            disabled={inputContent.length == 0}
-          >
-            등록
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="border border-slate-200 rounded-lg bg-green-600 text-white py-2 px-4  disabled:opacity-70 disabled:pointer-none float-right w-fit"
+          disabled={inputContent.length == 0}
+        >
+          등록
+        </button>
       </form>
     </div>
   );
