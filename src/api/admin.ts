@@ -1,4 +1,5 @@
-import instance from './instance';
+import { GameTeamProps } from '@/types/game';
+import { adminInstance } from './instance';
 
 type CreateGameRequest = {
   name: string;
@@ -8,6 +9,11 @@ type CreateGameRequest = {
   startTime: Date;
 };
 
+export type TeamsOfGameResponse = {
+  firstTeam: GameTeamProps;
+  secondTeam: GameTeamProps;
+};
+
 export const createGame = (body: CreateGameRequest) => {
-  return instance.post('/manage/game/register/', body);
+  return adminInstance.post('/manage/game/register/', body);
 };
