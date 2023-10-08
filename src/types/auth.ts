@@ -1,4 +1,7 @@
-export interface PostLoginPayload {
-  id: string;
+export interface PostLoginRequest {
+  email: string;
   password: string;
+}
+export interface PostLoginResponse {
+  access: string;
 }
