@@ -70,6 +70,7 @@ export default function GameModify() {
           >
             {detailOfGame?.gameStatus === 'BEFORE' && '경기 예정'}
             {detailOfGame?.gameStatus === 'END' && '경기 종료'}
+            {detailOfGame?.gameStatus === 'BREAK_TIME' && '휴식 시간'}
             {detailOfGame?.gameStatus === 'FIRST_HALF' ||
               (detailOfGame?.gameStatus === 'SECOND_HALF' && 'LIVE')}
           </div>

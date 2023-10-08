@@ -16,6 +16,7 @@ export default function GameInfo({ game }: { game: EachGameResponse }) {
             {game.gameStatus === 'FIRST_HALF' ||
               (game.gameStatus === 'SECOND_HALF' && 'Live')}
             {game.gameStatus === 'END' && '경기 종료'}
+            {game.gameStatus === 'BREAK_TIME' && '휴식 시간'}
           </div>
         </Game.Label>
         <Game.TeamWrapper direction="col">

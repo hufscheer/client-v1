@@ -12,6 +12,7 @@ export default function GameLive({ gameStatus }: GameLiveProps) {
       }`}
     >
       {gameStatus === 'BEFORE' && '경기 예정'}
+      {gameStatus === 'BREAK_TIME' && '쉬는 시간'}
       {gameStatus === 'FIRST_HALF' || (gameStatus === 'SECOND_HALF' && 'Live')}
       {gameStatus === 'END' && '경기 종료'}
     </div>
