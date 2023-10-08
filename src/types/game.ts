@@ -15,7 +15,7 @@ export interface EachGameResponse extends AllGamesResponse {
   records: GameRecordProps[];
 }
 
-type GameTeamProps = {
+export type GameTeamProps = {
   id: number;
   name: string;
   logoImageUrl: string;
