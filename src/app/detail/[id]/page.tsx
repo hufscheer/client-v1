@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function detailPage({ params }: { params: { id: string } }) {
+export default function DetailPage({ params }: { params: { id: string } }) {
   const [gameData, setGameData] = useState<EachGameResponse>();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
