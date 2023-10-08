@@ -1,7 +1,7 @@
 'use client';
 
 import { getAllGames } from '@/api/game';
-import GameWithScore from '@/components/home/GameList/GameWithScore';
+import GameWithScore from '@/components/home/GameList/GameList';
 import GameWithTimeStamp from '@/components/home/GameList/GameWithTimeStamp';
 import { AllGamesResponse } from '@/types/game';
 import { useEffect, useState } from 'react';
@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 export default function Home() {
   const [gamesScheduled, setGamesScheduled] = useState<AllGamesResponse[]>([]);
   const [gamesInProgress, setGamesInProgress] = useState<AllGamesResponse[]>(
-    []
+    [],
   );
   const [gamesEnded, setGamesEnded] = useState<AllGamesResponse[]>([]);
 
@@ -17,12 +17,12 @@ export default function Home() {
     const getGames = async () => {
       const { data } = await getAllGames();
 
-      data.forEach((game) => {
+      data.forEach(game => {
         if (game.gameStatus === 'BEFORE')
-          setGamesScheduled((prevGames) => [...prevGames, game]);
+          setGamesScheduled(prevGames => [...prevGames, game]);
         else if (game.gameStatus === 'END')
-          setGamesEnded((prevGames) => [...prevGames, game]);
-        else setGamesInProgress((prevGames) => [...prevGames, game]);
+          setGamesEnded(prevGames => [...prevGames, game]);
+        else setGamesInProgress(prevGames => [...prevGames, game]);
       });
     };
 
@@ -30,7 +30,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className='w-full'>
+    <main className="w-full">
       <p>진행 중인 경기</p>
       <GameWithScore data={gamesInProgress} />
       <p>예정된 경기</p>
