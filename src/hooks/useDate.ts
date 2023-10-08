@@ -1,8 +1,9 @@
 export default function useDate(date: Date) {
+  const currentDate = new Date(date);
   return {
-    month: date.getMonth() + 1,
-    day: date.getDate(),
-    hour: date.getHours(),
-    minute: date.getMinutes(),
+    month: currentDate.getMonth() + 1,
+    day: currentDate.getDate(),
+    hour: currentDate.getHours(),
+    minute: currentDate.getMinutes(),
   };
 }
