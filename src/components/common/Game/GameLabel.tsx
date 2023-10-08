@@ -5,5 +5,5 @@ interface GameLabelProps {
 }
 
 export default function GameLabel({ children }: GameLabelProps) {
-  return <p className="w-full text-sm text-center">{children}</p>;
+  return <div className="w-full text-sm text-center">{children}</div>;
 }
