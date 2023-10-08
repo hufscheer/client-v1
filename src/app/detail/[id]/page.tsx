@@ -20,10 +20,3 @@ export default async function detailPage({
     </div>
   );
 }
-export async function generateStaticParams() {
-  const games = await getAllGames().then(res => res.data);
-
-  return games.map(game => ({
-    id: game.id.toString(),
-  }));
-}
