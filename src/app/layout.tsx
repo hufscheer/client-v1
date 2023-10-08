@@ -7,8 +7,11 @@ import Footer from '@/components/layout/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'HUFS-sport-live',
+  title: 'HUFStreaming',
   description: '한국외대 스포츠 경기 중계 플랫폼',
+  icons: {
+    icon: '/icon_hufstreaming.svg',
+  },
 };
 
 export default function RootLayout({
