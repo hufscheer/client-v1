@@ -1,3 +1,3 @@
 export default function Header() {
-  return <>헤더</>;
+  return <div className="h-8"></div>;
 }

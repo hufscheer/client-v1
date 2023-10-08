@@ -7,8 +7,11 @@ import Footer from '@/components/layout/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'HUFS-sport-live',
+  title: 'HUFStreaming',
   description: '한국외대 스포츠 경기 중계 플랫폼',
+  icons: {
+    icon: '/icon_hufstreaming.svg',
+  },
 };
 
 export default function RootLayout({
@@ -17,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
-      <body className={`${inter.className} max-w-sm m-auto`}>
+    <html lang="en">
+      <body className={`${inter.className} max-w-sm m-auto bg-slate-50`}>
         <Header />
         {children}
         <Footer />

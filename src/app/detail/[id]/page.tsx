@@ -13,10 +13,10 @@ export default async function detailPage({
   const gameData = await getEachGame(gameID);
   if (typeof gameData === 'number') return notFound();
   return (
-    <>
+    <div className="flex flex-col gap-8">
       <GameInfo game={gameData} />
       <GameTimeline records={gameData.records} status={gameData.gameStatus} />
       <GameComments gameID={gameData.id} />
-    </>
+    </div>
   );
 }

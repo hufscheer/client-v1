@@ -1,3 +1,3 @@
 export default function Footer() {
-  return <>푸터</>;
+  return <div className="h-8"></div>;
 }

@@ -1,8 +1,9 @@
 'use client';
+
 import { getGameComments, postGameComment } from '@/api/game';
-import useDate from '@/hooks/useDate';
 import { GameCommentsResponse } from '@/types/game';
 import { useEffect, useState } from 'react';
+import { Comment } from './Comment';
 
 export default function GameComments({ gameID }: { gameID: number }) {
   const [comments, setComments] = useState<GameCommentsResponse[]>();
@@ -26,29 +27,28 @@ export default function GameComments({ gameID }: { gameID: number }) {
   };
 
   return (
-    <div>
-      <div>응원 댓글</div>
-      <ul className="flex flex-col gap-1">
+    <div className="flex flex-col gap-4">
+      <p className="text-xl font-bold">응원 댓글</p>
+      <ul className="flex flex-col gap-2">
         {comments &&
-          comments.map((comment, idx) => (
-            <li key={idx} className="flex items-center gap-4">
-              <span className="">{comment.content}</span>
-              <span className="text-xs opacity-50">
-                {useDate(comment.createdAt).hour}시{' '}
-                {useDate(comment.createdAt).minute}분 작성
-              </span>
-            </li>
-          ))}
+          comments.map((comment, idx) => <Comment {...comment} key={idx} />)}
       </ul>
-      <form onSubmit={CommentSubmitHandler}>
+      <form onSubmit={CommentSubmitHandler} className="space-y-1">
         <input
           type="text"
           name="comment"
           value={inputContent}
           onChange={e => setInputContent(e.target.value)}
           placeholder="댓글을 작성하세요"
+          className="p-4 border-2 border-slate-400 rounded-lg w-full"
         />
-        <button type="submit">작성</button>
+        <button
+          type="submit"
+          className="border border-slate-200 rounded-lg bg-green-600 text-white py-2 px-4  disabled:opacity-70 disabled:pointer-none float-right w-fit"
+          disabled={inputContent.length == 0}
+        >
+          등록
+        </button>
       </form>
     </div>
   );
