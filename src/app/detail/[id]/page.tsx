@@ -1,6 +1,6 @@
 'use client';
 
-import { getAllGames, getEachGame } from '@/api/game';
+import { getEachGame } from '@/api/game';
 import GameComments from '@/components/detail/GameComments';
 import GameInfo from '@/components/detail/GameInfo';
 import GameTimeline from '@/components/detail/GameTimeline';
@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function detailPage({ params }: { params: { id: string } }) {
+export default function DetailPage({ params }: { params: { id: string } }) {
   const [gameData, setGameData] = useState<EachGameResponse>();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
@@ -24,7 +24,7 @@ export default function detailPage({ params }: { params: { id: string } }) {
     getGameData();
     const token = localStorage.getItem('token');
     token && setIsLoggedIn(true);
-  }, []);
+  }, [gameID]);
 
   return (
     <div className="flex flex-col gap-8">
@@ -37,6 +37,11 @@ export default function detailPage({ params }: { params: { id: string } }) {
         </Link>
       )}
       {gameData && <GameInfo game={gameData} />}
+      {isLoggedIn && (
+        <Link href={`/detail/${gameID}/status`} className="text-right">
+          전/후반 변경하러 가기
+        </Link>
+      )}
       {gameData && (
         <GameTimeline records={gameData.records} status={gameData.gameStatus} />
       )}

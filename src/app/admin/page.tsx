@@ -51,12 +51,15 @@ export default function Admin() {
 
     if (isDateError || isTeamError || isTimeError) return;
 
+    console.log(
+      new Date(`${gameData.date}T${gameData.time}:00Z`).toISOString(),
+    );
     createGame({
       name: gameData.name,
       sportsName: gameData.sportsName,
       firstTeam: Number(gameData.firstTeam),
       secondTeam: Number(gameData.secondTeam),
-      startTime: new Date(`${gameData.date}T${gameData.time}:00Z`),
+      startTime: new Date(`${gameData.date}T${gameData.time}:00`),
     }).then(() => router.push('/'));
   };
 
