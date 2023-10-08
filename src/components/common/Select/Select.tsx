@@ -1,17 +1,27 @@
-import { DOMAttributes, HTMLAttributes, SelectHTMLAttributes } from 'react';
+import {
+  DOMAttributes,
+  HTMLAttributes,
+  ReactNode,
+  SelectHTMLAttributes,
+} from 'react';
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  datas: any[];
+  children?: ReactNode;
 }
 
-export default function Select({ datas, ...props }: SelectProps) {
+export default function Select({
+  children,
+  placeholder,
+  ...props
+}: SelectProps) {
   return (
     <select {...props} className="block w-full p-2 border rounded-lg">
-      {datas.map((data, idx) => (
-        <option key={`${data}${idx}`} value={idx}>
-          {data}
+      {placeholder && (
+        <option value="0" disabled hidden>
+          {placeholder}
         </option>
-      ))}
+      )}
+      {children}
     </select>
   );
 }
