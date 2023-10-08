@@ -44,7 +44,7 @@ export const getGameComments = async (gameID: number) => {
 
 export const postGameComment = async (body: {
   content: string;
-  gameID: number;
+  gameId: number;
 }) => {
   try {
     await instance.post('/comments/register', body);
