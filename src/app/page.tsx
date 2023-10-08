@@ -30,13 +30,22 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="w-full">
-      <p>진행 중인 경기</p>
-      <GameWithScore data={gamesInProgress} />
-      <p>예정된 경기</p>
-      <GameWithTimeStamp data={gamesScheduled} />
-      <p>종료된 경기</p>
-      <GameWithScore data={gamesEnded} />
+    <main className="w-full flex flex-col gap-3">
+      <p className="text-xl font-bold text-center my-2">매치</p>
+      <div className="flex flex-col gap-8">
+        <div>
+          <p className="font-semibold ml-4 mb-2">진행 중</p>
+          <GameWithScore data={gamesInProgress} />
+        </div>
+        <div>
+          <p className="font-semibold ml-4 mb-2">예정</p>
+          <GameWithTimeStamp data={gamesScheduled} />
+        </div>
+        <div>
+          <p className="font-semibold ml-4 mb-2">종료</p>
+          <GameWithScore data={gamesEnded} />
+        </div>
+      </div>
     </main>
   );
 }
