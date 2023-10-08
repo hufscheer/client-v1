@@ -7,14 +7,24 @@ export type AllGamesResponse = {
   secondTeamScore: number;
   gameStatus: 'BEFORE' | 'FIRST_HALF' | 'SECOND_HALF' | 'END';
   statusChangedAt: Date;
-  firstTeam: {
-    id: number;
-    logoImageUrl: string;
-    name: string;
-  };
-  secondTeam: {
-    id: number;
-    logoImageUrl: string;
-    name: string;
-  };
+  firstTeam: GameTeamProps;
+  secondTeam: GameTeamProps;
+};
+
+export interface EachGameResponse extends AllGamesResponse {
+  records: GameRecordProps[];
+}
+
+type GameTeamProps = {
+  id: number;
+  name: string;
+  logoImageUrl: string;
+};
+
+type GameRecordProps = {
+  id: number;
+  teamId: number;
+  playerName: string;
+  score: number;
+  scoredAt: Date;
 };
