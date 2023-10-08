@@ -16,7 +16,6 @@ export default function GameModify() {
   const router = useRouter();
   const params = useParams();
   const id = Number(params.id);
-  const { month, day } = useDate(new Date());
   const [gameData, setGameData] = useState({
     playerName: '',
     team: -1,
