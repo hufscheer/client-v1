@@ -3,6 +3,7 @@ const nextConfig = {
   images: {
     domains: ['hufstreaming.s3.ap-northeast-2.amazonaws.com', 'lh3.googleusercontent.com'],
   },
+  output: 'export'
 };
 
 module.exports = nextConfig
