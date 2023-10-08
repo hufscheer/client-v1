@@ -28,3 +28,8 @@ type GameRecordProps = {
   score: number;
   scoredAt: Date;
 };
+
+export type GameCommentsResponse = {
+  content: string;
+  createdAt: Date;
+};
