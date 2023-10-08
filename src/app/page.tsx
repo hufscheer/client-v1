@@ -1,7 +1,7 @@
 'use client';
 
 import { getAllGames } from '@/api/game';
-import GameWithScore from '@/components/home/GameList/GameWithScore';
+import GameWithScore from '@/components/home/GameList/GameList';
 import GameWithTimeStamp from '@/components/home/GameList/GameWithTimeStamp';
 import { AllGamesResponse } from '@/types/game';
 import { useEffect, useState } from 'react';
