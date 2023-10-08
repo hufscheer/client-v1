@@ -24,7 +24,7 @@ export default function DetailPage({ params }: { params: { id: string } }) {
     getGameData();
     const token = localStorage.getItem('token');
     token && setIsLoggedIn(true);
-  }, []);
+  }, [gameID]);
 
   return (
     <div className="flex flex-col gap-8">
@@ -37,6 +37,11 @@ export default function DetailPage({ params }: { params: { id: string } }) {
         </Link>
       )}
       {gameData && <GameInfo game={gameData} />}
+      {isLoggedIn && (
+        <Link href={`/detail/${gameID}/status`} className="text-right">
+          전/후반 변경하러 가기
+        </Link>
+      )}
       {gameData && (
         <GameTimeline records={gameData.records} status={gameData.gameStatus} />
       )}
