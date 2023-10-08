@@ -24,9 +24,7 @@ export default function GameWithTimeStamp({ data }: GameListProps) {
                 />
                 <Game.TeamName>{game.firstTeam.name}</Game.TeamName>
               </Game.TeamWrapper>
-              <Game.Status>
-                <Game.Timer date={game.startTime} />
-              </Game.Status>
+              <Game.Timer date={game.startTime} />
               <Game.TeamWrapper reverse gap={2}>
                 <Game.TeamLogo
                   src={game.secondTeam.logoImageUrl}

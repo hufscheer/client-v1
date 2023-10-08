@@ -24,12 +24,10 @@ export default function GameList({ data }: GameListProps) {
                 />
                 <Game.TeamName>{game.firstTeam.name}</Game.TeamName>
               </Game.TeamWrapper>
-              <Game.Status>
-                <Game.Score
-                  firstTeamScore={game.firstTeamScore}
-                  secondTeamScore={game.secondTeamScore}
-                />
-              </Game.Status>
+              <Game.Score
+                firstTeamScore={game.firstTeamScore}
+                secondTeamScore={game.secondTeamScore}
+              />
               <Game.TeamWrapper reverse gap={2}>
                 <Game.TeamLogo
                   src={game.secondTeam.logoImageUrl}

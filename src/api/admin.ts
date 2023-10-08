@@ -14,6 +14,16 @@ export type TeamsOfGameResponse = {
   secondTeam: GameTeamProps;
 };
 
+type GameScoreRequest = {
+  playerName: string;
+  team: number;
+  scoredAt: Date;
+};
+
 export const createGame = (body: CreateGameRequest) => {
   return adminInstance.post('/manage/game/register/', body);
+};
+
+export const postGameScore = (id: number, body: GameScoreRequest) => {
+  return adminInstance.post(`/manage/game/score/${id}/`, body);
 };

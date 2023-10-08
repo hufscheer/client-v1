@@ -33,3 +33,8 @@ export type GameCommentsResponse = {
   content: string;
   createdAt: Date;
 };
+
+export type DetailOfGameResponse = Omit<
+  AllGamesResponse,
+  'sportsName' | 'startTime' | 'statusChangedAt'
+>;

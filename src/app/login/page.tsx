@@ -1,7 +1,7 @@
 'use client';
 
 import { postLogin } from '@/api/auth';
-import { adminInstance } from '@/api/instance';
+
 import { useRouter } from 'next/navigation';
 
 export default function Login() {
@@ -12,7 +12,7 @@ export default function Login() {
       email: email,
       password: password,
     });
-    console.log(data);
+
     return data.access;
   };
 
@@ -27,9 +27,8 @@ export default function Login() {
       formData.get('password') as string,
     );
     if (!loginRes) return;
-    adminInstance.defaults.headers['Authorization'] = `Bearer ${loginRes}`;
-    console.log(adminInstance.defaults);
-    sessionStorage.setItem('isAdmin', 'true');
+
+    localStorage.setItem('token', loginRes);
     router.push('/');
   };
   return (

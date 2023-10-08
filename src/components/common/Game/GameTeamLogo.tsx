@@ -1,14 +1,14 @@
 import Image from 'next/image';
 
 interface GameTeamLogoProps {
-  src: string;
+  src?: string;
   alt: string;
   width?: number;
   height?: number;
 }
 
 export default function GameTeamLogo({
-  src,
+  src = '/images/not-found.png',
   alt,
   width = 30,
   height = 30,
