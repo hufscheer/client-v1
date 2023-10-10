@@ -10,16 +10,8 @@ interface GameTeamLogoProps {
 export default function GameTeamLogo({
   src = '/images/not-found.png',
   alt,
-  width = 30,
-  height = 30,
+  width = 50,
+  height = 50,
 }: GameTeamLogoProps) {
-  return (
-    <Image
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      className="w-auto h-auto"
-    />
-  );
+  return <Image src={src} alt={alt} width={width} height={height} />;
 }

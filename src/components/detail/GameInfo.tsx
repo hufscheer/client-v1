@@ -3,50 +3,38 @@ import { Game } from '@/components/common/Game';
 
 export default function GameInfo({ game }: { game: EachGameResponse }) {
   return (
-    <div className="flex flex-col gap-1 justify-center p-2 bg-white">
+    <div className="flex flex-col gap-1 justify-center px-2 py-8 bg-white rounded-md">
       <Game>
-        <Game.Label>
-          <div
-            className={`text-center  ${
-              game.gameStatus === 'FIRST_HALF' ||
-              game.gameStatus === 'SECOND_HALF'
-                ? 'text-red-400'
-                : 'text-gray-400'
-            }`}
-          >
-            {game.gameStatus === 'BEFORE' && '경기 예정'}
-            {(game.gameStatus === 'FIRST_HALF' ||
-              game.gameStatus === 'SECOND_HALF') &&
-              'LIVE'}
-            {game.gameStatus === 'END' && '경기 종료'}
-            {game.gameStatus === 'BREAK_TIME' && '휴식 시간'}
-          </div>
-        </Game.Label>
-        <Game.TeamWrapper direction="col">
+        <Game.TeamWrapper direction="col" gap={2}>
           <Game.TeamLogo
             src={game.firstTeam.logoImageUrl}
             alt={`${game.firstTeam.name} 로고`}
-            width={50}
-            height={50}
+            width={90}
+            height={90}
           />
-          <Game.TeamName>{game.firstTeam.name}</Game.TeamName>
+          <Game.TeamName fontSize="text-sm">
+            {game.firstTeam.name}
+          </Game.TeamName>
         </Game.TeamWrapper>
 
+        <Game.Live gameStatus={game.gameStatus} />
         <Game.Score
           firstTeamScore={game.firstTeamScore}
           secondTeamScore={game.secondTeamScore}
-          fontSize="text-xl"
-          fontWeight="font-bold"
+          fontSize="text-3xl"
+          fontWeight="font-semibold"
         />
 
-        <Game.TeamWrapper direction="col">
+        <Game.TeamWrapper direction="col" gap={2}>
           <Game.TeamLogo
             src={game.secondTeam.logoImageUrl}
             alt={`${game.secondTeam.name} 로고`}
-            width={50}
-            height={50}
+            width={90}
+            height={90}
           />
-          <Game.TeamName>{game.secondTeam.name}</Game.TeamName>
+          <Game.TeamName fontSize="text-sm">
+            {game.secondTeam.name}
+          </Game.TeamName>
         </Game.TeamWrapper>
       </Game>
     </div>

@@ -7,13 +7,16 @@ interface GameLiveProps {
 export default function GameLive({ gameStatus }: GameLiveProps) {
   return (
     <div
-      className={`text-center text-red-400 ${
-        gameStatus === 'END' || (gameStatus === 'BEFORE' && 'text-gray-400')
+      className={`text-[0.6rem] text-center py-[0.4rem] w-16 rounded-md  ${
+        gameStatus === 'END' || gameStatus === 'BEFORE'
+          ? 'text-gray-500 bg-slate-100'
+          : 'text-blue-500 bg-blue-100 '
       }`}
     >
-      {gameStatus === 'BEFORE' && '경기 예정'}
-      {gameStatus === 'BREAK_TIME' && '쉬는 시간'}
-      {gameStatus === 'FIRST_HALF' || (gameStatus === 'SECOND_HALF' && 'Live')}
+      {gameStatus === 'BEFORE' && '경기 전'}
+      {gameStatus === 'BREAK_TIME' && '하프 타임'}
+      {gameStatus === 'FIRST_HALF' && '전반전'}
+      {gameStatus === 'SECOND_HALF' && '후반전'}
       {gameStatus === 'END' && '경기 종료'}
     </div>
   );

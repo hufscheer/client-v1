@@ -5,12 +5,14 @@ import GameTeam from './GameTeam';
 import GameStatus from './GameStatus';
 import GameScore from './GameScore';
 import GameTimer from './GameTimer';
+import GameLive from './GameLive';
 
 interface GameMainProps {
   children?: ReactNode;
 }
 
 export default function GameMain({ children }: GameMainProps) {
+  const gameLive = getGameLive(children);
   const gameScore = getGameScore(children);
   const gameTimer = getGameTimer(children);
   const gameLabel = getGameLabel(children);
@@ -18,11 +20,14 @@ export default function GameMain({ children }: GameMainProps) {
 
   return (
     <>
-      {gameLabel && <>{gameLabel}</>}
       <div className="grid grid-cols-[1fr,auto,1fr] justify-center items-center ">
         {firstTeam && <>{firstTeam}</>}
-        {gameScore && <>{gameScore}</>}
-        {gameTimer && <>{gameTimer}</>}
+        <div className="grid grid-rows-[1fr,2fr,1fr] place-items-center items-center">
+          {gameLive && <>{gameLive}</>}
+          {gameLabel && <>{gameLabel}</>}
+          {gameScore && <>{gameScore}</>}
+          {gameTimer && <>{gameTimer}</>}
+        </div>
         {secondTeam && <>{secondTeam}</>}
       </div>
     </>
@@ -64,5 +69,14 @@ function getGameLabel(children: ReactNode) {
 
   return childrenArray.filter(
     child => isValidElement(child) && child.type === GameLabelType,
+  );
+}
+
+const GameLiveType = (<GameLive gameStatus={'BEFORE'} />).type;
+function getGameLive(children: ReactNode) {
+  const childrenArray = Children.toArray(children);
+
+  return childrenArray.filter(
+    child => isValidElement(child) && child.type === GameLiveType,
   );
 }
