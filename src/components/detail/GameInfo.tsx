@@ -9,8 +9,7 @@ export default function GameInfo({ game }: { game: EachGameResponse }) {
           <Game.TeamLogo
             src={game.firstTeam.logoImageUrl}
             alt={`${game.firstTeam.name} 로고`}
-            width={90}
-            height={90}
+            size="w-24 h-24"
           />
           <Game.TeamName fontSize="text-sm">
             {game.firstTeam.name}
@@ -29,8 +28,7 @@ export default function GameInfo({ game }: { game: EachGameResponse }) {
           <Game.TeamLogo
             src={game.secondTeam.logoImageUrl}
             alt={`${game.secondTeam.name} 로고`}
-            width={90}
-            height={90}
+            size="w-24 h-24"
           />
           <Game.TeamName fontSize="text-sm">
             {game.secondTeam.name}
