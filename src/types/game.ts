@@ -5,7 +5,7 @@ export type AllGamesResponse = {
   startTime: Date;
   firstTeamScore: number;
   secondTeamScore: number;
-  gameStatus: 'BEFORE' | 'FIRST_HALF' | 'SECOND_HALF' | 'END';
+  gameStatus: GameStatusType;
   statusChangedAt: Date;
   firstTeam: GameTeamProps;
   secondTeam: GameTeamProps;
@@ -38,3 +38,10 @@ export type DetailOfGameResponse = Omit<
   AllGamesResponse,
   'sportsName' | 'startTime' | 'statusChangedAt'
 >;
+
+export type GameStatusType =
+  | 'BEFORE'
+  | 'FIRST_HALF'
+  | 'BREAK_TIME'
+  | 'SECOND_HALF'
+  | 'END';
