@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 import {
   AllGamesResponse,
   EachGameResponse,
@@ -7,7 +8,22 @@ import instance from './instance';
 import { AxiosError, AxiosResponse } from 'axios';
 
 export const getAllGames = async () => {
-  return instance.get<AllGamesResponse[]>('/games');
+  try {
+    const response: AxiosResponse<AllGamesResponse[]> =
+      await instance.get('/games');
+
+    return response.data;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+
+    Sentry.captureException(axiosError);
+
+    if (axiosError.response) {
+      throw new Error(axiosError.response.statusText);
+    } else {
+      throw new Error('경기 목록을 불러오는 데에 실패했습니다!');
+    }
+  }
 };
 
 export const getEachGame = async (gameID: number) => {
@@ -18,10 +34,13 @@ export const getEachGame = async (gameID: number) => {
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError;
+
+    Sentry.captureException(error);
+
     if (axiosError.response) {
-      return axiosError.response.status;
+      throw new Error(axiosError.response.statusText);
     } else {
-      throw new Error();
+      throw new Error('경기 상세 정보를 불러오는 데에 실패했습니다!');
     }
   }
 };
@@ -31,13 +50,17 @@ export const getGameComments = async (gameID: number) => {
     const response: AxiosResponse<GameCommentsResponse[]> = await instance.get(
       `/games/${gameID}/comments`,
     );
+
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError;
+
+    Sentry.captureException(axiosError);
+
     if (axiosError.response) {
-      return axiosError.response.status;
+      throw new Error(axiosError.response.statusText);
     } else {
-      throw new Error();
+      throw new Error('댓글을 불러오는 데에 실패했습니다!');
     }
   }
 };
@@ -50,10 +73,13 @@ export const postGameComment = async (body: {
     await instance.post('/comments/register', body);
   } catch (error) {
     const axiosError = error as AxiosError;
+
+    Sentry.captureException(axiosError);
+
     if (axiosError.response) {
-      return axiosError.response.status;
+      throw new Error(axiosError.response.statusText);
     } else {
-      throw new Error();
+      throw new Error('댓글 등록에 실패했습니다!');
     }
   }
 };

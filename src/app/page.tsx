@@ -15,7 +15,7 @@ export default function Home() {
 
   useEffect(() => {
     const getGames = async () => {
-      const { data } = await getAllGames();
+      const data = await getAllGames();
 
       data.forEach(game => {
         if (game.gameStatus === 'BEFORE')
