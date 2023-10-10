@@ -3,6 +3,7 @@ import { Cross2Icon } from '@radix-ui/react-icons';
 import { GameCommentResponse } from '@/types/game';
 import { postBlockComment } from '@/api/admin';
 import { useEffect, useState } from 'react';
+import { parseTime } from '@/utils/utc-times';
 
 export const Comment = ({
   content,
@@ -11,7 +12,7 @@ export const Comment = ({
   id,
 }: GameCommentResponse) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const { hour, minute } = useDate(createdAt);
+  const { month, day, hour, minute } = useDate(createdAt);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -29,8 +30,9 @@ export const Comment = ({
         }`}
       >
         <div>
-          <span className="text-xs opacity-50">
-            {hour}시 {minute}분 작성
+          <span className="text-xs opacity-30">
+            {month}월 {day}일 {parseTime(hour < 24 ? hour : hour - 24)}시{' '}
+            {parseTime(minute)}분
           </span>
         </div>
         <div
