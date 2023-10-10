@@ -27,3 +27,7 @@ export const createGame = (body: CreateGameRequest) => {
 export const postGameScore = (id: number, body: GameScoreRequest) => {
   return adminInstance.post(`/manage/game/score/${id}/`, body);
 };
+
+export const postBlockComment = (id: number) => {
+  return adminInstance.post(`/manage/comments/block/${id}/`);
+};
