@@ -2,13 +2,13 @@
 
 import { postLogin } from '@/api/auth';
 
-import { useRouter } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 
 export default function Login() {
   const router = useRouter();
 
   const login = async (email: string, password: string) => {
-    const { data } = await postLogin({
+    const data = await postLogin({
       email: email,
       password: password,
     });

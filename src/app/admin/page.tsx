@@ -7,7 +7,7 @@ import Select from '@/components/common/Select/Select';
 import useDate from '@/hooks/useDate';
 import useValidate from '@/hooks/useValidate';
 import { GameTeamProps } from '@/types/game';
-import { useRouter } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 export default function Admin() {
@@ -65,9 +65,11 @@ export default function Admin() {
 
   useEffect(() => {
     const loadTeams = async () => {
-      const { data } = await getTeams();
+      const res = await getTeams();
 
-      setTeams(data);
+      if (typeof res === 'number') return notFound();
+
+      setTeams(res);
     };
 
     loadTeams();
