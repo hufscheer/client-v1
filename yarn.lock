@@ -180,6 +180,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+<<<<<<< HEAD
 "@rollup/plugin-commonjs@24.0.0":
   version "24.0.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-24.0.0.tgz#fb7cf4a6029f07ec42b25daa535c75b05a43f75c"
@@ -200,6 +201,12 @@
     "@types/estree" "^1.0.0"
     estree-walker "^2.0.2"
     picomatch "^2.3.1"
+=======
+"@radix-ui/react-icons@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-icons/-/react-icons-1.3.0.tgz#c61af8f323d87682c5ca76b856d60c2312dbcb69"
+  integrity sha512-jQxj/0LKgp+j9BiTXz3O3sgs26RNet2iLWmsPyRz2SIcR4q/4SbazXfnYwbAr+vLYKSfc7qxzyGQA1HLlYiuNw==
+>>>>>>> 00f8523 (chore: radixui/react-icons 설치)
 
 "@rushstack/eslint-patch@^1.3.3":
   version "1.5.1"
