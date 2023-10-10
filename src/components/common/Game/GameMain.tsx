@@ -20,7 +20,7 @@ export default function GameMain({ children }: GameMainProps) {
 
   return (
     <>
-      <div className="grid grid-cols-[1fr,auto,1fr] justify-center items-center ">
+      <div className="grid grid-cols-[1fr,auto,1fr] gap-2 justify-center items-center ">
         {firstTeam && <>{firstTeam}</>}
         <div className="grid grid-rows-[1fr,2fr,1fr] place-items-center items-center">
           {gameLive && <>{gameLive}</>}
