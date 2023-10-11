@@ -3,23 +3,17 @@ import Image from 'next/image';
 interface GameTeamLogoProps {
   src?: string;
   alt: string;
-  width?: number;
-  height?: number;
+  size?: string;
 }
 
 export default function GameTeamLogo({
   src = '/images/not-found.png',
   alt,
-  width = 30,
-  height = 30,
+  size = 'w-10 h-10',
 }: GameTeamLogoProps) {
   return (
-    <Image
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      className="w-auto h-auto"
-    />
+    <div className={`relative ${size}`}>
+      <Image src={src} alt={alt} fill className=" object-contain" />
+    </div>
   );
 }
