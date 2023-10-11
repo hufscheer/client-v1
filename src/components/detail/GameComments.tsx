@@ -14,7 +14,7 @@ export default function GameComments({ gameID }: { gameID: number }) {
   };
   useEffect(() => {
     getData();
-  }, [comments]);
+  }, []);
 
   const CommentSubmitHandler = async (
     event: React.FormEvent<HTMLFormElement>,
