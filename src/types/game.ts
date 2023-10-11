@@ -29,9 +29,11 @@ type GameRecordProps = {
   scoredAt: Date;
 };
 
-export type GameCommentsResponse = {
+export type GameCommentResponse = {
+  id: number;
   content: string;
   createdAt: Date;
+  isBlocked: boolean;
 };
 
 export type DetailOfGameResponse = Omit<

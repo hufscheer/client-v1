@@ -53,3 +53,7 @@ export const postGameScore = (id: number, body: GameScoreRequest) => {
     }
   }
 };
+
+export const postBlockComment = (id: number) => {
+  return adminInstance.post(`/manage/comments/block/${id}/`);
+};
