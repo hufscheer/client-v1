@@ -1,9 +1,9 @@
-import { AllGamesResponse } from '@/types/game';
+import { Game } from '@/types/game';
 import { Game } from '@/components/common/Game';
 import Link from 'next/link';
 
 interface GameListProps {
-  data: AllGamesResponse[];
+  data: Game[];
 }
 
 export default function GameWithTimeStamp({ data }: GameListProps) {

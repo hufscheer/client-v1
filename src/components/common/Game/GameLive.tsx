@@ -1,7 +1,7 @@
-import { AllGamesResponse } from '@/types/game';
+import { Game } from '@/types/game';
 
 interface GameLiveProps {
-  gameStatus: AllGamesResponse['gameStatus'];
+  gameStatus: Game['gameStatus'];
 }
 
 export default function GameLive({ gameStatus }: GameLiveProps) {

@@ -1,16 +1,11 @@
 import useDate from '@/hooks/useDate';
 import { Cross2Icon } from '@radix-ui/react-icons';
-import { GameCommentResponse } from '@/types/game';
+import { Comment } from '@/types/game';
 import { postBlockComment } from '@/api/admin';
 import { useEffect, useState } from 'react';
 import { parseTime } from '@/utils/utc-times';
 
-export const Comment = ({
-  content,
-  createdAt,
-  isBlocked,
-  id,
-}: GameCommentResponse) => {
+export const Comment = ({ content, createdAt, isBlocked, id }: Comment) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const { month, day, hour, minute } = useDate(createdAt);
 

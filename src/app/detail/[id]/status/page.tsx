@@ -2,14 +2,14 @@
 
 import { postGameStatus } from '@/api/auth';
 import Select from '@/components/common/Select/Select';
-import { GameStatusType } from '@/types/game';
+import { GameStatus } from '@/types/game';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function Status() {
   const router = useRouter();
   const params = useParams();
-  const [gameState, setGameState] = useState<GameStatusType>('BEFORE');
+  const [gameState, setGameState] = useState<GameStatus>('BEFORE');
 
   const updateGameStatus = async () => {
     postGameStatus(Number(params.id), gameState).then(() =>
@@ -22,7 +22,7 @@ export default function Status() {
       <Select
         defaultValue={gameState}
         value={gameState}
-        onChange={e => setGameState(e.target.value as GameStatusType)}
+        onChange={e => setGameState(e.target.value as GameStatus)}
       >
         <option value="BEFORE">경기 전</option>
         <option value="FIRST_HALF">전반전</option>
