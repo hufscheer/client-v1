@@ -1,26 +1,7 @@
-import { Team } from '@/types/game';
+import { CreateGameRequest, GameScoreRequest } from '@/types/admin';
 import { adminInstance } from './instance';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 import * as Sentry from '@sentry/nextjs';
-
-type CreateGameRequest = {
-  name: string;
-  sportsName: string;
-  firstTeam: number;
-  secondTeam: number;
-  startTime: Date;
-};
-
-export type TeamsOfGameResponse = {
-  firstTeam: Team;
-  secondTeam: Team;
-};
-
-type GameScoreRequest = {
-  playerName: string;
-  team: number;
-  scoredAt: Date;
-};
 
 export const createGame = (body: CreateGameRequest) => {
   try {
