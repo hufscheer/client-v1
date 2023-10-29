@@ -25,7 +25,6 @@ export const postLogin = async (body: PostLoginRequest) => {
   }
 };
 
-export const postGameStatus = async (id: number, gameStatus: GameStatus) => {
-  console.log(id, gameStatus);
+export const postGameStatus = (id: number, gameStatus: GameStatus) => {
   adminInstance.post(`/manage/game/statustype/${id}/`, { gameStatus });
 };
