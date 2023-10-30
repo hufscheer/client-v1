@@ -20,8 +20,9 @@ export default function GameComments({ gameId }: { gameId: number }) {
     event: React.FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
-    inputContent &&
-      (await postGameComment({ content: inputContent, gameId: gameId }));
+    if (!inputContent) return;
+
+    await postGameComment({ content: inputContent, gameId });
     getData();
     setInputContent('');
   };
