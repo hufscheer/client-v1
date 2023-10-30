@@ -20,7 +20,7 @@ export default function GameModify() {
     hour: new Date().getHours(),
     minute: new Date().getMinutes(),
   });
-  const [detailOfGame, setDetailOfGame] = useState<GameDetail>();
+  const [gameDetail, setGameDetail] = useState<GameDetail>();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -43,16 +43,16 @@ export default function GameModify() {
   };
 
   useEffect(() => {
-    const getInformsOfGame = async () => {
+    const getGameInfo = async () => {
       const id = Number(params.id);
-      const detailOfGame = await getEachGame(id);
+      const gameDetail = await getEachGame(id);
 
-      if (typeof detailOfGame === 'number') return;
+      if (typeof gameDetail === 'number') return;
 
-      setDetailOfGame(detailOfGame);
+      setGameDetail(gameDetail);
     };
 
-    getInformsOfGame();
+    getGameInfo();
   }, [params.id]);
 
   return (
@@ -61,39 +61,39 @@ export default function GameModify() {
         <Game.Label>
           <div
             className={`text-red-400 ${
-              detailOfGame?.gameStatus === 'FIRST_HALF' ||
-              detailOfGame?.gameStatus === 'SECOND_HALF'
+              gameDetail?.gameStatus === 'FIRST_HALF' ||
+              gameDetail?.gameStatus === 'SECOND_HALF'
                 ? 'text-red-400'
                 : 'text-gray-400'
             }`}
           >
-            {detailOfGame?.gameStatus === 'BEFORE' && '경기 예정'}
-            {detailOfGame?.gameStatus === 'END' && '경기 종료'}
-            {detailOfGame?.gameStatus === 'BREAK_TIME' && '휴식 시간'}
-            {detailOfGame?.gameStatus === 'FIRST_HALF' ||
-              (detailOfGame?.gameStatus === 'SECOND_HALF' && 'LIVE')}
+            {gameDetail?.gameStatus === 'BEFORE' && '경기 예정'}
+            {gameDetail?.gameStatus === 'END' && '경기 종료'}
+            {gameDetail?.gameStatus === 'BREAK_TIME' && '휴식 시간'}
+            {gameDetail?.gameStatus === 'FIRST_HALF' ||
+              (gameDetail?.gameStatus === 'SECOND_HALF' && 'LIVE')}
           </div>
         </Game.Label>
 
         <Game.TeamWrapper direction="col">
           <Game.TeamLogo
-            src={detailOfGame?.firstTeam.logoImageUrl}
-            alt={`${detailOfGame?.firstTeam.name}팀 로고`}
+            src={gameDetail?.firstTeam.logoImageUrl}
+            alt={`${gameDetail?.firstTeam.name}팀 로고`}
           />
-          <Game.TeamName>{detailOfGame?.firstTeam.name}</Game.TeamName>
+          <Game.TeamName>{gameDetail?.firstTeam.name}</Game.TeamName>
         </Game.TeamWrapper>
 
         <Game.Score
-          firstTeamScore={detailOfGame?.firstTeamScore || 0}
-          secondTeamScore={detailOfGame?.secondTeamScore || 0}
+          firstTeamScore={gameDetail?.firstTeamScore || 0}
+          secondTeamScore={gameDetail?.secondTeamScore || 0}
         />
 
         <Game.TeamWrapper direction="col">
           <Game.TeamLogo
-            src={detailOfGame?.secondTeam.logoImageUrl}
-            alt={`${detailOfGame?.secondTeam.name}팀 로고`}
+            src={gameDetail?.secondTeam.logoImageUrl}
+            alt={`${gameDetail?.secondTeam.name}팀 로고`}
           />
-          <Game.TeamName>{detailOfGame?.secondTeam.name}</Game.TeamName>
+          <Game.TeamName>{gameDetail?.secondTeam.name}</Game.TeamName>
         </Game.TeamWrapper>
       </Game>
       <label className="my-5">
@@ -114,17 +114,17 @@ export default function GameModify() {
         required
         placeholder="팀을 선택해주세요."
       >
-        <option value={detailOfGame?.firstTeam.id}>
-          {detailOfGame?.firstTeam.name}
+        <option value={gameDetail?.firstTeam.id}>
+          {gameDetail?.firstTeam.name}
         </option>
-        <option value={detailOfGame?.secondTeam.id}>
-          {detailOfGame?.secondTeam.name}
+        <option value={gameDetail?.secondTeam.id}>
+          {gameDetail?.secondTeam.name}
         </option>
       </Select>
 
       <label>
         득점 시간
-        <div className="flex justify-center items-center gap-1">
+        <div className="flex items-center justify-center gap-1">
           <Input
             type="number"
             name="hour"
@@ -148,7 +148,7 @@ export default function GameModify() {
       </label>
       <button
         type="submit"
-        className="border border-slate-200 rounded-md bg-green-600 text-white py-2 px-4 w-full disabled:opacity-70 disabled:pointer-none"
+        className="w-full px-4 py-2 text-white bg-green-600 border rounded-md border-slate-200 disabled:opacity-70 disabled:pointer-none"
       >
         저장하기
       </button>

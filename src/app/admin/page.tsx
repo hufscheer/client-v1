@@ -1,7 +1,7 @@
 'use client';
 
 import { createGame } from '@/api/admin';
-import { getTeams } from '@/api/team';
+import { getTeamList } from '@/api/team';
 import Input from '@/components/common/Input/Input';
 import Select from '@/components/common/Select/Select';
 import useDate from '@/hooks/useDate';
@@ -14,7 +14,7 @@ export default function Admin() {
   const router = useRouter();
 
   const { month, day } = useDate(new Date());
-  const [teams, setTeams] = useState<Team[]>([]);
+  const [teamList, setTeamList] = useState<Team[]>([]);
   const [gameData, setGameData] = useState({
     name: '삼건물대회',
     sportsName: '축구',
@@ -65,11 +65,11 @@ export default function Admin() {
 
   useEffect(() => {
     const loadTeams = async () => {
-      const res = await getTeams();
+      const res = await getTeamList();
 
       if (typeof res === 'number') return notFound();
 
-      setTeams(res);
+      setTeamList(res);
     };
 
     loadTeams();
@@ -117,7 +117,7 @@ export default function Admin() {
         onChange={handleInput}
         placeholder="팀을 선택해주세요."
       >
-        {teams.map(team => (
+        {teamList.map(team => (
           <option key={team.id} value={team.id}>
             {team.name}
           </option>
@@ -130,14 +130,14 @@ export default function Admin() {
         onChange={handleInput}
         placeholder="팀을 선택해주세요."
       >
-        {teams.map(team => (
+        {teamList.map(team => (
           <option key={team.id} value={team.id}>
             {team.name}
           </option>
         ))}
       </Select>
       {isTeamError && (
-        <div className="text-red-400 text-sm">팀을 다시 선택해주세요!</div>
+        <div className="text-sm text-red-400">팀을 다시 선택해주세요!</div>
       )}
 
       <label>

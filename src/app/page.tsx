@@ -1,6 +1,6 @@
 'use client';
 
-import { getAllGames } from '@/api/game';
+import { getGameList } from '@/api/game';
 import GameWithScore from '@/components/home/GameList/GameWithScore';
 import GameWithTimeStamp from '@/components/home/GameList/GameWithTimeStamp';
 import { Game } from '@/types/game';
@@ -13,7 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     const getGames = async () => {
-      const data = await getAllGames();
+      const data = await getGameList();
 
       data.forEach(game => {
         if (game.gameStatus === 'BEFORE')
@@ -28,19 +28,19 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="w-full flex flex-col gap-3">
-      <p className="text-xl font-bold text-center my-2">매치</p>
+    <main className="flex flex-col w-full gap-3">
+      <p className="my-2 text-xl font-bold text-center">매치</p>
       <div className="flex flex-col gap-8">
         <div>
-          <p className="font-semibold ml-4 mb-2">진행 중</p>
+          <p className="mb-2 ml-4 font-semibold">진행 중</p>
           <GameWithScore data={gamesInProgress} />
         </div>
         <div>
-          <p className="font-semibold ml-4 mb-2">예정</p>
+          <p className="mb-2 ml-4 font-semibold">예정</p>
           <GameWithTimeStamp data={gamesScheduled} />
         </div>
         <div>
-          <p className="font-semibold ml-4 mb-2">종료</p>
+          <p className="mb-2 ml-4 font-semibold">종료</p>
           <GameWithScore data={gamesEnded} />
         </div>
       </div>

@@ -5,7 +5,7 @@ import { postBlockComment } from '@/api/admin';
 import { useEffect, useState } from 'react';
 import { parseTime } from '@/utils/utc-times';
 
-export const Comment = ({ content, createdAt, isBlocked, id }: Comment) => {
+export const CommentCard = ({ content, createdAt, isBlocked, id }: Comment) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const { month, day, hour, minute } = useDate(createdAt);
 
@@ -18,7 +18,7 @@ export const Comment = ({ content, createdAt, isBlocked, id }: Comment) => {
     await postBlockComment(id);
   };
   return (
-    <li className="flex justify-start items-center gap-4">
+    <li className="flex items-center justify-start gap-4">
       <div
         className={`p-3 rounded-lg shadow-md ${
           isBlocked ? 'bg-gray-200' : 'bg-white'

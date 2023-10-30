@@ -3,7 +3,7 @@ import { Game, Comment } from '@/types/game';
 import instance from './instance';
 import { AxiosError, AxiosResponse } from 'axios';
 
-export const getAllGames = async () => {
+export const getGameList = async () => {
   try {
     const response: AxiosResponse<Game[]> = await instance.get('/games');
 
@@ -40,7 +40,7 @@ export const getEachGame = async (gameID: number) => {
   }
 };
 
-export const getGameComments = async (gameID: number) => {
+export const getCommentList = async (gameID: number) => {
   try {
     const response: AxiosResponse<Comment[]> = await instance.get(
       `/games/${gameID}/comments`,
@@ -60,7 +60,7 @@ export const getGameComments = async (gameID: number) => {
   }
 };
 
-export const postGameComment = async (body: {
+export const postComment = async (body: {
   content: string;
   gameId: number;
 }) => {

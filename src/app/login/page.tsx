@@ -2,7 +2,7 @@
 
 import { postLogin } from '@/api/auth';
 
-import { notFound, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
   const router = useRouter();
