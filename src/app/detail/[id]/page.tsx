@@ -25,7 +25,8 @@ export default function DetailPage({ params }: { params: { id: string } }) {
     };
     getGameData();
     const token = localStorage.getItem('token');
-    token && setIsLoggedIn(true);
+    if (!token) return;
+    setIsLoggedIn(true);
   }, [gameId]);
 
   return (
