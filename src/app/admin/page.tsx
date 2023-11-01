@@ -6,7 +6,7 @@ import Input from '@/components/common/Input/Input';
 import Select from '@/components/common/Select/Select';
 import useDate from '@/hooks/useDate';
 import useValidate from '@/hooks/useValidate';
-import { GameTeamProps } from '@/types/game';
+import { GameTeamType } from '@/types/game';
 import { notFound, useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
@@ -14,7 +14,7 @@ export default function Admin() {
   const router = useRouter();
 
   const { month, day } = useDate(new Date());
-  const [teams, setTeams] = useState<GameTeamProps[]>([]);
+  const [teams, setTeams] = useState<GameTeamType[]>([]);
   const [gameData, setGameData] = useState({
     name: '삼건물대회',
     sportsName: '축구',

@@ -4,13 +4,13 @@ import { getEachGame } from '@/api/game';
 import GameComments from '@/components/detail/GameComments';
 import GameInfo from '@/components/detail/GameInfo';
 import GameTimeline from '@/components/detail/GameTimeline';
-import { EachGameResponse } from '@/types/game';
+import { GameDetailType } from '@/types/game';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function DetailPage({ params }: { params: { id: string } }) {
-  const [gameData, setGameData] = useState<EachGameResponse>();
+  const [gameData, setGameData] = useState<GameDetailType>();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const gameId = params.id;

@@ -1,7 +1,7 @@
-import { EachGameResponse } from '@/types/game';
+import { GameDetailType } from '@/types/game';
 import { Game } from '@/components/common/Game';
 
-export default function GameInfo({ game }: { game: EachGameResponse }) {
+export default function GameInfo({ game }: { game: GameDetailType }) {
   return (
     <div className="flex flex-col gap-1 justify-center px-2 py-8 bg-white rounded-md">
       <Game>

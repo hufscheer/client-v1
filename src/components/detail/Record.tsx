@@ -1,12 +1,12 @@
 import useDate from '@/hooks/useDate';
-import { EachGameResponse } from '@/types/game';
+import { GameDetailType } from '@/types/game';
 
 export const Record = ({
   id,
   playerName,
   score,
   scoredAt,
-}: EachGameResponse['records'][0]) => {
+}: GameDetailType['records'][0]) => {
   const { hour, minute } = useDate(scoredAt);
   return (
     <li

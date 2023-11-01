@@ -3,15 +3,13 @@
 import { getAllGames } from '@/api/game';
 import GameWithScore from '@/components/home/GameList/GameWithScore';
 import GameWithTimeStamp from '@/components/home/GameList/GameWithTimeStamp';
-import { AllGamesResponse } from '@/types/game';
+import { GameType } from '@/types/game';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const [gamesScheduled, setGamesScheduled] = useState<AllGamesResponse[]>([]);
-  const [gamesInProgress, setGamesInProgress] = useState<AllGamesResponse[]>(
-    [],
-  );
-  const [gamesEnded, setGamesEnded] = useState<AllGamesResponse[]>([]);
+  const [gamesScheduled, setGamesScheduled] = useState<GameType[]>([]);
+  const [gamesInProgress, setGamesInProgress] = useState<GameType[]>([]);
+  const [gamesEnded, setGamesEnded] = useState<GameType[]>([]);
 
   useEffect(() => {
     const getGames = async () => {

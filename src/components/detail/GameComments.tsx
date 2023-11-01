@@ -1,12 +1,12 @@
 'use client';
 
 import { getGameComments, postGameComment } from '@/api/game';
-import { GameCommentResponse } from '@/types/game';
+import { GameCommentType } from '@/types/game';
 import { useEffect, useState } from 'react';
 import { Comment } from './Comment';
 
 export default function GameComments({ gameId }: { gameId: number }) {
-  const [comments, setComments] = useState<GameCommentResponse[]>();
+  const [comments, setComments] = useState<GameCommentType[]>();
   const [inputContent, setInputContent] = useState<string>('');
   const getData = async () => {
     const res = await getGameComments(gameId);

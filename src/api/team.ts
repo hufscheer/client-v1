@@ -1,12 +1,12 @@
 import { AxiosError } from 'axios';
 import instance, { adminInstance } from './instance';
-import { GameTeamProps } from '@/types/game';
+import { GameTeamType } from '@/types/game';
 
 import * as Sentry from '@sentry/nextjs';
 
 export const getTeams = async () => {
   try {
-    const response = await instance.get<GameTeamProps[]>('/teams');
+    const response = await instance.get<GameTeamType[]>('/teams');
 
     return response.data;
   } catch (error) {
