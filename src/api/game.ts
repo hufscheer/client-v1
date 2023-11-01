@@ -5,12 +5,11 @@ import {
   GameCommentResponse,
 } from '@/types/game';
 import instance from './instance';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 
 export const getAllGames = async () => {
   try {
-    const response: AxiosResponse<AllGamesResponse[]> =
-      await instance.get('/games');
+    const response = await instance.get<AllGamesResponse[]>('/games');
 
     return response.data;
   } catch (error) {
@@ -28,9 +27,7 @@ export const getAllGames = async () => {
 
 export const getEachGame = async (gameID: number) => {
   try {
-    const response: AxiosResponse<EachGameResponse> = await instance.get(
-      `/games/${gameID}`,
-    );
+    const response = await instance.get<EachGameResponse>(`/games/${gameID}`);
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError;
@@ -47,7 +44,7 @@ export const getEachGame = async (gameID: number) => {
 
 export const getGameComments = async (gameID: number) => {
   try {
-    const response: AxiosResponse<GameCommentResponse[]> = await instance.get(
+    const response = await instance.get<GameCommentResponse[]>(
       `/games/${gameID}/comments`,
     );
 
