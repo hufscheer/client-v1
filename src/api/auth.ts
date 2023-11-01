@@ -8,7 +8,7 @@ import { adminInstance } from './instance';
 
 export const postLogin = async (body: PostLoginRequest) => {
   try {
-    const response: AxiosResponse<PostLoginResponse> = await adminInstance.post(
+    const response = await adminInstance.post<PostLoginResponse>(
       '/accounts/login/',
       body,
     );

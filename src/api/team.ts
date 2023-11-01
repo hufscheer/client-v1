@@ -7,8 +7,7 @@ import instance from './instance';
 
 export const getTeams = async () => {
   try {
-    const response: AxiosResponse<GameTeamProps[]> =
-      await instance.get('/teams');
+    const response = await instance.get<GameTeamProps[]>('/teams');
 
     return response.data;
   } catch (error) {
