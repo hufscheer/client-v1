@@ -13,11 +13,11 @@ export default function DetailPage({ params }: { params: { id: string } }) {
   const [gameData, setGameData] = useState<EachGameResponse>();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-  const gameID = params.id;
+  const gameId = params.id;
 
   useEffect(() => {
     const getGameData = async () => {
-      const res = await getEachGame(Number(gameID));
+      const res = await getEachGame(Number(gameId));
 
       if (typeof res === 'number') return notFound();
 
@@ -25,29 +25,30 @@ export default function DetailPage({ params }: { params: { id: string } }) {
     };
     getGameData();
     const token = localStorage.getItem('token');
-    token && setIsLoggedIn(true);
-  }, [gameID]);
+    if (!token) return;
+    setIsLoggedIn(true);
+  }, [gameId]);
 
   return (
     <div className="flex flex-col gap-8">
       {isLoggedIn && (
         <Link
-          href={`/detail/${gameID}/modify`}
-          className="p-2 rounded-lg border border-red-500 w-fit bg-red-400 text-white"
+          href={`/detail/${gameId}/modify`}
+          className="p-2 text-white bg-red-400 border border-red-500 rounded-lg w-fit"
         >
           수정
         </Link>
       )}
       {gameData && <GameInfo game={gameData} />}
       {isLoggedIn && (
-        <Link href={`/detail/${gameID}/status`} className="text-right">
+        <Link href={`/detail/${gameId}/status`} className="text-right">
           전/후반 변경하러 가기
         </Link>
       )}
       {gameData && (
         <GameTimeline records={gameData.records} status={gameData.gameStatus} />
       )}
-      {gameData && <GameComments gameID={gameData.id} />}
+      {gameData && <GameComments gameId={gameData.id} />}
     </div>
   );
 }

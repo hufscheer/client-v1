@@ -5,23 +5,24 @@ import { GameCommentResponse } from '@/types/game';
 import { useEffect, useState } from 'react';
 import { Comment } from './Comment';
 
-export default function GameComments({ gameID }: { gameID: number }) {
+export default function GameComments({ gameId }: { gameId: number }) {
   const [comments, setComments] = useState<GameCommentResponse[]>();
   const [inputContent, setInputContent] = useState<string>('');
   const getData = async () => {
-    const res = await getGameComments(gameID);
+    const res = await getGameComments(gameId);
     typeof res !== 'number' && setComments(res);
   };
   useEffect(() => {
     getData();
-  }, [comments]);
+  }, [gameId]);
 
   const CommentSubmitHandler = async (
     event: React.FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
-    inputContent &&
-      (await postGameComment({ content: inputContent, gameId: gameID }));
+    if (!inputContent) return;
+
+    await postGameComment({ content: inputContent, gameId });
     getData();
     setInputContent('');
   };
@@ -36,9 +37,9 @@ export default function GameComments({ gameID }: { gameID: number }) {
           value={inputContent}
           onChange={e => setInputContent(e.target.value)}
           placeholder="댓글을 작성하세요"
-          className="p-4 border-2 border-slate-400 rounded-lg w-full"
+          className="w-full p-4 border-2 rounded-lg border-slate-400"
         />
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <span className="text-xs text-gray-400">
             욕설 및 스포츠와 무관한 내용을 포함한 댓글은
             <br />
@@ -46,7 +47,7 @@ export default function GameComments({ gameID }: { gameID: number }) {
           </span>
           <button
             type="submit"
-            className="border border-slate-200 rounded-lg bg-green-600 text-white py-2 px-4  disabled:opacity-70 disabled:pointer-none float-right"
+            className="float-right px-4 py-2 text-white bg-green-600 border rounded-lg border-slate-200 disabled:opacity-70 disabled:pointer-none"
             disabled={inputContent.length == 0}
           >
             등록
