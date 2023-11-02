@@ -1,12 +1,12 @@
-import { PostLoginRequest, PostLoginResponse } from '@/types/auth';
+import { AuthPayload, AuthType } from '@/types/auth';
 import { adminInstance } from './instance';
 import { GameStatusType } from '@/types/game';
 import { AxiosError } from 'axios';
 import * as Sentry from '@sentry/nextjs';
 
-export const postLogin = async (body: PostLoginRequest) => {
+export const postLogin = async (body: AuthPayload) => {
   try {
-    const response = await adminInstance.post<PostLoginResponse>(
+    const response = await adminInstance.post<AuthType>(
       '/accounts/login/',
       body,
     );

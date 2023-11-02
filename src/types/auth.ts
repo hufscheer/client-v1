@@ -1,7 +1,7 @@
-export interface PostLoginRequest {
+export type AuthPayload = {
   email: string;
   password: string;
-}
-export interface PostLoginResponse {
+};
+export type AuthType = {
   access: string;
-}
+};
