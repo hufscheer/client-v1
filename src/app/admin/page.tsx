@@ -3,7 +3,7 @@
 import { notFound, useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
-import { createGame } from '@/api/admin';
+import { createNewGame } from '@/api/admin';
 import { getTeams } from '@/api/team';
 import Input from '@/components/common/Input/Input';
 import Select from '@/components/common/Select/Select';
@@ -52,7 +52,7 @@ export default function Admin() {
 
     if (isDateError || isTeamError || isTimeError) return;
 
-    createGame({
+    createNewGame({
       name: gameData.name,
       sportsName: gameData.sportsName,
       firstTeam: Number(gameData.firstTeam),
