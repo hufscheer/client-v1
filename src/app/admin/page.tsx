@@ -1,6 +1,6 @@
 'use client';
 
-import { createGame } from '@/api/admin';
+import { createNewGame } from '@/api/admin';
 import { getTeams } from '@/api/team';
 import Input from '@/components/common/Input/Input';
 import Select from '@/components/common/Select/Select';
@@ -54,7 +54,7 @@ export default function Admin() {
     console.log(
       new Date(`${gameData.date}T${gameData.time}:00Z`).toISOString(),
     );
-    createGame({
+    createNewGame({
       name: gameData.name,
       sportsName: gameData.sportsName,
       firstTeam: Number(gameData.firstTeam),
