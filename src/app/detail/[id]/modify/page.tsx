@@ -4,7 +4,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import { postGameScore } from '@/api/admin';
-import { getEachGame } from '@/api/game';
+import { getGameDetail } from '@/api/game';
 import { Game } from '@/components/common/Game';
 import Input from '@/components/common/Input/Input';
 import Select from '@/components/common/Select/Select';
@@ -46,7 +46,7 @@ export default function GameModify() {
   useEffect(() => {
     const getInformsOfGame = async () => {
       const id = Number(params.id);
-      const detailOfGame = await getEachGame(id);
+      const detailOfGame = await getGameDetail(id);
 
       if (typeof detailOfGame === 'number') return;
 

@@ -18,7 +18,7 @@ export default function DetailPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     const getGameData = async () => {
-      const res = await getEachGame(Number(gameId));
+      const res = await getGameDetail(Number(gameId));
 
       if (typeof res === 'number') return notFound();
 
