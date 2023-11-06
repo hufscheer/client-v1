@@ -1,5 +1,8 @@
 'use client';
 
+import { notFound, useRouter } from 'next/navigation';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+
 import { createGame } from '@/api/admin';
 import { getTeams } from '@/api/team';
 import Input from '@/components/common/Input/Input';
@@ -7,8 +10,6 @@ import Select from '@/components/common/Select/Select';
 import useDate from '@/hooks/useDate';
 import useValidate from '@/hooks/useValidate';
 import { GameTeamProps } from '@/types/game';
-import { notFound, useRouter } from 'next/navigation';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 export default function Admin() {
   const router = useRouter();
@@ -51,9 +52,6 @@ export default function Admin() {
 
     if (isDateError || isTeamError || isTimeError) return;
 
-    console.log(
-      new Date(`${gameData.date}T${gameData.time}:00Z`).toISOString(),
-    );
     createGame({
       name: gameData.name,
       sportsName: gameData.sportsName,
@@ -140,9 +138,10 @@ export default function Admin() {
         <div className="text-red-400 text-sm">팀을 다시 선택해주세요!</div>
       )}
 
-      <label>
+      <label htmlFor="leagueName">
         경기 이름
         <Input
+          id="leagueName"
           name="name"
           readOnly
           value={gameData.name}
@@ -151,9 +150,10 @@ export default function Admin() {
         />
       </label>
 
-      <label>
+      <label htmlFor="sportsName">
         종목 이름
         <Input
+          id="sportsName"
           name="sportsName"
           readOnly
           value={gameData.sportsName}

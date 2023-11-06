@@ -1,7 +1,9 @@
-import { GameTeamProps } from '@/types/game';
-import { adminInstance } from './instance';
-import { AxiosError, AxiosResponse } from 'axios';
 import * as Sentry from '@sentry/nextjs';
+import { AxiosError } from 'axios';
+
+import { GameTeamProps } from '@/types/game';
+
+import { adminInstance } from './instance';
 
 type CreateGameRequest = {
   name: string;

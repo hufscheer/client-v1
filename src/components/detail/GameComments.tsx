@@ -1,8 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import { getGameComments, postGameComment } from '@/api/game';
 import { GameCommentResponse } from '@/types/game';
-import { useEffect, useState } from 'react';
+
 import { Comment } from './Comment';
 
 export default function GameComments({ gameId }: { gameId: number }) {

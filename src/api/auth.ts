@@ -1,8 +1,10 @@
-import { PostLoginRequest, PostLoginResponse } from '@/types/auth';
-import { adminInstance } from './instance';
-import { GameStatusType } from '@/types/game';
-import { AxiosError, AxiosResponse } from 'axios';
 import * as Sentry from '@sentry/nextjs';
+import { AxiosError, AxiosResponse } from 'axios';
+
+import { PostLoginRequest, PostLoginResponse } from '@/types/auth';
+import { GameStatusType } from '@/types/game';
+
+import { adminInstance } from './instance';
 
 export const postLogin = async (body: PostLoginRequest) => {
   try {
@@ -29,6 +31,5 @@ export const postGameStatus = async (
   id: number,
   gameStatus: GameStatusType,
 ) => {
-  console.log(id, gameStatus);
   adminInstance.post(`/manage/game/statustype/${id}/`, { gameStatus });
 };

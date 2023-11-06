@@ -1,5 +1,5 @@
-import { EachGameResponse } from '@/types/game';
 import { Game } from '@/components/common/Game';
+import { EachGameResponse } from '@/types/game';
 
 export default function GameInfo({ game }: { game: EachGameResponse }) {
   return (

@@ -1,12 +1,12 @@
 import GameLabel from './GameLabel';
+import GameLive from './GameLive';
 import GameMain from './GameMain';
 import GameScore from './GameScore';
+import GameStatus from './GameStatus';
 import GameTeam from './GameTeam';
 import GameTeamLogo from './GameTeamLogo';
 import GameTeamName from './GameTeamName';
 import GameTimer from './GameTimer';
-import GameStatus from './GameStatus';
-import GameLive from './GameLive';
 
 export const Game = Object.assign(GameMain, {
   Label: GameLabel,

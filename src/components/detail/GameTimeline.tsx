@@ -1,6 +1,7 @@
 'use client';
 
 import { EachGameResponse } from '@/types/game';
+
 import { Record } from './Record';
 
 type GameTimelineProps = {

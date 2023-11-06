@@ -1,11 +1,10 @@
-import { Children, ReactNode, isValidElement } from 'react';
+import { Children, isValidElement, ReactNode } from 'react';
 
 import GameLabel from './GameLabel';
-import GameTeam from './GameTeam';
-import GameStatus from './GameStatus';
-import GameScore from './GameScore';
-import GameTimer from './GameTimer';
 import GameLive from './GameLive';
+import GameScore from './GameScore';
+import GameTeam from './GameTeam';
+import GameTimer from './GameTimer';
 
 interface GameMainProps {
   children?: ReactNode;
