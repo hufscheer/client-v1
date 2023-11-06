@@ -1,11 +1,13 @@
 import * as Sentry from '@sentry/nextjs';
+import { AxiosError, AxiosResponse } from 'axios';
+
 import {
   AllGamesResponse,
   EachGameResponse,
   GameCommentResponse,
 } from '@/types/game';
+
 import instance from './instance';
-import { AxiosError, AxiosResponse } from 'axios';
 
 export const getAllGames = async () => {
   try {

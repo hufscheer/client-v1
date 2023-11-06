@@ -1,10 +1,11 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import { getAllGames } from '@/api/game';
 import GameWithScore from '@/components/home/GameList/GameWithScore';
 import GameWithTimeStamp from '@/components/home/GameList/GameWithTimeStamp';
 import { AllGamesResponse } from '@/types/game';
-import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [gamesScheduled, setGamesScheduled] = useState<AllGamesResponse[]>([]);

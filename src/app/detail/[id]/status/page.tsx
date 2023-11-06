@@ -1,10 +1,11 @@
 'use client';
 
+import { useParams, useRouter } from 'next/navigation';
+import { useState } from 'react';
+
 import { postGameStatus } from '@/api/auth';
 import Select from '@/components/common/Select/Select';
 import { GameStatusType } from '@/types/game';
-import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
 export default function Status() {
   const router = useRouter();

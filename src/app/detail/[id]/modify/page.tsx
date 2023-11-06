@@ -1,5 +1,8 @@
 'use client';
 
+import { useParams, useRouter } from 'next/navigation';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+
 import { postGameScore } from '@/api/admin';
 import { getEachGame } from '@/api/game';
 import { Game } from '@/components/common/Game';
@@ -7,8 +10,6 @@ import Input from '@/components/common/Input/Input';
 import Select from '@/components/common/Select/Select';
 import { DetailOfGameResponse } from '@/types/game';
 import { getUtcHours } from '@/utils/utc-times';
-import { useParams, useRouter } from 'next/navigation';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 export default function GameModify() {
   const router = useRouter();
@@ -96,9 +97,10 @@ export default function GameModify() {
           <Game.TeamName>{detailOfGame?.secondTeam.name}</Game.TeamName>
         </Game.TeamWrapper>
       </Game>
-      <label className="my-5">
+      <label htmlFor="playerName" className="my-5">
         선수 이름
         <Input
+          id="playerName"
           name="playerName"
           value={gameData.playerName}
           onChange={handleChange}
@@ -122,10 +124,11 @@ export default function GameModify() {
         </option>
       </Select>
 
-      <label>
+      <label htmlFor="scoreTime">
         득점 시간
         <div className="flex justify-center items-center gap-1">
           <Input
+            id="scoreTime"
             type="number"
             name="hour"
             value={gameData.hour}

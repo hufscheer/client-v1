@@ -1,9 +1,4 @@
-import {
-  DOMAttributes,
-  HTMLAttributes,
-  ReactNode,
-  SelectHTMLAttributes,
-} from 'react';
+import { ReactNode, SelectHTMLAttributes } from 'react';
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   children?: ReactNode;

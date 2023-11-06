@@ -1,8 +1,8 @@
 'use client';
 
-import { postLogin } from '@/api/auth';
+import { useRouter } from 'next/navigation';
 
-import { notFound, useRouter } from 'next/navigation';
+import { postLogin } from '@/api/auth';
 
 export default function Login() {
   const router = useRouter();

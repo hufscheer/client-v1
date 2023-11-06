@@ -1,6 +1,7 @@
-import { AllGamesResponse } from '@/types/game';
-import { Game } from '@/components/common/Game';
 import Link from 'next/link';
+
+import { Game } from '@/components/common/Game';
+import { AllGamesResponse } from '@/types/game';
 
 interface GameListProps {
   data: AllGamesResponse[];
