@@ -1,12 +1,11 @@
 'use client';
 
-import { EachGameResponse } from '@/types/game';
-
+import { GameDetailType } from '@/types/game';
 import { Record } from './Record';
 
 type GameTimelineProps = {
-  records: EachGameResponse['records'];
-  status: EachGameResponse['gameStatus'];
+  records: GameDetailType['records'];
+  status: GameDetailType['gameStatus'];
 };
 
 export default function GameTimeline({ records, status }: GameTimelineProps) {

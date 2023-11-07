@@ -1,30 +1,11 @@
 import * as Sentry from '@sentry/nextjs';
 import { AxiosError } from 'axios';
 
-import { GameTeamProps } from '@/types/game';
+import { NewGamePayload, GameScorePayload } from '@/types/admin';
 
 import { adminInstance } from './instance';
 
-type CreateGameRequest = {
-  name: string;
-  sportsName: string;
-  firstTeam: number;
-  secondTeam: number;
-  startTime: Date;
-};
-
-export type TeamsOfGameResponse = {
-  firstTeam: GameTeamProps;
-  secondTeam: GameTeamProps;
-};
-
-type GameScoreRequest = {
-  playerName: string;
-  team: number;
-  scoredAt: Date;
-};
-
-export const createGame = (body: CreateGameRequest) => {
+export const createNewGame = (body: NewGamePayload) => {
   try {
     return adminInstance.post('/manage/game/register/', body);
   } catch (error) {
@@ -40,7 +21,7 @@ export const createGame = (body: CreateGameRequest) => {
   }
 };
 
-export const postGameScore = (id: number, body: GameScoreRequest) => {
+export const postGameScore = (id: number, body: GameScorePayload) => {
   try {
     return adminInstance.post(`/manage/game/score/${id}/`, body);
   } catch (error) {

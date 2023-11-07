@@ -8,7 +8,7 @@ import { getEachGame } from '@/api/game';
 import { Game } from '@/components/common/Game';
 import Input from '@/components/common/Input/Input';
 import Select from '@/components/common/Select/Select';
-import { DetailOfGameResponse } from '@/types/game';
+import { GameDetailType } from '@/types/game';
 import { getUtcHours } from '@/utils/utc-times';
 
 export default function GameModify() {
@@ -21,7 +21,7 @@ export default function GameModify() {
     hour: new Date().getHours(),
     minute: new Date().getMinutes(),
   });
-  const [detailOfGame, setDetailOfGame] = useState<DetailOfGameResponse>();
+  const [detailOfGame, setDetailOfGame] = useState<GameDetailType>();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,

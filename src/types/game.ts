@@ -1,4 +1,4 @@
-export type AllGamesResponse = {
+export type GameType = {
   id: number;
   name: string;
   sportsName: string;
@@ -7,21 +7,22 @@ export type AllGamesResponse = {
   secondTeamScore: number;
   gameStatus: GameStatusType;
   statusChangedAt: Date;
-  firstTeam: GameTeamProps;
-  secondTeam: GameTeamProps;
+  firstTeam: GameTeamType;
+  secondTeam: GameTeamType;
 };
 
-export interface EachGameResponse extends AllGamesResponse {
-  records: GameRecordProps[];
+export interface GameDetailType extends GameType {
+  records: GameRecordType[];
+  videoId: string;
 }
 
-export type GameTeamProps = {
+export type GameTeamType = {
   id: number;
   name: string;
   logoImageUrl: string;
 };
 
-type GameRecordProps = {
+export type GameRecordType = {
   id: number;
   teamId: number;
   playerName: string;
@@ -29,17 +30,12 @@ type GameRecordProps = {
   scoredAt: Date;
 };
 
-export type GameCommentResponse = {
+export type GameCommentType = {
   id: number;
   content: string;
   createdAt: Date;
   isBlocked: boolean;
 };
-
-export type DetailOfGameResponse = Omit<
-  AllGamesResponse,
-  'sportsName' | 'startTime' | 'statusChangedAt'
->;
 
 export type GameStatusType =
   | 'BEFORE'

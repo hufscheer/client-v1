@@ -1,18 +1,13 @@
 import * as Sentry from '@sentry/nextjs';
 import { AxiosError, AxiosResponse } from 'axios';
 
-import {
-  AllGamesResponse,
-  EachGameResponse,
-  GameCommentResponse,
-} from '@/types/game';
+import { GameType, GameDetailType, GameCommentType } from '@/types/game';
 
 import instance from './instance';
 
 export const getAllGames = async () => {
   try {
-    const response: AxiosResponse<AllGamesResponse[]> =
-      await instance.get('/games');
+    const response = await instance.get<GameType[]>('/games');
 
     return response.data;
   } catch (error) {
@@ -30,9 +25,7 @@ export const getAllGames = async () => {
 
 export const getEachGame = async (gameID: number) => {
   try {
-    const response: AxiosResponse<EachGameResponse> = await instance.get(
-      `/games/${gameID}`,
-    );
+    const response = await instance.get<GameDetailType>(`/games/${gameID}`);
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError;
@@ -49,7 +42,7 @@ export const getEachGame = async (gameID: number) => {
 
 export const getGameComments = async (gameID: number) => {
   try {
-    const response: AxiosResponse<GameCommentResponse[]> = await instance.get(
+    const response = await instance.get<GameCommentType[]>(
       `/games/${gameID}/comments`,
     );
 
