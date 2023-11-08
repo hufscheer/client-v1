@@ -11,49 +11,52 @@ import Select from '@/components/common/Select/Select';
 import { GameDetailType } from '@/types/game';
 import { getUtcHours } from '@/utils/utc-times';
 
-export default function GameModify() {
+export default function ModifyGame() {
   const router = useRouter();
   const params = useParams();
   const id = Number(params.id);
-  const [gameData, setGameData] = useState({
+  const [scoreData, setScoreData] = useState({
     playerName: '',
     team: 0,
     hour: new Date().getHours(),
     minute: new Date().getMinutes(),
   });
-  const [detailOfGame, setDetailOfGame] = useState<GameDetailType>();
+  const [gameInfo, setGameInfo] = useState<GameDetailType>();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
 
-    setGameData(prev => ({ ...prev, [name]: value }));
+    setScoreData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const date = getUtcHours({ hour: gameData.hour, minute: gameData.minute });
+    const date = getUtcHours({
+      hour: scoreData.hour,
+      minute: scoreData.minute,
+    });
 
     postGameScore(id, {
-      playerName: gameData.playerName,
-      team: gameData.team,
+      playerName: scoreData.playerName,
+      team: scoreData.team,
       scoredAt: date,
     }).then(() => router.push('/'));
   };
 
   useEffect(() => {
-    const getInformsOfGame = async () => {
+    const getGameInfo = async () => {
       const id = Number(params.id);
-      const detailOfGame = await getGameDetail(id);
+      const gameDetail = await getGameDetail(id);
 
-      if (typeof detailOfGame === 'number') return;
+      if (typeof gameDetail === 'number') return;
 
-      setDetailOfGame(detailOfGame);
+      setGameInfo(gameDetail);
     };
 
-    getInformsOfGame();
+    getGameInfo();
   }, [params.id]);
 
   return (
@@ -62,39 +65,39 @@ export default function GameModify() {
         <Game.Label>
           <div
             className={`text-red-400 ${
-              detailOfGame?.gameStatus === 'FIRST_HALF' ||
-              detailOfGame?.gameStatus === 'SECOND_HALF'
+              gameInfo?.gameStatus === 'FIRST_HALF' ||
+              gameInfo?.gameStatus === 'SECOND_HALF'
                 ? 'text-red-400'
                 : 'text-gray-400'
             }`}
           >
-            {detailOfGame?.gameStatus === 'BEFORE' && '경기 예정'}
-            {detailOfGame?.gameStatus === 'END' && '경기 종료'}
-            {detailOfGame?.gameStatus === 'BREAK_TIME' && '휴식 시간'}
-            {detailOfGame?.gameStatus === 'FIRST_HALF' ||
-              (detailOfGame?.gameStatus === 'SECOND_HALF' && 'LIVE')}
+            {gameInfo?.gameStatus === 'BEFORE' && '경기 예정'}
+            {gameInfo?.gameStatus === 'END' && '경기 종료'}
+            {gameInfo?.gameStatus === 'BREAK_TIME' && '휴식 시간'}
+            {gameInfo?.gameStatus === 'FIRST_HALF' ||
+              (gameInfo?.gameStatus === 'SECOND_HALF' && 'LIVE')}
           </div>
         </Game.Label>
 
         <Game.TeamWrapper direction="col">
           <Game.TeamLogo
-            src={detailOfGame?.firstTeam.logoImageUrl}
-            alt={`${detailOfGame?.firstTeam.name}팀 로고`}
+            src={gameInfo?.firstTeam.logoImageUrl}
+            alt={`${gameInfo?.firstTeam.name}팀 로고`}
           />
-          <Game.TeamName>{detailOfGame?.firstTeam.name}</Game.TeamName>
+          <Game.TeamName>{gameInfo?.firstTeam.name}</Game.TeamName>
         </Game.TeamWrapper>
 
         <Game.Score
-          firstTeamScore={detailOfGame?.firstTeamScore || 0}
-          secondTeamScore={detailOfGame?.secondTeamScore || 0}
+          firstTeamScore={gameInfo?.firstTeamScore || 0}
+          secondTeamScore={gameInfo?.secondTeamScore || 0}
         />
 
         <Game.TeamWrapper direction="col">
           <Game.TeamLogo
-            src={detailOfGame?.secondTeam.logoImageUrl}
-            alt={`${detailOfGame?.secondTeam.name}팀 로고`}
+            src={gameInfo?.secondTeam.logoImageUrl}
+            alt={`${gameInfo?.secondTeam.name}팀 로고`}
           />
-          <Game.TeamName>{detailOfGame?.secondTeam.name}</Game.TeamName>
+          <Game.TeamName>{gameInfo?.secondTeam.name}</Game.TeamName>
         </Game.TeamWrapper>
       </Game>
       <label htmlFor="playerName" className="my-5">
@@ -102,7 +105,7 @@ export default function GameModify() {
         <Input
           id="playerName"
           name="playerName"
-          value={gameData.playerName}
+          value={scoreData.playerName}
           onChange={handleChange}
           required
         />
@@ -111,16 +114,16 @@ export default function GameModify() {
       <p>득점한 팀</p>
       <Select
         name="team"
-        value={gameData.team}
+        value={scoreData.team}
         onChange={handleChange}
         required
         placeholder="팀을 선택해주세요."
       >
-        <option value={detailOfGame?.firstTeam.id}>
-          {detailOfGame?.firstTeam.name}
+        <option value={gameInfo?.firstTeam.id}>
+          {gameInfo?.firstTeam.name}
         </option>
-        <option value={detailOfGame?.secondTeam.id}>
-          {detailOfGame?.secondTeam.name}
+        <option value={gameInfo?.secondTeam.id}>
+          {gameInfo?.secondTeam.name}
         </option>
       </Select>
 
@@ -131,7 +134,7 @@ export default function GameModify() {
             id="scoreTime"
             type="number"
             name="hour"
-            value={gameData.hour}
+            value={scoreData.hour}
             onChange={handleChange}
             min={0}
             max={23}
@@ -141,7 +144,7 @@ export default function GameModify() {
           <Input
             type="number"
             name="minute"
-            value={gameData.minute}
+            value={scoreData.minute}
             onChange={handleChange}
             min={0}
             max={59}
