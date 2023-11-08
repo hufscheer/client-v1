@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { getGameComments, postGameComment } from '@/api/game';
 import { GameCommentType } from '@/types/game';
 
-import { Comment } from './Comment';
+import { CommentItem } from './CommentItem';
 
 export default function GameComments({ gameId }: { gameId: number }) {
   const [comments, setComments] = useState<GameCommentType[]>();
@@ -58,7 +58,9 @@ export default function GameComments({ gameId }: { gameId: number }) {
       </form>
       <ul className="flex flex-col gap-2">
         {comments &&
-          comments.map((comment, idx) => <Comment {...comment} key={idx} />)}
+          comments.map((comment, idx) => (
+            <CommentItem {...comment} key={idx} />
+          ))}
       </ul>
     </div>
   );
