@@ -7,7 +7,7 @@ import { GameCommentType } from '@/types/game';
 
 import { CommentItem } from './CommentItem';
 
-export default function GameComments({ gameId }: { gameId: number }) {
+export default function CommentList({ gameId }: { gameId: number }) {
   const [comments, setComments] = useState<GameCommentType[]>();
   const [inputContent, setInputContent] = useState<string>('');
   const getData = async () => {

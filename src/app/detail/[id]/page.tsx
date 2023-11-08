@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { getEachGame } from '@/api/game';
-import GameComments from '@/components/detail/GameComments';
+import { getGameDetail } from '@/api/game';
+import CommentList from '@/components/detail/CommentList';
 import GameInfo from '@/components/detail/GameInfo';
 import GameTimeline from '@/components/detail/GameTimeline';
 import { GameDetailType } from '@/types/game';
@@ -49,7 +49,7 @@ export default function DetailPage({ params }: { params: { id: string } }) {
       {gameData && (
         <GameTimeline records={gameData.records} status={gameData.gameStatus} />
       )}
-      {gameData && <GameComments gameId={gameData.id} />}
+      {gameData && <CommentList gameId={gameData.id} />}
     </div>
   );
 }
