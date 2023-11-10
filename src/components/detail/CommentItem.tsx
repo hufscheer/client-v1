@@ -5,7 +5,7 @@ import { postBlockComment } from '@/api/admin';
 import { useEffect, useState } from 'react';
 import { parseTime } from '@/utils/utc-times';
 
-export const Comment = ({
+export const CommentItem = ({
   content,
   createdAt,
   isBlocked,

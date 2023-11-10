@@ -23,7 +23,7 @@ export const getAllGames = async () => {
   }
 };
 
-export const getEachGame = async (gameID: number) => {
+export const getGameDetail = async (gameID: number) => {
   try {
     const response = await instance.get<GameDetailType>(`/games/${gameID}`);
     return response.data;
