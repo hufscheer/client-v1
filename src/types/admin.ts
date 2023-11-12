@@ -9,5 +9,5 @@ export type NewGamePayload = {
 export type GameScorePayload = {
   playerName: string;
   team: number;
-  scoredAt: string;
+  scoredAt: Date;
 };
