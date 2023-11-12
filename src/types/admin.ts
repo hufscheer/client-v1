@@ -3,7 +3,7 @@ export type NewGamePayload = {
   sportsName: string;
   firstTeam: number;
   secondTeam: number;
-  startTime: string;
+  startTime: Date;
 };
 
 export type GameScorePayload = {
