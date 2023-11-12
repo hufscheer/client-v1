@@ -22,14 +22,3 @@ export default function GameWrapper({
     </GameContext.Provider>
   );
 }
-
-{
-  /* <Game height position=relative >
-  <Game.Timeline position="absolute" />
-  <div background-image="image" border height="100%">
-    <Game.Team />
-    <Game.Status />
-    <Game.Team />
-  </div>
-</Game.Timeline> */
-}
