@@ -3,11 +3,11 @@ export type NewGamePayload = {
   sportsName: string;
   firstTeam: number;
   secondTeam: number;
-  startTime: Date;
+  startTime: string;
 };
 
 export type GameScorePayload = {
   playerName: string;
   team: number;
-  scoredAt: Date;
+  scoredAt: string;
 };
