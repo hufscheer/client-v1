@@ -6,6 +6,8 @@ import { Noto_Sans_KR } from 'next/font/google';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 
+import ReactQueryProvider from './ReactQueryProvider';
+
 const inter = Noto_Sans_KR({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
@@ -27,9 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} max-w-md m-auto bg-slate-50 p-4`}>
-        <Header />
-        {children}
-        <Footer />
+        <ReactQueryProvider>
+          <Header />
+          {children}
+          <Footer />
+        </ReactQueryProvider>
       </body>
     </html>
   );

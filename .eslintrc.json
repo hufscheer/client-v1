@@ -6,7 +6,8 @@
     "simple-import-sort",
     "@typescript-eslint",
     "prettier",
-    "jsx-a11y"
+    "jsx-a11y",
+    "@tanstack/query"
   ],
   "extends": [
     "next/core-web-vitals",
@@ -14,6 +15,7 @@
     "plugin:import/typescript",
     "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "prettier"
   ],
   "ignorePatterns": [".next/*"],
