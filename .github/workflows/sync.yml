@@ -10,13 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Push to release repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.KWAK_GITHUB_TOKEN }}
+          repository: HiimKwak/hufstreaming_client
+          branch: main
 
-    - name: Pushes to personal repo
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.KWAK_GITHUB_TOKEN }}
-        repository: HiimKwak/hufstreaming_client
-        branch: main
+permissions: write-all
