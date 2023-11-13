@@ -1,4 +1,5 @@
 import { useGameContext } from '@/hooks/useGameContext';
+import { $ } from '@/utils/core';
 
 type LabelProps = {
   className?: string;
@@ -7,5 +8,5 @@ type LabelProps = {
 export default function Label({ className }: LabelProps) {
   const { name } = useGameContext();
 
-  return <div className={`${className}`}>{name}</div>;
+  return <div className={$(className)}>{name}</div>;
 }

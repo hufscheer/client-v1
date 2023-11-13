@@ -1,5 +1,7 @@
 import { ReactNode, SelectHTMLAttributes } from 'react';
 
+import { $ } from '@/utils/core';
+
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   children?: ReactNode;
 }
@@ -10,7 +12,7 @@ export default function Select({
   ...props
 }: SelectProps) {
   return (
-    <select {...props} className="block w-full rounded-lg border p-2">
+    <select {...props} className={$('block w-full rounded-lg border p-2')}>
       {placeholder && (
         <option value="0" disabled hidden>
           {placeholder}
