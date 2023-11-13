@@ -13,6 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Config git extraheader
+        run: |
+          git config --unset-all http.https://github.com/.extraheader
+
       - name: Push to release repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
