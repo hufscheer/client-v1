@@ -1,0 +1,24 @@
+name: Sync to personal repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Push to release repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.KWAK_GITHUB_TOKEN }}
+        with:
+          source-directory: .
+          destination-github-username: 'HiimKwak'
+          destination-repository-name: 'hufchichi_client'
+          target-branch: main
