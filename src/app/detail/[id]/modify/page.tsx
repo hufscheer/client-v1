@@ -93,7 +93,7 @@ export default function ModifyGame() {
 
       <label htmlFor="scoreTime">
         득점 시간
-        <div className="flex justify-center items-center gap-1">
+        <div className="flex items-center justify-center gap-1">
           <Input
             id="scoreTime"
             type="number"
@@ -118,7 +118,7 @@ export default function ModifyGame() {
       </label>
       <button
         type="submit"
-        className="border border-slate-200 rounded-md bg-green-600 text-white py-2 px-4 w-full disabled:opacity-70 disabled:pointer-none"
+        className="disabled:pointer-none w-full rounded-md border border-slate-200 bg-green-600 px-4 py-2 text-white disabled:opacity-70"
       >
         저장하기
       </button>

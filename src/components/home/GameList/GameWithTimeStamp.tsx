@@ -14,7 +14,7 @@ export default function GameWithTimeStamp({ data }: GameListProps) {
         <li key={game.id}>
           <Link
             href={`/detail/${game.id}`}
-            className="flex flex-col gap-1 justify-center p-2 rounded-lg shadow-md bg-white"
+            className="flex flex-col justify-center gap-1 rounded-lg bg-white p-2 shadow-md"
           >
             <Game records={[]} videoId="" {...game}>
               <Game.Label />

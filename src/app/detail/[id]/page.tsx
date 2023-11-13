@@ -35,7 +35,7 @@ export default function DetailPage({ params }: { params: { id: string } }) {
       {isLoggedIn && (
         <Link
           href={`/detail/${gameId}/modify`}
-          className="p-2 text-white bg-red-400 border border-red-500 rounded-lg w-fit"
+          className="w-fit rounded-lg border border-red-500 bg-red-400 p-2 text-white"
         >
           수정
         </Link>

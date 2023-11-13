@@ -10,7 +10,7 @@ export default function Select({
   ...props
 }: SelectProps) {
   return (
-    <select {...props} className="block w-full p-2 border rounded-lg">
+    <select {...props} className="block w-full rounded-lg border p-2">
       {placeholder && (
         <option value="0" disabled hidden>
           {placeholder}

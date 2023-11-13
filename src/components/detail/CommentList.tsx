@@ -39,7 +39,7 @@ export default function CommentList({ gameId }: { gameId: number }) {
           value={inputContent}
           onChange={e => setInputContent(e.target.value)}
           placeholder="댓글을 작성하세요"
-          className="w-full p-4 border-2 rounded-lg border-slate-400"
+          className="w-full rounded-lg border-2 border-slate-400 p-4"
         />
         <div className="flex items-center justify-between">
           <span className="text-xs text-gray-400">
@@ -49,7 +49,7 @@ export default function CommentList({ gameId }: { gameId: number }) {
           </span>
           <button
             type="submit"
-            className="float-right px-4 py-2 text-white bg-green-600 border rounded-lg border-slate-200 disabled:opacity-70 disabled:pointer-none"
+            className="disabled:pointer-none float-right rounded-lg border border-slate-200 bg-green-600 px-4 py-2 text-white disabled:opacity-70"
             disabled={inputContent.length == 0}
           >
             등록

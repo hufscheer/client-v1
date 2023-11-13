@@ -5,13 +5,13 @@ export const Record = ({ id, playerName, score, scoredAt }: GameRecordType) => {
   const { hour, minute } = useDate(scoredAt);
   return (
     <li
-      className="flex gap-4 items-center justify-center p-4 rounded-lg shadow-md bg-white"
+      className="flex items-center justify-center gap-4 rounded-lg bg-white p-4 shadow-md"
       key={id}
     >
-      <span className="text-lg text-center">
+      <span className="text-center text-lg">
         {playerName} 선수 {score}골 득점!
       </span>
-      <span className="text-xs opacity-50 text-center">
+      <span className="text-center text-xs opacity-50">
         {hour}시 {minute}분
       </span>
     </li>

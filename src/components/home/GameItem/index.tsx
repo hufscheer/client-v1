@@ -8,7 +8,7 @@ export default function GameItem(props: GameDetailType) {
     <li key={props.id}>
       <Link
         href={`/detail/${props.id}`}
-        className="flex flex-col gap-1 justify-center p-2 rounded-lg shadow-md bg-white"
+        className="flex flex-col justify-center gap-1 rounded-lg bg-white p-2 shadow-md"
       >
         <Game {...props}>
           <Game.Label />

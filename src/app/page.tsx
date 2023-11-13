@@ -52,12 +52,12 @@ const DUMMY_GAME: GameType[] = [
 
 export default function Home() {
   return (
-    <main className="w-full flex flex-col gap-3">
-      <p className="text-xl font-bold text-center my-2">매치</p>
+    <main className="flex w-full flex-col gap-3">
+      <p className="my-2 text-center text-xl font-bold">매치</p>
       <div className="flex flex-col gap-8">
         {DUMMY_GAME.map(game => (
           <Game records={[]} videoId={''} key={game.id} {...game}>
-            <Game.Label className="border-black pb-1 mb-2 border-b-[1px]" />
+            <Game.Label className="mb-2 border-b-[1px] border-black pb-1" />
             <div className="flex items-center">
               <Game.Team teamIndex={1} />
               <Game.Score teamIndex={1} />
