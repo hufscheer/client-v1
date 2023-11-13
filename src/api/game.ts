@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/nextjs';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 
-import { GameType, GameDetailType, GameCommentType } from '@/types/game';
+import { GameCommentType, GameDetailType, GameType } from '@/types/game';
 
 import instance from './instance';
 

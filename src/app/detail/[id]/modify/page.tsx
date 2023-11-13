@@ -8,7 +8,7 @@ import { getGameDetail } from '@/api/game';
 import { Game } from '@/components/common/Game';
 import Input from '@/components/common/Input/Input';
 import Select from '@/components/common/Select/Select';
-import { GameDetailType } from '@/types/game';
+import { GameDetailType, GameType } from '@/types/game';
 import { getUtcHours } from '@/utils/utc-times';
 
 export default function ModifyGame() {
@@ -61,44 +61,8 @@ export default function ModifyGame() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Game>
-        <Game.Label>
-          <div
-            className={`text-red-400 ${
-              gameInfo?.gameStatus === 'FIRST_HALF' ||
-              gameInfo?.gameStatus === 'SECOND_HALF'
-                ? 'text-red-400'
-                : 'text-gray-400'
-            }`}
-          >
-            {gameInfo?.gameStatus === 'BEFORE' && '경기 예정'}
-            {gameInfo?.gameStatus === 'END' && '경기 종료'}
-            {gameInfo?.gameStatus === 'BREAK_TIME' && '휴식 시간'}
-            {gameInfo?.gameStatus === 'FIRST_HALF' ||
-              (gameInfo?.gameStatus === 'SECOND_HALF' && 'LIVE')}
-          </div>
-        </Game.Label>
-
-        <Game.TeamWrapper direction="col">
-          <Game.TeamLogo
-            src={gameInfo?.firstTeam.logoImageUrl}
-            alt={`${gameInfo?.firstTeam.name}팀 로고`}
-          />
-          <Game.TeamName>{gameInfo?.firstTeam.name}</Game.TeamName>
-        </Game.TeamWrapper>
-
-        <Game.Score
-          firstTeamScore={gameInfo?.firstTeamScore || 0}
-          secondTeamScore={gameInfo?.secondTeamScore || 0}
-        />
-
-        <Game.TeamWrapper direction="col">
-          <Game.TeamLogo
-            src={gameInfo?.secondTeam.logoImageUrl}
-            alt={`${gameInfo?.secondTeam.name}팀 로고`}
-          />
-          <Game.TeamName>{gameInfo?.secondTeam.name}</Game.TeamName>
-        </Game.TeamWrapper>
+      <Game records={[]} videoId={''} {...(gameInfo as GameType)}>
+        <Game.Label />
       </Game>
       <label htmlFor="playerName" className="my-5">
         선수 이름

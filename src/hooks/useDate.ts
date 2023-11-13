@@ -1,4 +1,4 @@
-export default function useDate(date: Date) {
+export default function useDate(date: string) {
   const currentDate = new Date(date);
   return {
     month: currentDate.getMonth() + 1,

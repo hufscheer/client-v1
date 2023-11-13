@@ -2,11 +2,11 @@ export type GameType = {
   id: number;
   name: string;
   sportsName: string;
-  startTime: Date;
+  startTime: string;
   firstTeamScore: number;
   secondTeamScore: number;
   gameStatus: GameStatusType;
-  statusChangedAt: Date;
+  statusChangedAt: string;
   firstTeam: GameTeamType;
   secondTeam: GameTeamType;
 };
@@ -27,13 +27,13 @@ export type GameRecordType = {
   teamId: number;
   playerName: string;
   score: number;
-  scoredAt: Date;
+  scoredAt: string;
 };
 
 export type GameCommentType = {
   id: number;
   content: string;
-  createdAt: Date;
+  createdAt: string;
   isBlocked: boolean;
 };
 

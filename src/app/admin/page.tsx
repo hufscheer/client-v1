@@ -14,7 +14,7 @@ import { GameTeamType } from '@/types/game';
 export default function Admin() {
   const router = useRouter();
 
-  const { month, day } = useDate(new Date());
+  const { month, day } = useDate(new Date().toString());
   const [teams, setTeams] = useState<GameTeamType[]>([]);
   const [gameData, setGameData] = useState({
     name: '삼건물대회',

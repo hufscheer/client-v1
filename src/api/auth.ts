@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/nextjs';
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 
 import { AuthPayload, AuthType } from '@/types/auth';
 import { GameStatusType } from '@/types/game';

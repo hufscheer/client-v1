@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/nextjs';
 import { AxiosError } from 'axios';
 
-import { NewGamePayload, GameScorePayload } from '@/types/admin';
+import { GameScorePayload, NewGamePayload } from '@/types/admin';
 
 import { adminInstance } from './instance';
 
