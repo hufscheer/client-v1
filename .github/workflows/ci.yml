@@ -20,9 +20,8 @@ jobs:
       - name: Push to release repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.KWAK_GITHUB_TOKEN }}
+          API_TOKEN_GITHUB: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
           source-directory: .
           destination-github-username: 'HiimKwak'
           destination-repository-name: 'hufchichi_client'
-          target-branch: main
