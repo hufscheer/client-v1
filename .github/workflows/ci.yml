@@ -13,6 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: creates output
+        run: sh ./build.sh
+
       - name: Config git extraheader
         run: |
           git config --unset-all http.https://github.com/.extraheader
