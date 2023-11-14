@@ -29,3 +29,7 @@ jobs:
           source-directory: .
           destination-github-username: 'HiimKwak'
           destination-repository-name: 'hufchichi_client'
+          commit-message: ${{ github.event.commits[0].message }}
+
+      - name: Test get variable exported by push-to-another-repository
+        run: echo $DESTINATION_CLONED_DIRECTORY
