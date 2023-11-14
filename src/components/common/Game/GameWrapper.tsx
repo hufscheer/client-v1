@@ -1,6 +1,7 @@
 import { createContext, ReactNode } from 'react';
 
 import { GameDetailType } from '@/types/game';
+import { $ } from '@/utils/core';
 
 type GameProps = GameDetailType & {
   children: ReactNode;
@@ -12,13 +13,13 @@ export const GameContext = createContext<null | GameDetailType>(
 );
 
 export default function GameWrapper({
-  className = '',
+  className,
   children,
   ...props
 }: GameProps) {
   return (
     <GameContext.Provider value={props}>
-      <div className={className}>{children}</div>
+      <div className={$(className)}>{children}</div>
     </GameContext.Provider>
   );
 }

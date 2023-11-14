@@ -33,7 +33,7 @@ export default function Status() {
       </Select>
       <button
         onClick={updateGameStatus}
-        className="mt-4 border border-slate-200 rounded-md bg-green-600 text-white py-2 px-4 w-full disabled:opacity-70 disabled:pointer-none"
+        className="disabled:pointer-none mt-4 w-full rounded-md border border-slate-200 bg-green-600 px-4 py-2 text-white disabled:opacity-70"
       >
         변경하기
       </button>

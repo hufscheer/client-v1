@@ -135,7 +135,7 @@ export default function Admin() {
         ))}
       </Select>
       {isTeamError && (
-        <div className="text-red-400 text-sm">팀을 다시 선택해주세요!</div>
+        <div className="text-sm text-red-400">팀을 다시 선택해주세요!</div>
       )}
 
       <label htmlFor="leagueName">

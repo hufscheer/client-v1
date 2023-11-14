@@ -1,15 +1,16 @@
 import { useGameContext } from '@/hooks/useGameContext';
+import { $ } from '@/utils/core';
 
 type ScoreProps = {
   teamIndex: number;
   className?: string;
 };
 
-export default function Score({ teamIndex, className = '' }: ScoreProps) {
+export default function Score({ teamIndex, className }: ScoreProps) {
   const { firstTeamScore, secondTeamScore } = useGameContext();
 
   return (
-    <span className={`${className}`}>
+    <span className={$(className)}>
       {teamIndex === 1 ? firstTeamScore : secondTeamScore}
     </span>
   );

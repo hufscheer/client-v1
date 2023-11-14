@@ -24,9 +24,9 @@ export const CommentItem = ({
     await postBlockComment(id);
   };
   return (
-    <li className="flex justify-start items-center gap-4">
+    <li className="flex items-center justify-start gap-4">
       <div
-        className={`p-3 rounded-lg shadow-md ${
+        className={`rounded-lg p-3 shadow-md ${
           isBlocked ? 'bg-gray-200' : 'bg-white'
         }`}
       >
@@ -47,7 +47,7 @@ export const CommentItem = ({
       {!isBlocked && isLoggedIn && (
         <button
           type="button"
-          className="text-red-500 min-w-max min-h-max p-[0.1rem] rounded-md border-2 border-red-500 bg-red-100 flex justify-center items-center"
+          className="flex min-h-max min-w-max items-center justify-center rounded-md border-2 border-red-500 bg-red-100 p-[0.1rem] text-red-500"
           onClick={handleBlockComment}
         >
           <Cross2Icon />
