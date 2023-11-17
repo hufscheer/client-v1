@@ -18,7 +18,7 @@ const config: Config = {
           light: '#E9E9E9',
           DEFAULT: '#D9D9D9',
           heavy: '#757575',
-          extraheavy: '#4E5968'
+          extraheavy: '#4E5968',
         },
       },
     },
