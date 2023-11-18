@@ -10,7 +10,7 @@
     "prepare": "chmod ug+x .husky/* && husky install"
   },
   "lint-staged": {
-    "**/*.{js, jsx, ts, tsx}": [
+    "**/*.{js,jsx,ts,tsx}": [
       "eslint",
       "prettier --config ./.prettierrc --write -u"
     ]
