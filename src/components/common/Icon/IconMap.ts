@@ -6,8 +6,3 @@ export const iconMap = {
     path: 'm7.757 16.243 8.486-8.486M16.243 16.243 7.757 7.757',
   },
 };
-
-export const ICON_NAME = {
-  hamburgerMenu: 'hamburgerMenu',
-  cross: 'cross',
-} as const;
