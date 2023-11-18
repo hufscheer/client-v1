@@ -1,23 +1,16 @@
-import { $ } from '@/utils/core';
-import { IconMap } from './IconMap';
+import { ComponentProps } from 'react';
+
 import { IconName } from './icon.type';
+import { IconMap } from './IconMap';
 
-type IconProps = {
+interface IconProps extends ComponentProps<'svg'> {
   icon: IconName;
-  className?: string;
-};
+}
 
-export const Icon = ({ icon, className }: IconProps) => {
-  const { width, height, path } = IconMap[icon];
+export const Icon = ({ icon, ...props }: IconProps) => {
+  const { path } = IconMap[icon];
   return (
-    <svg
-      width={width}
-      height={height}
-      fillRule="evenodd"
-      clipRule="evenodd"
-      xmlns="http://www.w3.org/2000/svg"
-      className={$(className)}
-    >
+    <svg {...props}>
       <path d={path} />
     </svg>
   );
