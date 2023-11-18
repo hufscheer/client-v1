@@ -1,14 +1,14 @@
 import { ComponentProps } from 'react';
 
 import { IconName } from './icon.type';
-import { IconMap } from './IconMap';
+import { iconMap } from './IconMap';
 
 interface IconProps extends ComponentProps<'svg'> {
-  icon: IconName;
+  iconName: IconName;
 }
 
-export const Icon = ({ icon, ...props }: IconProps) => {
-  const { path } = IconMap[icon];
+export const Icon = ({ iconName, ...props }: IconProps) => {
+  const { path } = iconMap[iconName];
   return (
     <svg {...props}>
       <path d={path} />
