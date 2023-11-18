@@ -9,17 +9,17 @@ const config: Config = {
     extend: {
       colors: {
         blue: {
-          light: '#D3E2F6',
-          DEFAULT: '#4354F0',
-          heavy: '#303ECE',
+          primary: '#4354F0',
+          secondary: '#D3E2F6',
         },
         gray: {
-          extralight: '#F2F4F6',
-          light: '#E9E9E9',
-          DEFAULT: '#D9D9D9',
-          heavy: '#757575',
-          extraheavy: '#4E5968',
+          1: '#F7F8F9',
+          2: '#E9EBEE',
+          3: '#C5C8CE',
+          4: '#646F7C',
+          5: '#374553',
         },
+        black: '#14191F',
       },
     },
   },
