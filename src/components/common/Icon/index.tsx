@@ -8,7 +8,7 @@ interface IconProps extends ComponentProps<'svg'> {
 }
 
 export const Icon = ({ iconName, ...props }: IconProps) => {
-  const { path } = iconMap[iconName];
+  const path = iconMap[iconName];
   return (
     <svg {...props}>
       <path d={path} />
