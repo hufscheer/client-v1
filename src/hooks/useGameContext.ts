@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { GameContext } from '@/components/common/Game/GameWrapper';
+import { GameContext } from '@/components/common/Game/pieces/GameWrapper';
 import { GameDetailType } from '@/types/game';
 
 type GameContextType = () => GameDetailType;

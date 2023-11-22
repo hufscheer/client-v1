@@ -9,19 +9,20 @@ type TeamProps = {
 };
 
 export default function Team({ teamIndex, className }: TeamProps) {
-  const { firstTeam, secondTeam } = useGameContext();
+  const { gameTeams } = useGameContext();
 
-  const targetTeamInfo = teamIndex === 1 ? firstTeam : secondTeam;
+  const targetTeamInfo = gameTeams[teamIndex - 1];
 
   return (
     <div className={$(className)}>
       <Image
-        width="100"
-        height="100"
+        width="65"
+        height="65"
         src={targetTeamInfo.logoImageUrl}
-        alt={`${targetTeamInfo.name}팀 로고`}
+        alt={`${targetTeamInfo.gameTeamName}팀 로고`}
+        className="my-5"
       />
-      <span>{targetTeamInfo.name}</span>
+      <span>{targetTeamInfo.gameTeamName}</span>
     </div>
   );
 }
