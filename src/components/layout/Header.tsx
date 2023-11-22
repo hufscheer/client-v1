@@ -50,7 +50,6 @@ export default function Header() {
             height={32}
             viewBox="0 0 24 24"
             className="fill-primary"
-            onClick={() => {}}
           />
         </Modal.Trigger>
 
@@ -59,7 +58,7 @@ export default function Header() {
           className="right-0 top-0 h-screen w-52 space-y-4 bg-white p-5 py-8 data-[state=closed]:animate-[menu-content-hide_200ms] data-[state=open]:animate-[menu-content-show_200ms]"
         >
           <div className="flex flex-col gap-2">
-            {menuContent?.map(content => (
+            {menuContent.map(content => (
               <Link
                 href={{ pathname: '/', query: { leagueId: content.leagueId } }}
                 onClick={() => setOpen(false)}
