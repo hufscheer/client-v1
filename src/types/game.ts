@@ -11,20 +11,20 @@ export type GameType = {
   secondTeam: GameTeamType;
 };
 
-export interface GameDetailType {
+export type GameDetailType = {
   gameTeams: GameTeamType[];
   startTime: string;
   videoId: number;
   gameQuarter: GameQuarterType;
   gameName: string;
-}
+};
 
-export interface GameTeamType {
+export type GameTeamType = {
   gameTeamId: number;
   gameTeamName: string;
   logoImageUrl: string;
   score: number;
-}
+};
 
 export type GameRecordType = {
   id: number;
