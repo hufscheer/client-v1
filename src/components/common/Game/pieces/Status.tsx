@@ -8,5 +8,7 @@ type StatusProps = {
 export default function Status({ className }: StatusProps) {
   const { gameQuarter } = useGameContext();
 
-  return <div className={$('px-5', className)}>{gameQuarter}</div>;
+  return (
+    <div className={$('z-10 px-5 text-white', className)}>{gameQuarter}</div>
+  );
 }
