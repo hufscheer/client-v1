@@ -6,7 +6,7 @@ type LabelProps = {
 };
 
 export default function Label({ className }: LabelProps) {
-  const { name } = useGameContext();
+  const { gameName } = useGameContext();
 
-  return <div className={$(className)}>{name}</div>;
+  return <div className={$(className)}>{gameName}</div>;
 }

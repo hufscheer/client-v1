@@ -7,11 +7,9 @@ type ScoreProps = {
 };
 
 export default function Score({ teamIndex, className }: ScoreProps) {
-  const { firstTeamScore, secondTeamScore } = useGameContext();
+  const { gameTeams } = useGameContext();
 
-  return (
-    <span className={$(className)}>
-      {teamIndex === 1 ? firstTeamScore : secondTeamScore}
-    </span>
-  );
+  const [targetTeam] = gameTeams.filter(team => team.gameTeamId === teamIndex);
+
+  return <span className={$('text-3xl', className)}>{targetTeam.score}</span>;
 }

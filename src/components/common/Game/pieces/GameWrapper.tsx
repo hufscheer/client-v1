@@ -8,9 +8,7 @@ type GameProps = GameDetailType & {
   className?: string;
 };
 
-export const GameContext = createContext<null | GameDetailType>(
-  {} as GameDetailType,
-);
+export const GameContext = createContext<GameDetailType>({} as GameDetailType);
 
 export default function GameWrapper({
   className,
@@ -19,7 +17,14 @@ export default function GameWrapper({
 }: GameProps) {
   return (
     <GameContext.Provider value={props}>
-      <div className={$(className)}>{children}</div>
+      <div
+        className={$(
+          'relative h-full min-h-[200px] justify-center rounded-xl bg-gray-1 shadow-lg',
+          className,
+        )}
+      >
+        {children}
+      </div>
     </GameContext.Provider>
   );
 }

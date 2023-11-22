@@ -1,4 +1,3 @@
-import { GAME_STATUS } from '@/constants/gameStatus';
 import { useGameContext } from '@/hooks/useGameContext';
 import { $ } from '@/utils/core';
 
@@ -7,7 +6,7 @@ type StatusProps = {
 };
 
 export default function Status({ className }: StatusProps) {
-  const { gameStatus } = useGameContext();
+  const { gameQuarter } = useGameContext();
 
-  return <div className={$(className)}>{GAME_STATUS[gameStatus]}</div>;
+  return <div className={$('px-5', className)}>{gameQuarter}</div>;
 }

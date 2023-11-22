@@ -5,21 +5,25 @@ export type GameType = {
   startTime: string;
   firstTeamScore: number;
   secondTeamScore: number;
-  gameStatus: GameStatusType;
+  gameStatus: GameQuarterType;
   statusChangedAt: string;
   firstTeam: GameTeamType;
   secondTeam: GameTeamType;
 };
 
-export interface GameDetailType extends GameType {
-  records: GameRecordType[];
-  videoId: string;
-}
+export type GameDetailType = {
+  gameTeams: GameTeamType[];
+  startTime: string;
+  videoId: number;
+  gameQuarter: GameQuarterType;
+  gameName: string;
+};
 
 export type GameTeamType = {
-  id: number;
-  name: string;
+  gameTeamId: number;
+  gameTeamName: string;
   logoImageUrl: string;
+  score: number;
 };
 
 export type GameRecordType = {
@@ -37,7 +41,7 @@ export type GameCommentType = {
   isBlocked: boolean;
 };
 
-export type GameStatusType =
+export type GameQuarterType =
   | 'BEFORE'
   | 'FIRST_HALF'
   | 'BREAK_TIME'
