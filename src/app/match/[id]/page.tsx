@@ -8,12 +8,12 @@ import { GameBanner } from '@/components/common/Game';
 // import CommentList from '@/components/detail/CommentList';
 // import GameInfo from '@/components/detail/GameInfo';
 // import GameTimeline from '@/components/detail/GameTimeline';
-import { GameDetailFetcher } from '@/queries/useGameDetail';
+import MatchByIdFetcher from '@/queries/useMatchById/Fetcher';
 
 export default function DetailPage({ params }: { params: { id: string } }) {
   return (
     <Suspense fallback={<div>로딩 중...</div>}>
-      <GameDetailFetcher gameId={params.id}>
+      <MatchByIdFetcher matchId={params.id}>
         {data => (
           <GameBanner {...data} className="flex flex-col">
             <GameBanner.Label className="absolute left-2 top-2" />
@@ -32,7 +32,7 @@ export default function DetailPage({ params }: { params: { id: string } }) {
             </div>
           </GameBanner>
         )}
-      </GameDetailFetcher>
+      </MatchByIdFetcher>
     </Suspense>
   );
 
