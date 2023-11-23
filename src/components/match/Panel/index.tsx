@@ -4,12 +4,13 @@ import { Dropdown } from '@/components/common/Dropdown';
 import { $ } from '@/utils/core';
 
 type PanelProps = {
-  switchCase: { [key: string]: ReactNode };
+  options: Array<{ label: string }>;
+  children: ({ selected }: { selected: string }) => ReactNode;
+  defaultValue: string;
 };
 
-export default function Panel({ switchCase }: PanelProps) {
-  const options = Object.keys(switchCase).map(option => ({ label: option }));
-  const [selected, setSelected] = useState(options[0].label ?? '');
+export default function Panel({ defaultValue, options, children }: PanelProps) {
+  const [selected, setSelected] = useState(defaultValue);
 
   const handleClickItem = (e: MouseEvent<HTMLButtonElement>) => {
     const selectedValue = (e.target as Element).textContent;
@@ -37,7 +38,7 @@ export default function Panel({ switchCase }: PanelProps) {
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>
-        {switchCase[selected]}
+        {children({ selected })}
       </Dropdown>
     </div>
   );

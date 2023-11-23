@@ -6,44 +6,61 @@ import { Suspense } from 'react';
 
 import MatchBanner from '@/components/match/Banner';
 import Cheer from '@/components/match/Cheer';
+import Lineup from '@/components/match/LineupList';
 import Panel from '@/components/match/Panel';
 import RecordList from '@/components/match/RecordList';
 import MatchByIdFetcher from '@/queries/useMatchById/Fetcher';
 import MatchCheerByIdFetcher from '@/queries/useMatchCheerById/Fetcher';
+import MatchLineupFetcher from '@/queries/useMatchLineupById/Fetcher';
 import MatchTimelineFetcher from '@/queries/useMatchTimelineById/Fetcher';
 
 export default function Match({ params }: { params: { id: string } }) {
-  const switchCase = {
-    라인업: <div>라인업</div>,
-    응원댓글: <div>응원댓글</div>,
-    경기영상: <div>경기영상</div>,
-    타임라인: (
-      <Suspense fallback={<div>타임라인 로딩 중..</div>}>
-        <MatchTimelineFetcher matchId={params.id}>
-          {([firstHalf, secondHalf]) => (
-            <div className="overflow-y-auto p-5">
-              <RecordList {...firstHalf} />
-              <RecordList {...secondHalf} />
-            </div>
-          )}
-        </MatchTimelineFetcher>
-      </Suspense>
-    ),
-  };
+  const options = [
+    { label: '라인업' },
+    { label: '응원댓글' },
+    { label: '경기영상' },
+    { label: '타임라인' },
+  ];
 
   return (
     <section>
-      <Suspense fallback={<div>배너 로딩 중...</div>}>
+      <Suspense fallback={<div>배너 로딩중...</div>}>
         <MatchByIdFetcher matchId={params.id}>
           {data => <MatchBanner {...data} />}
         </MatchByIdFetcher>
       </Suspense>
-      <Suspense fallback={<div>응원 로딩 중...</div>}>
+      <Suspense fallback={<div>응원 로딩중...</div>}>
         <MatchCheerByIdFetcher matchId={params.id}>
           {data => <Cheer cheers={data} />}
         </MatchCheerByIdFetcher>
       </Suspense>
-      <Panel switchCase={switchCase} />
+
+      <Panel options={options} defaultValue="라인업">
+        {({ selected }) => (
+          <Suspense fallback={<div>로딩중...</div>}>
+            {selected === '라인업' && (
+              <MatchLineupFetcher matchId={params.id}>
+                {([firstTeam, secondTeam]) => (
+                  <>
+                    <Lineup {...firstTeam} />
+                    <Lineup {...secondTeam} />
+                  </>
+                )}
+              </MatchLineupFetcher>
+            )}
+            {selected === '타임라인' && (
+              <MatchTimelineFetcher matchId={params.id}>
+                {([firstHalf, secondHalf]) => (
+                  <div className="overflow-y-auto p-5">
+                    <RecordList {...firstHalf} />
+                    <RecordList {...secondHalf} />
+                  </div>
+                )}
+              </MatchTimelineFetcher>
+            )}
+          </Suspense>
+        )}
+      </Panel>
     </section>
   );
 }
