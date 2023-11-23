@@ -5,9 +5,8 @@ import { notFound, useSelectedLayoutSegments } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { getAllLeagues, LeagueType } from '@/api/league';
-
-import { Icon } from '../common/Icon';
-import Modal from '../common/Modal';
+import { Icon } from '@/components/common/Icon';
+import Modal from '@/components/common/Modal';
 
 export default function Header() {
   const segments = useSelectedLayoutSegments();
@@ -18,6 +17,10 @@ export default function Header() {
     { name: '전체' },
   ]);
   const [open, setOpen] = useState(false);
+
+  const handleClickLink = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     if (segments.includes('admin')) {
@@ -61,7 +64,7 @@ export default function Header() {
             {menuContent.map(content => (
               <Link
                 href={{ pathname: '/', query: { leagueId: content.leagueId } }}
-                onClick={() => setOpen(false)}
+                onClick={handleClickLink}
                 key={content.name}
               >
                 {content.name}
