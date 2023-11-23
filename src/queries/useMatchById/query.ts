@@ -6,7 +6,7 @@ export const QUERY_KEY = {
   MATCH_DETAIL: 'MATCH_DETAL',
 };
 
-export default function useGameDetail(matchId: string) {
+export default function useMatchById(matchId: string) {
   const { data, error } = useSuspenseQuery({
     queryKey: [QUERY_KEY.MATCH_DETAIL, matchId],
     queryFn: () => getMatchById(matchId),
