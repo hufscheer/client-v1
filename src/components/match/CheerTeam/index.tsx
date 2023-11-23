@@ -10,12 +10,14 @@ export default function CheerTeam({
   return (
     <div
       className={$(
-        'flex h-14 w-full items-center justify-evenly rounded-xl',
+        'flex h-14 w-full cursor-pointer items-center justify-evenly rounded-xl shadow-lg',
         className,
       )}
       {...props}
     >
-      <span className="text-white">{children}</span>
+      <div className="flex w-full items-center justify-center text-white">
+        {children}
+      </div>
     </div>
   );
 }

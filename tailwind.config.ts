@@ -18,6 +18,10 @@ const config: Config = {
           5: '#374553',
         },
         black: '#14191F',
+        cheer: {
+          left: '#FF0000',
+          right: '#003AFF',
+        },
       },
       keyframes: {
         'dialog-overlay-show': {
