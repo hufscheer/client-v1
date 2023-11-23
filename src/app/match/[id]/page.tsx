@@ -12,7 +12,7 @@ import Cheer from '@/components/match/Cheer';
 import MatchByIdFetcher from '@/queries/useMatchById/Fetcher';
 import MatchCheerByIdFetcher from '@/queries/useMatchCheerById/Fetcher';
 
-export default function MatchPage({ params }: { params: { id: string } }) {
+export default function Match({ params }: { params: { id: string } }) {
   return (
     <section>
       <Suspense fallback={<div>배너 로딩 중...</div>}>
