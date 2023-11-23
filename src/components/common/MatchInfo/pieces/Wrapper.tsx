@@ -1,23 +1,25 @@
 import { createContext, ReactNode } from 'react';
 
 import { Icon } from '@/components/common/Icon';
-import { GameDetailType } from '@/types/game';
+import { MatchDetailType } from '@/types/match';
 import { $ } from '@/utils/core';
 
-type GameProps = GameDetailType & {
+type MatchProps = MatchDetailType & {
   children: ReactNode;
   className?: string;
 };
 
-export const GameContext = createContext<GameDetailType>({} as GameDetailType);
+export const MatchContext = createContext<MatchDetailType>(
+  {} as MatchDetailType,
+);
 
-export default function GameWrapper({
+export default function MatchWrapper({
   className,
   children,
   ...props
-}: GameProps) {
+}: MatchProps) {
   return (
-    <GameContext.Provider value={props}>
+    <MatchContext.Provider value={props}>
       <div
         className={$(
           'relative h-full min-h-[200px] justify-center rounded-xl bg-gray-1  shadow-lg',
@@ -33,6 +35,6 @@ export default function GameWrapper({
         />
         {children}
       </div>
-    </GameContext.Provider>
+    </MatchContext.Provider>
   );
 }

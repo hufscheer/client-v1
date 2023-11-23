@@ -1,10 +1,10 @@
-import GameWrapper from './pieces/GameWrapper';
 import Label from './pieces/Label';
 import Score from './pieces/Score';
 import Status from './pieces/Status';
 import Team from './pieces/Team';
+import MatchWrapper from './pieces/Wrapper';
 
-export const GameBanner = Object.assign(GameWrapper, {
+export const MatchInfo = Object.assign(MatchWrapper, {
   Label,
   Score,
   Status,

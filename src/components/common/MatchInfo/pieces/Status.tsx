@@ -1,4 +1,4 @@
-import { useGameContext } from '@/hooks/useGameContext';
+import { useMatchInfoContext } from '@/hooks/useMatchInfoContext';
 import { $ } from '@/utils/core';
 
 type StatusProps = {
@@ -6,7 +6,7 @@ type StatusProps = {
 };
 
 export default function Status({ className }: StatusProps) {
-  const { gameQuarter } = useGameContext();
+  const { gameQuarter } = useMatchInfoContext();
 
   return (
     <div className={$('z-10 px-5 text-white', className)}>{gameQuarter}</div>
