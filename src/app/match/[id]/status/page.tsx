@@ -4,13 +4,13 @@ import { useParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import { postGameStatus } from '@/api/auth';
-import Select from '@/components/common/Select/Select';
-import { GameStatusType } from '@/types/game';
+import Select from '@/components/common/AdminSelect/Select';
+import { MatchQuarterType } from '@/types/match';
 
 export default function Status() {
   const router = useRouter();
   const params = useParams();
-  const [gameState, setGameState] = useState<GameStatusType>('BEFORE');
+  const [gameState, setGameState] = useState<MatchQuarterType>('전반');
 
   const updateGameStatus = async () => {
     postGameStatus(Number(params.id), gameState).then(() =>
@@ -23,7 +23,7 @@ export default function Status() {
       <Select
         defaultValue={gameState}
         value={gameState}
-        onChange={e => setGameState(e.target.value as GameStatusType)}
+        onChange={e => setGameState(e.target.value as MatchQuarterType)}
       >
         <option value="BEFORE">경기 전</option>
         <option value="FIRST_HALF">전반전</option>

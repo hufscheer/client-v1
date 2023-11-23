@@ -1,21 +1,18 @@
 'use client';
 
-import { notFound, useRouter } from 'next/navigation';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 import { createNewGame } from '@/api/admin';
-import { getTeams } from '@/api/team';
 import Input from '@/components/common/Input/Input';
-import Select from '@/components/common/Select/Select';
 import useDate from '@/hooks/useDate';
 import useValidate from '@/hooks/useValidate';
-import { GameTeamType } from '@/types/game';
 
 export default function Admin() {
   const router = useRouter();
 
   const { month, day } = useDate(new Date().toString());
-  const [teams, setTeams] = useState<GameTeamType[]>([]);
+
   const [gameData, setGameData] = useState({
     name: '삼건물대회',
     sportsName: '축구',
@@ -61,18 +58,6 @@ export default function Admin() {
     }).then(() => router.push('/'));
   };
 
-  useEffect(() => {
-    const loadTeams = async () => {
-      const res = await getTeams();
-
-      if (typeof res === 'number') return notFound();
-
-      setTeams(res);
-    };
-
-    loadTeams();
-  }, []);
-
   return (
     <form onSubmit={submitHandler} className="flex flex-col">
       <label>
@@ -108,32 +93,6 @@ export default function Admin() {
         )}
       </label>
       <p>팀 선택</p>
-      <Select
-        name="firstTeam"
-        required
-        value={gameData.firstTeam}
-        onChange={handleInput}
-        placeholder="팀을 선택해주세요."
-      >
-        {teams.map(team => (
-          <option key={team.id} value={team.id}>
-            {team.name}
-          </option>
-        ))}
-      </Select>
-      <Select
-        name="secondTeam"
-        required
-        value={gameData.secondTeam}
-        onChange={handleInput}
-        placeholder="팀을 선택해주세요."
-      >
-        {teams.map(team => (
-          <option key={team.id} value={team.id}>
-            {team.name}
-          </option>
-        ))}
-      </Select>
       {isTeamError && (
         <div className="text-sm text-red-400">팀을 다시 선택해주세요!</div>
       )}
