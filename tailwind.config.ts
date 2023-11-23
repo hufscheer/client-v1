@@ -19,6 +19,36 @@ const config: Config = {
         },
         black: '#14191F',
       },
+      keyframes: {
+        'dialog-overlay-show': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        'dialog-overlay-hide': {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+        'menu-content-show': {
+          '0%': {
+            opacity: '0',
+            transform: 'translate(25%)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translate(0%)',
+          },
+        },
+        'menu-content-hide': {
+          '0%': {
+            opacity: '1',
+            transform: 'translate(0%)',
+          },
+          '100%': {
+            opacity: '0',
+            transform: 'translate(25%)',
+          },
+        },
+      },
     },
   },
   plugins: [],
