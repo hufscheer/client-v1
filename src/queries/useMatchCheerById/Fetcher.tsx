@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 
+import { MatchCheerType } from '@/types/match';
+
 import { useMatchCheerById } from './query';
-import { MatchCheerType } from './type';
 
 type MatchCheerByIdFetcherProps = {
   matchId: string;
