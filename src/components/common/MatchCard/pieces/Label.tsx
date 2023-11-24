@@ -1,4 +1,4 @@
-import { useGameContext } from '@/hooks/useGameContext';
+import { useMatchCardContext } from '@/hooks/useMatchCardContext';
 import { $ } from '@/utils/core';
 
 type LabelProps = {
@@ -6,7 +6,7 @@ type LabelProps = {
 };
 
 export default function Label({ className }: LabelProps) {
-  const { gameName } = useGameContext();
+  const { gameName } = useMatchCardContext();
 
   return <div className={$(className)}>{gameName}</div>;
 }

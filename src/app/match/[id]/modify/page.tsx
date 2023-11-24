@@ -1,14 +1,10 @@
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 import { postGameScore } from '@/api/admin';
-import { getGameDetail } from '@/api/game';
-import { Game } from '@/components/common/Game';
 import Input from '@/components/common/Input/Input';
-import Select from '@/components/common/Select/Select';
-import { GameDetailType, GameType } from '@/types/game';
 import { getUtcHours } from '@/utils/utc-times';
 
 export default function ModifyGame() {
@@ -21,7 +17,6 @@ export default function ModifyGame() {
     hour: new Date().getHours(),
     minute: new Date().getMinutes(),
   });
-  const [gameInfo, setGameInfo] = useState<GameDetailType>();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -46,24 +41,8 @@ export default function ModifyGame() {
     }).then(() => router.push('/'));
   };
 
-  useEffect(() => {
-    const getGameInfo = async () => {
-      const id = Number(params.id);
-      const gameDetail = await getGameDetail(id);
-
-      if (typeof gameDetail === 'number') return;
-
-      setGameInfo(gameDetail);
-    };
-
-    getGameInfo();
-  }, [params.id]);
-
   return (
     <form onSubmit={handleSubmit}>
-      <Game records={[]} videoId={''} {...(gameInfo as GameType)}>
-        <Game.Label />
-      </Game>
       <label htmlFor="playerName" className="my-5">
         선수 이름
         <Input
@@ -76,20 +55,6 @@ export default function ModifyGame() {
       </label>
 
       <p>득점한 팀</p>
-      <Select
-        name="team"
-        value={scoreData.team}
-        onChange={handleChange}
-        required
-        placeholder="팀을 선택해주세요."
-      >
-        <option value={gameInfo?.firstTeam.id}>
-          {gameInfo?.firstTeam.name}
-        </option>
-        <option value={gameInfo?.secondTeam.id}>
-          {gameInfo?.secondTeam.name}
-        </option>
-      </Select>
 
       <label htmlFor="scoreTime">
         득점 시간

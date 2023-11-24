@@ -3,8 +3,7 @@ const nextConfig = {
   images: {
     domains: [
       'hufstreaming.s3.ap-northeast-2.amazonaws.com',
-      'lh3.googleusercontent.com',
-      'velog.velcdn.com',
+      'hufscheer-server.s3.ap-northeast-2.amazonaws.com',
     ],
   },
 };

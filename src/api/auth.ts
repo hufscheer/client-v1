@@ -2,9 +2,9 @@ import * as Sentry from '@sentry/nextjs';
 import { AxiosError } from 'axios';
 
 import { AuthPayload, AuthType } from '@/types/auth';
-import { GameStatusType } from '@/types/game';
+import { MatchQuarterType } from '@/types/match';
 
-import { adminInstance } from './instance';
+import { adminInstance } from '.';
 
 export const postLogin = async (body: AuthPayload) => {
   try {
@@ -29,7 +29,7 @@ export const postLogin = async (body: AuthPayload) => {
 
 export const postGameStatus = async (
   id: number,
-  gameStatus: GameStatusType,
+  gameStatus: MatchQuarterType,
 ) => {
   adminInstance.post(`/manage/game/statustype/${id}/`, { gameStatus });
 };

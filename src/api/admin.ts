@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 
 import { GameScorePayload, NewGamePayload } from '@/types/admin';
 
-import { adminInstance } from './instance';
+import { adminInstance } from '.';
 
 export const createNewGame = (body: NewGamePayload) => {
   try {
