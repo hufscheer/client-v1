@@ -5,7 +5,7 @@ import instance from './instance';
 
 export type LeagueType = {
   name: string;
-  leagueId?: number;
+  leagueId: number;
 };
 
 export const getAllLeagues = async () => {
