@@ -28,7 +28,7 @@ export default function Header() {
     >
       <div className="flex items-baseline gap-1 text-center">
         <span className="text-3xl font-bold">{titleContent}</span>
-        {isAuthenticated && <span className="">관리자</span>}
+        {isAuthenticated && <span>관리자</span>}
       </div>
       <section>
         <button onClick={toggleSidebar}>
