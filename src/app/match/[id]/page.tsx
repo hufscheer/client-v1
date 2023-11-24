@@ -7,6 +7,7 @@ import Cheer from '@/components/match/Cheer';
 import Lineup from '@/components/match/LineupList';
 import Panel from '@/components/match/Panel';
 import RecordList from '@/components/match/RecordList';
+import Video from '@/components/match/Video';
 import MatchByIdFetcher from '@/queries/useMatchById/Fetcher';
 import MatchCheerByIdFetcher from '@/queries/useMatchCheerById/Fetcher';
 import MatchLineupFetcher from '@/queries/useMatchLineupById/Fetcher';
@@ -55,6 +56,12 @@ export default function Match({ params }: { params: { id: string } }) {
                   </div>
                 )}
               </MatchTimelineFetcher>
+            )}
+            {selected === '경기영상' && (
+              <div className="overflow-y-auto p-5">
+                {/* // TODO VideoId API 업데이트 시 ID를 받아와서 주입하는 형태로 수정 */}
+                <Video />
+              </div>
             )}
           </Suspense>
         )}
