@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/nextjs';
 import { AxiosError } from 'axios';
 
-import instance from './instance';
+import instance from '.';
 
 export type LeagueType = {
   name: string;
