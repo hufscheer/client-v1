@@ -2,6 +2,7 @@ import {
   MatchCheerType,
   MatchCommentType,
   MatchDetailType,
+  MatchLineupType,
   MatchTimelineType,
 } from '@/types/match';
 
@@ -32,6 +33,14 @@ export const getGameComments = async (gameId: string, cursor = 1) => {
 export const getMatchTimelineById = async (matchId: string) => {
   const { data } = await instance.get<MatchTimelineType[]>(
     `/games/${matchId}/timeline`,
+  );
+
+  return data;
+};
+
+export const getMatchLineupById = async (matchId: string) => {
+  const { data } = await instance.get<MatchLineupType[]>(
+    `/games/${matchId}/lineup`,
   );
 
   return data;

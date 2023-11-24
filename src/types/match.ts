@@ -43,6 +43,17 @@ export type MatchTimelineType = {
   records: MatchRecordsType[];
 };
 
+export type MatchLineupType = {
+  gameTeamId: number;
+  teamName: string;
+  gameTeamPlayers: MatchPlayerType[];
+};
+
+export type MatchPlayerType = {
+  playerName: string;
+  description: string;
+};
+
 export type MatchCommentType = {
   id: number;
   content: string;
