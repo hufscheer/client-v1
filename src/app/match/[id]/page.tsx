@@ -1,7 +1,5 @@
 'use client';
 
-// import Link from 'next/link';
-
 import { Suspense } from 'react';
 
 import MatchBanner from '@/components/match/Banner';
@@ -41,10 +39,10 @@ export default function Match({ params }: { params: { id: string } }) {
             {selected === '라인업' && (
               <MatchLineupFetcher matchId={params.id}>
                 {([firstTeam, secondTeam]) => (
-                  <>
+                  <div className="grid grid-cols-2 py-5 [&>*:first-child>ul]:before:absolute [&>*:first-child>ul]:before:right-0 [&>*:first-child>ul]:before:h-full [&>*:first-child>ul]:before:border-l-2 [&>*:first-child>ul]:before:bg-gray-2">
                     <Lineup {...firstTeam} />
                     <Lineup {...secondTeam} />
-                  </>
+                  </div>
                 )}
               </MatchLineupFetcher>
             )}
