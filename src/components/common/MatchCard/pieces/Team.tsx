@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { useMatchInfoContext } from '@/hooks/useMatchInfoContext';
+import { useMatchCardContext } from '@/hooks/useMatchCardContext';
 import { $ } from '@/utils/core';
 
 type TeamProps = {
@@ -9,7 +9,7 @@ type TeamProps = {
 };
 
 export default function Team({ teamIndex, className }: TeamProps) {
-  const { gameTeams } = useMatchInfoContext();
+  const { gameTeams } = useMatchCardContext();
 
   const targetTeamInfo = gameTeams[teamIndex - 1];
 

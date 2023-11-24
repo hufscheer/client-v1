@@ -1,4 +1,4 @@
-import { useMatchInfoContext } from '@/hooks/useMatchInfoContext';
+import { useMatchCardContext } from '@/hooks/useMatchCardContext';
 import { $ } from '@/utils/core';
 
 type ScoreProps = {
@@ -7,7 +7,7 @@ type ScoreProps = {
 };
 
 export default function Score({ teamIndex, className }: ScoreProps) {
-  const { gameTeams } = useMatchInfoContext();
+  const { gameTeams } = useMatchCardContext();
 
   const [targetTeam] = gameTeams.filter(team => team.gameTeamId === teamIndex);
 
