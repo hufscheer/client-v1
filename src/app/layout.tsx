@@ -28,10 +28,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} m-auto max-w-md bg-slate-50 p-4`}>
+      <body className={`${inter.className} m-auto max-w-md`}>
         <ReactQueryProvider>
           <Header />
-          {children}
+          <main className="px-4">{children}</main>
           <Footer />
         </ReactQueryProvider>
       </body>
