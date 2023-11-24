@@ -34,7 +34,11 @@ export default function Sidebar({ onClickSidebar }: SidebarProps) {
         <div className="my-2 text-xl font-semibold">대회 목록</div>
         <ul className="overflow-y-auto ">
           {menuContent.map(content => (
-            <li key={content.name} onClick={onClickSidebar} aria-hidden="true">
+            <li
+              key={content.leagueId}
+              onClick={onClickSidebar}
+              aria-hidden="true"
+            >
               <Link
                 href={{ pathname: '/', query: { leagueId: content.leagueId } }}
                 className="flex items-center rounded-lg p-2 hover:bg-gray-2 dark:text-white dark:hover:bg-gray-5"
