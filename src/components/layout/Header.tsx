@@ -43,7 +43,7 @@ export default function Header() {
         </Link>
       </div>
       <div>
-        <button onClick={toggleSidebar} className="h-full">
+        <button onClick={toggleSidebar}>
           <Icon
             iconName="hamburgerMenu"
             width={30}
