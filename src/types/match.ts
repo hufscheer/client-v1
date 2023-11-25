@@ -39,7 +39,7 @@ export type MatchRecordsType = {
 };
 
 export type MatchTimelineType = {
-  gameQuater: MatchQuarterType;
+  gameQuarter: MatchQuarterType;
   records: MatchRecordsType[];
 };
 
