@@ -1,17 +1,15 @@
 import { createContext, ReactNode } from 'react';
 
 import { Icon } from '@/components/common/Icon';
-import { MatchDetailType } from '@/types/match';
+import { MatchType } from '@/types/match';
 import { $ } from '@/utils/core';
 
-type MatchProps = MatchDetailType & {
+type MatchProps = MatchType & {
   children: ReactNode;
   className?: string;
 };
 
-export const MatchContext = createContext<MatchDetailType>(
-  {} as MatchDetailType,
-);
+export const MatchContext = createContext<MatchType>({} as MatchType);
 
 export default function MatchWrapper({
   className,

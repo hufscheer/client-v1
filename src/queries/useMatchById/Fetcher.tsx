@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 
-import { MatchDetailType } from '@/types/match';
+import { MatchType } from '@/types/match';
 
 import useMatchById from './query';
 
 type MatchByIdFetcherProps = {
   matchId: string;
-  children: (data: MatchDetailType) => ReactNode;
+  children: (data: MatchType) => ReactNode;
 };
 
 export default function MatchByIdFetcher({

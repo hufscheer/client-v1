@@ -1,7 +1,7 @@
 import { MatchCard } from '@/components/common/MatchCard';
-import { MatchDetailType } from '@/types/match';
+import { MatchType } from '@/types/match';
 
-export default function MatchBanner(props: MatchDetailType) {
+export default function MatchBanner(props: MatchType) {
   return (
     <MatchCard {...props} className="flex flex-col">
       <MatchCard.Label className="absolute left-2 top-2" />
