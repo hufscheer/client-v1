@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useSelectedLayoutSegments } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -9,9 +10,18 @@ import { $ } from '@/utils/core';
 
 export default function Header() {
   const segments = useSelectedLayoutSegments();
-  const titleContent = segments.includes('match') ? 'Match' : '훕치치';
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const titleContent = segments.includes('match') ? (
+    'Match'
+  ) : (
+    <Icon
+      iconName="hufcheercheer"
+      width={75}
+      height="auto"
+      className={isAuthenticated ? 'fill-white' : 'fill-primary'}
+    />
+  );
 
   const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
 
@@ -22,26 +32,28 @@ export default function Header() {
   return (
     <header
       className={$(
-        'flex items-center justify-between p-4',
+        'relative flex items-center justify-between p-4',
         isAuthenticated && 'bg-primary text-white',
       )}
     >
-      <div className="flex items-baseline gap-1 text-center">
-        <span className="text-3xl font-bold">{titleContent}</span>
-        {isAuthenticated && <span>관리자</span>}
+      <div>
+        <Link href="/" className="flex items-baseline gap-1 text-center">
+          <span className="text-3xl font-bold">{titleContent}</span>
+          {isAuthenticated && <span>관리자</span>}
+        </Link>
       </div>
-      <section>
-        <button onClick={toggleSidebar}>
+      <div>
+        <button onClick={toggleSidebar} className="h-full">
           <Icon
             iconName="hamburgerMenu"
-            width={32}
-            height={32}
-            viewBox="0 0 24 24"
+            width={30}
+            height="auto"
             className={isAuthenticated ? 'fill-white' : 'fill-primary'}
           />
         </button>
-        {isSidebarOpen && <Sidebar onClickSidebar={toggleSidebar} />}
-      </section>
+
+        <Sidebar isSidebarOpen={isSidebarOpen} onClickSidebar={toggleSidebar} />
+      </div>
     </header>
   );
 }
