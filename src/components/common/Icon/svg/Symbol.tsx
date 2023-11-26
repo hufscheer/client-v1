@@ -1,20 +1,8 @@
 import { ComponentProps } from 'react';
 
-interface IconProps extends ComponentProps<'svg'> {}
-
-export const Symbol = ({
-  width = '94',
-  height = '150',
-  viewBox = '0 0 372 591',
-}: IconProps) => {
+export const Symbol = ({ viewBox = '0 0 372 591' }: ComponentProps<'svg'>) => {
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox={viewBox}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox={viewBox} fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"

@@ -1,20 +1,10 @@
 import { ComponentProps } from 'react';
 
-interface IconProps extends ComponentProps<'svg'> {}
-
 export const ThumbsUp = ({
-  width = '98',
-  height = '150',
   viewBox = '0 0 320 488',
-}: IconProps) => {
+}: ComponentProps<'svg'>) => {
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox={viewBox}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox={viewBox} fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"

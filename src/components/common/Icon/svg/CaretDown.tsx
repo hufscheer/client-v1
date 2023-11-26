@@ -1,20 +1,11 @@
 import { ComponentProps } from 'react';
 
-interface IconProps extends ComponentProps<'svg'> {}
-
 export const CaretDown = ({
-  width = '15',
-  height = '15',
   viewBox = '0 0 15 15',
-}: IconProps) => {
+  ...props
+}: ComponentProps<'svg'>) => {
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox={viewBox}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox={viewBox} xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
