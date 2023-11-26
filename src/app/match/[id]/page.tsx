@@ -12,6 +12,7 @@ import MatchByIdFetcher from '@/queries/useMatchById/Fetcher';
 import MatchCheerByIdFetcher from '@/queries/useMatchCheerById/Fetcher';
 import MatchLineupFetcher from '@/queries/useMatchLineupById/Fetcher';
 import MatchTimelineFetcher from '@/queries/useMatchTimelineById/Fetcher';
+import MatchVideoFetcher from '@/queries/useMatchVideoById/Fetcher';
 
 export default function Match({ params }: { params: { id: string } }) {
   const options = [
@@ -58,10 +59,13 @@ export default function Match({ params }: { params: { id: string } }) {
               </MatchTimelineFetcher>
             )}
             {selected === '경기영상' && (
-              <div className="overflow-y-auto p-5">
-                {/* // TODO VideoId API 업데이트 시 ID를 받아와서 주입하는 형태로 수정 */}
-                <Video />
-              </div>
+              <MatchVideoFetcher matchId={params.id}>
+                {data => (
+                  <div className="overflow-y-auto p-5">
+                    <Video {...data} />
+                  </div>
+                )}
+              </MatchVideoFetcher>
             )}
           </Suspense>
         )}

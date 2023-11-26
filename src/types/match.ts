@@ -1,23 +1,14 @@
-export type MatchType = {
-  id: number;
-  name: string;
-  sportsName: string;
-  startTime: string;
-  firstTeamScore: number;
-  secondTeamScore: number;
-  gameStatus: MatchQuarterType;
-  statusChangedAt: string;
-  firstTeam: MatchTeamType;
-  secondTeam: MatchTeamType;
-};
+export interface MatchListType extends MatchType {
+  gameId: number;
+}
 
-export type MatchDetailType = {
+export interface MatchType {
   gameTeams: MatchTeamType[];
   startTime: string;
-  videoId: number;
-  gameQuarter: MatchQuarterType;
+  gameQuarter: string;
   gameName: string;
-};
+  sportsName: string;
+}
 
 export type MatchTeamType = {
   gameTeamId: number;
@@ -38,8 +29,9 @@ export type MatchRecordsType = {
   score: number;
 };
 
+// TODO 추후 회의를 통해 Quarter 타입을 특정하고 유니온 타입으로 사용할 것
 export type MatchTimelineType = {
-  gameQuarter: MatchQuarterType;
+  gameQuarter: string;
   records: MatchRecordsType[];
 };
 
@@ -61,4 +53,6 @@ export type MatchCommentType = {
   isBlocked: boolean;
 };
 
-export type MatchQuarterType = string;
+export type MatchVideoType = {
+  videoId: string;
+};
