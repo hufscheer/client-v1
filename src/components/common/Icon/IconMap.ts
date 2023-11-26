@@ -1,6 +1,35 @@
+import { BackgroundLogo } from './svg/BackgroundLogo';
+import { Calendar } from './svg/Calendar';
+import { CaretDown } from './svg/CaretDown';
+import { CaretUp } from './svg/CaretUp';
+import { Clip } from './svg/Clip';
+import { Cross } from './svg/Cross';
+import { HamburgerMenu } from './svg/HamburgerMenu';
+import { Hcc } from './svg/Hcc';
+import { Image } from './svg/Image';
+import { PaperPlane } from './svg/PaperPlane';
+import { Pencil } from './svg/Pencil';
+import { PlusCircled } from './svg/PlusCircled';
+import { Symbol } from './svg/Symbol';
+import { ThumbsUp } from './svg/Thumbsup';
+import { Trash } from './svg/Trash';
+import { Write } from './svg/Write';
+
 export const iconMap = {
-  hamburgerMenu:
-    'M3.75 17.25a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75ZM3.75 11.25a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75ZM3.75 5.25a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Z',
-  cross: 'm7.757 16.243 8.486-8.486M16.243 16.243 7.757 7.757',
-  logo: 'M85.5606 195.998C77.732 198.97 68.9512 195.108 65.9441 187.377L57.1409 164.737C55.6563 165.736 54.0584 166.581 52.3706 167.248L95.2766 277.598C98.2837 285.337 94.377 294.018 86.5559 296.99L86.5635 296.998C78.7349 299.97 69.9541 296.108 66.947 288.377L2.01711 121.395C-0.989967 113.655 2.91677 104.975 10.7378 102.003C18.5664 99.0299 27.3472 102.892 30.354 110.624L34.2395 120.617C35.9024 119.988 37.6497 119.531 39.4597 119.266L1.01418 20.3946C-1.9929 12.6554 1.91384 3.97519 9.73489 1.00254C17.5635 -1.97012 26.3443 1.89218 29.3511 9.62363L94.2737 176.598C97.2808 184.337 93.374 193.018 85.553 195.99L85.5606 195.998Z',
+  BackgroundLogo,
+  Calendar,
+  CaretDown,
+  CaretUp,
+  Clip,
+  Cross,
+  HamburgerMenu,
+  Hcc,
+  Image,
+  PaperPlane,
+  Pencil,
+  PlusCircled,
+  Symbol,
+  ThumbsUp,
+  Trash,
+  Write,
 };

@@ -16,18 +16,8 @@ export const Icon = ({
   className,
   ...props
 }: IconProps) => {
-  const path = iconMap[iconName];
+  const Icon = iconMap[iconName];
   return (
-    <svg
-      width={width}
-      height={height}
-      fillRule="evenodd"
-      clipRule="evenodd"
-      xmlns="http://www.w3.org/2000/svg"
-      className={$(className)}
-      {...props}
-    >
-      <path d={path} />
-    </svg>
+    <Icon width={width} height={height} className={$(className)} {...props} />
   );
 };
