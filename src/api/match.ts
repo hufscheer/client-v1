@@ -15,6 +15,8 @@ export type MatchListParams = {
   sportsId: number | number[];
   status: 'playing' | 'scheduled' | 'finished';
   leagueId: number;
+  cursor: number;
+  size: number;
 };
 
 export const getMatchList = async (params: MatchListParams) => {

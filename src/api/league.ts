@@ -1,16 +1,13 @@
 import * as Sentry from '@sentry/nextjs';
 import { AxiosError } from 'axios';
 
-import instance from '.';
+import { SportsType } from '@/types/league';
 
-export type LeagueType = {
-  name: string;
-  leagueId: number;
-};
+import instance from '.';
 
 export const getAllLeagues = async () => {
   try {
-    const response = await instance.get<LeagueType[]>('/leagues');
+    const response = await instance.get<SportsType[]>('/leagues');
 
     return response.data;
   } catch (error) {
@@ -24,4 +21,12 @@ export const getAllLeagues = async () => {
       throw new Error('리그 목록을 불러오는 데에 실패했습니다!');
     }
   }
+};
+
+export const getSportsListByLeagueId = async (leagueId: string) => {
+  const { data } = await instance.get<SportsType[]>(
+    `/leagues/${leagueId}/sports`,
+  );
+
+  return data;
 };
