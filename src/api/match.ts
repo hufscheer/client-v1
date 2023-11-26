@@ -5,6 +5,7 @@ import {
   MatchListType,
   MatchTimelineType,
   MatchType,
+  MatchVideoType,
 } from '@/types/match';
 import { convertObjectToQueryString } from '@/utils/queryString';
 
@@ -60,6 +61,14 @@ export const getMatchTimelineById = async (matchId: string) => {
 export const getMatchLineupById = async (matchId: string) => {
   const { data } = await instance.get<MatchLineupType[]>(
     `/games/${matchId}/lineup`,
+  );
+
+  return data;
+};
+
+export const getMatchVideoById = async (matchId: string) => {
+  const { data } = await instance.get<MatchVideoType>(
+    `/games/${matchId}/video`,
   );
 
   return data;

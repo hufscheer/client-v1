@@ -52,3 +52,7 @@ export type MatchCommentType = {
   createdAt: string;
   isBlocked: boolean;
 };
+
+export type MatchVideoType = {
+  videoId: string;
+};
