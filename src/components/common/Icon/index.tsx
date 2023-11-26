@@ -13,6 +13,6 @@ export const Icon = ({
   height = 24,
   ...props
 }: IconProps) => {
-  const Icon = iconMap[iconName];
-  return <Icon width={width} height={height} {...props} />;
+  const IconComponent = iconMap[iconName];
+  return <IconComponent width={width} height={height} {...props} />;
 };
