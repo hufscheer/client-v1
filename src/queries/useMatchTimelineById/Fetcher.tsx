@@ -1,18 +1,8 @@
 import { ReactNode } from 'react';
 
+import { MatchTimelineType } from '@/types/match';
+
 import { useMatchTimelineById } from './query';
-
-type MatchRecordsType = {
-  scoredAt: number;
-  playerName: string;
-  teamName: string;
-  score: number;
-};
-
-type MatchTimelineType = {
-  gameQuarter: string;
-  records: MatchRecordsType[];
-};
 
 type MatchTimelineFetcherProps = {
   matchId: string;
