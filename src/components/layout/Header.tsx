@@ -28,7 +28,7 @@ export default function Header() {
         <Link href="/" className="flex items-baseline gap-1 text-center">
           <span className="text-3xl font-bold">
             <Icon
-              iconName="Hcc"
+              iconName="hcc"
               width={75}
               height="100%"
               className={isAuthenticated ? 'fill-white' : 'fill-primary'}
@@ -40,7 +40,7 @@ export default function Header() {
       <section>
         <button onClick={toggleSidebar}>
           <Icon
-            iconName="HamburgerMenu"
+            iconName="hamburgerMenu"
             width={30}
             height="100%"
             className={$(
