@@ -3,19 +3,24 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { getAllLeagues, LeagueType } from '@/api/league';
+import { getAllLeaguesWithAuth } from '@/api/admin/league';
+import { LeagueType } from '@/types/admin/league';
 
 type SidebarProps = {
+  isSidebarOpen: boolean;
   onClickSidebar: () => void;
 };
-export default function Sidebar({ onClickSidebar }: SidebarProps) {
+export default function Sidebar({
+  isSidebarOpen,
+  onClickSidebar,
+}: SidebarProps) {
   const [menuContent, setMenuContent] = useState<LeagueType[]>([
-    { name: '전체', leagueId: 0 },
+    { name: '전체', leagueId: 0, startAt: '', endAt: '' },
   ]);
 
   useEffect(() => {
     const getLeagueData = async () => {
-      const res = await getAllLeagues();
+      const res = await getAllLeaguesWithAuth();
 
       setMenuContent(prev => [...prev, ...res]);
     };
@@ -24,31 +29,40 @@ export default function Sidebar({ onClickSidebar }: SidebarProps) {
   }, []);
 
   return (
-    <aside>
-      <div
-        className="fixed inset-0 bg-black/50"
-        onClick={onClickSidebar}
-        aria-hidden="true"
-      />
-      <div className="fixed right-0 top-0 z-40 h-screen w-64 bg-gray-1 p-5 py-8 text-gray-5">
-        <div className="my-2 text-xl font-semibold">대회 목록</div>
-        <ul className="overflow-y-auto ">
-          {menuContent.map(content => (
-            <li
-              key={content.leagueId}
-              onClick={onClickSidebar}
-              aria-hidden="true"
-            >
-              <Link
-                href={{ pathname: '/', query: { leagueId: content.leagueId } }}
-                className="flex items-center rounded-lg p-2 hover:bg-gray-2 dark:text-white dark:hover:bg-gray-5"
+    isSidebarOpen && (
+      <aside>
+        <div
+          data-state={isSidebarOpen}
+          className="absolute inset-0 z-40 h-screen bg-black/50 data-[state=false]:animate-[dialog-overlay-hide_100ms] data-[state=true]:animate-[dialog-overlay-show_100ms]"
+          onClick={onClickSidebar}
+          aria-hidden="true"
+        />
+        <div
+          data-state={isSidebarOpen}
+          className="absolute right-0 top-0 z-40 h-screen w-64 bg-gray-1 p-5 py-8 text-gray-5 data-[state=false]:animate-[menu-content-hide_100ms] data-[state=true]:animate-[menu-content-show_100ms]"
+        >
+          <div className="my-2 text-xl font-semibold">대회 목록</div>
+          <ul className="overflow-y-auto ">
+            {menuContent.map(content => (
+              <li
+                key={content.leagueId}
+                onClick={onClickSidebar}
+                aria-hidden="true"
               >
-                {content.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </aside>
+                <Link
+                  href={{
+                    pathname: '/',
+                    query: { leagueId: content.leagueId },
+                  }}
+                  className="flex items-center rounded-lg p-2 hover:bg-gray-2 dark:text-white dark:hover:bg-gray-5"
+                >
+                  {content.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+    )
   );
 }
