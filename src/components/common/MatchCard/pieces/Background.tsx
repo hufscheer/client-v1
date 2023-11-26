@@ -10,7 +10,7 @@ interface LabelProps extends ComponentProps<'svg'> {
 export default function Label({ className, ...props }: LabelProps) {
   return (
     <Icon
-      iconName="logo"
+      iconName="BackgroundLogo"
       className={$(
         'absolute left-1/2 h-[200px] -translate-x-1/2 fill-primary',
         className,

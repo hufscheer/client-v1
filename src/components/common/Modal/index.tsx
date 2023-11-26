@@ -34,7 +34,7 @@ function ModalContent({
         <div className="flex items-center justify-between">
           <Dialog.Title className="text-xl">{title}</Dialog.Title>
           <Dialog.Close className="text-gray-400 hover:text-gray-500">
-            <Icon iconName="cross" />
+            <Icon iconName="Cross" />
           </Dialog.Close>
         </div>
 
