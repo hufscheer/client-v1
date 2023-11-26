@@ -1,13 +1,13 @@
 import * as Sentry from '@sentry/nextjs';
 import { AxiosError } from 'axios';
 
-import { SportsType } from '@/types/league';
+import { LeagueType, SportsType } from '@/types/league';
 
 import instance from '.';
 
 export const getAllLeagues = async () => {
   try {
-    const response = await instance.get<SportsType[]>('/leagues');
+    const response = await instance.get<LeagueType[]>('/leagues');
 
     return response.data;
   } catch (error) {

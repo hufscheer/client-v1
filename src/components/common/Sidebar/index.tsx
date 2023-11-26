@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { getAllLeagues, LeagueType } from '@/api/league';
+import { getAllLeagues } from '@/api/league';
+import { LeagueType } from '@/types/league';
 
 type SidebarProps = {
   onClickSidebar: () => void;
