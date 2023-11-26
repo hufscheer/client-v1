@@ -8,8 +8,6 @@ export const useMatchTimelineById = (matchId: string) => {
     queryFn: () => getMatchTimelineById(matchId),
   });
 
-  if (error) throw error;
-
   return {
     timeline: data,
     error,
