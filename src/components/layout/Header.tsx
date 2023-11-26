@@ -18,7 +18,7 @@ export default function Header() {
     <Icon
       iconName="hufcheercheer"
       width={75}
-      height="auto"
+      height="100%"
       className={isAuthenticated ? 'fill-white' : 'fill-primary'}
     />
   );
@@ -47,7 +47,7 @@ export default function Header() {
           <Icon
             iconName="hamburgerMenu"
             width={30}
-            height="auto"
+            height="100%"
             className={isAuthenticated ? 'fill-white' : 'fill-primary'}
           />
         </button>
