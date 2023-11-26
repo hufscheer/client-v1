@@ -11,9 +11,9 @@ export default function MatchList({
   return (
     <ul>
       {matchList.map(({ gameId, ...match }) => (
-        <li key={gameId}>
+        <li key={gameId} className="mb-14">
           <Link href={`match/${gameId}`}>
-            <MatchCard {...match} className="mb-14 flex flex-col">
+            <MatchCard {...match} className="flex flex-col">
               <MatchCard.Label className="mb-2 grid w-full grid-cols-3 border-b-2 border-b-gray-5 px-1 pb-1" />
               <div className="flex h-full min-h-[180px] items-center justify-around rounded-xl bg-gray-1 shadow-lg">
                 <MatchCard.Background
