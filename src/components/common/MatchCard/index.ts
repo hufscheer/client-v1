@@ -1,3 +1,4 @@
+import Background from './pieces/Background';
 import Label from './pieces/Label';
 import Score from './pieces/Score';
 import Status from './pieces/Status';
@@ -9,4 +10,5 @@ export const MatchCard = Object.assign(MatchWrapper, {
   Score,
   Status,
   Team,
+  Background,
 });
