@@ -1,6 +1,5 @@
 export interface MatchListType extends MatchType {
   gameId: number;
-  sportsName: string;
 }
 
 export interface MatchType {
@@ -8,6 +7,7 @@ export interface MatchType {
   startTime: string;
   gameQuarter: string;
   gameName: string;
+  sportsName: string;
 }
 
 export type MatchTeamType = {

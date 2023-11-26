@@ -1,15 +1,34 @@
 import {
   MatchCheerType,
   MatchCommentType,
-  MatchDetailType,
   MatchLineupType,
+  MatchListType,
   MatchTimelineType,
+  MatchType,
 } from '@/types/match';
+import { convertObjectToQueryString } from '@/utils/queryString';
 
 import instance from '.';
 
+export type MatchListParams = {
+  sportsId: number | number[];
+  status: 'playing' | 'scheduled' | 'finished';
+  leagueId: number;
+};
+
+export const getMatchList = async (params: MatchListParams) => {
+  const queryString = convertObjectToQueryString<
+    keyof MatchListParams,
+    MatchListParams[keyof MatchListParams]
+  >(params);
+
+  const { data } = await instance.get<MatchListType[]>(`games?${queryString}`);
+
+  return data;
+};
+
 export const getMatchById = async (gameId: string) => {
-  const { data } = await instance.get<MatchDetailType>(`/games/${gameId}`);
+  const { data } = await instance.get<MatchType>(`/games/${gameId}`);
 
   return data;
 };
