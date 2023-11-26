@@ -1,8 +1,16 @@
 import { ComponentProps } from 'react';
 
-export const Cross = ({ viewBox = '0 0 15 15' }: ComponentProps<'svg'>) => {
+export const Cross = ({
+  viewBox = '0 0 15 15',
+  ...props
+}: ComponentProps<'svg'>) => {
   return (
-    <svg viewBox={viewBox} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      viewBox={viewBox}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"

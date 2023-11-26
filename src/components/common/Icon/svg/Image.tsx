@@ -1,8 +1,16 @@
 import { ComponentProps } from 'react';
 
-export const Image = ({ viewBox = '0 0 48 48' }: ComponentProps<'svg'>) => {
+export const Image = ({
+  viewBox = '0 0 48 48',
+  ...props
+}: ComponentProps<'svg'>) => {
   return (
-    <svg viewBox={viewBox} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      viewBox={viewBox}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
