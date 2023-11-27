@@ -26,8 +26,8 @@ export default function CommentList({
 
   return (
     <>
-      {commentList.map(({ commentId, ...comment }) => (
-        <CommentItem {...comment} key={commentId} order={1} />
+      {commentList.map(comment => (
+        <CommentItem {...comment} key={comment.commentId} order={1} />
       ))}
     </>
   );

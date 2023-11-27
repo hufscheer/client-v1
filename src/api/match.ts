@@ -92,3 +92,7 @@ export const getMatchCommentById = async (
 export const postMatchComment = async (payload: MatchCommentPayload) => {
   await instance.post(`/comments`, payload);
 };
+
+export const postReportComment = async (payload: { commentId: number }) => {
+  await instance.post(`/reports`, payload);
+};

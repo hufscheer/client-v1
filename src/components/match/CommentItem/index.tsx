@@ -1,6 +1,8 @@
+import useReportCommentMutation from '@/queries/useReportCommentMutation/query';
 import { $ } from '@/utils/core';
 
 type CommentItemProps = {
+  commentId: number;
   content: string;
   order: number;
   isBlocked: boolean;
@@ -8,11 +10,17 @@ type CommentItemProps = {
 };
 
 export default function CommentItem({
+  commentId,
   content,
   order,
   isBlocked,
   createdAt,
 }: CommentItemProps) {
+  const { mutate } = useReportCommentMutation();
+  const handleClickReportButton = (payload: { commentId: number }) => {
+    mutate(payload);
+  };
+
   const isEven = order % 2 === 0;
 
   return (
@@ -47,7 +55,12 @@ export default function CommentItem({
         >
           {createdAt}
         </time>
-        <div className="mx-2 text-red-400">신고 🚨</div>
+        <button
+          onClick={() => handleClickReportButton({ commentId })}
+          className="mx-2 text-red-400"
+        >
+          신고 🚨
+        </button>
       </div>
     </li>
   );
