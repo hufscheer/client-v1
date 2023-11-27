@@ -1,5 +1,6 @@
 import useReportCommentMutation from '@/queries/useReportCommentMutation/query';
 import { $ } from '@/utils/core';
+import { parseTimeString } from '@/utils/time';
 
 type CommentItemProps = {
   commentId: number;
@@ -22,6 +23,7 @@ export default function CommentItem({
   };
 
   const isEven = order % 2 === 0;
+  const { period, hours, minutes } = parseTimeString(createdAt);
 
   return (
     <li className={$('mb-1 flex items-end', isEven && 'flex-row-reverse')}>
@@ -53,7 +55,7 @@ export default function CommentItem({
         <time
           className={$('px-2 text-gray-4', isEven ? 'border-l' : 'border-r')}
         >
-          {createdAt}
+          {`${period} ${hours}:${minutes.toString().padStart(2, '0')}`}
         </time>
         <button
           onClick={() => handleClickReportButton({ commentId })}
