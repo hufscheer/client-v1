@@ -59,7 +59,7 @@ export default function CommentItem({
           onClick={() => handleClickReportButton({ commentId })}
           className="mx-2 text-red-400"
         >
-          신고 🚨
+          신고
         </button>
       </div>
     </li>
