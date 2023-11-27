@@ -1,14 +1,16 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useRef, useState } from 'react';
 
 import MatchBanner from '@/components/match/Banner';
 import Cheer from '@/components/match/Cheer';
 import CommentForm from '@/components/match/CommentForm';
+import CommentList from '@/components/match/CommentList';
 import Lineup from '@/components/match/LineupList';
 import Panel from '@/components/match/Panel';
 import RecordList from '@/components/match/RecordList';
 import Video from '@/components/match/Video';
+import useSocket from '@/hooks/useSocket';
 import MatchByIdFetcher from '@/queries/useMatchById/Fetcher';
 import MatchCheerByIdFetcher from '@/queries/useMatchCheerById/Fetcher';
 import MatchCommentFetcher from '@/queries/useMatchCommentById/Fetcher';
@@ -16,8 +18,25 @@ import MatchLineupFetcher from '@/queries/useMatchLineupById/Fetcher';
 import MatchTimelineFetcher from '@/queries/useMatchTimelineById/Fetcher';
 import MatchVideoFetcher from '@/queries/useMatchVideoById/Fetcher';
 import useSaveCommentMutation from '@/queries/useSaveCommentMutation/query';
+import { MatchCommentType } from '@/types/match';
 
 export default function Match({ params }: { params: { id: string } }) {
+  const [comments, setComments] = useState<MatchCommentType[]>([]);
+
+  const handleSocketMessage = (comment: MatchCommentType) => {
+    if (comment) {
+      setComments(prev => [...prev, comment]);
+    }
+  };
+
+  const { connect } = useSocket({
+    url: 'wss://api.hufstreaming.site/ws',
+    destination: `/topic/games/${params.id}`,
+    callback: handleSocketMessage,
+  });
+
+  connect();
+
   const { mutate } = useSaveCommentMutation();
   const options = [
     { label: '라인업' },
@@ -25,6 +44,13 @@ export default function Match({ params }: { params: { id: string } }) {
     { label: '경기영상' },
     { label: '타임라인' },
   ];
+
+  const scrollRef = useRef(null);
+  const scrollToBottom = () => {
+    if (!scrollRef.current) return;
+
+    (scrollRef.current as HTMLDivElement).scrollIntoView();
+  };
 
   return (
     <section>
@@ -64,15 +90,23 @@ export default function Match({ params }: { params: { id: string } }) {
             )}
             {selected === '응원댓글' && (
               <MatchCommentFetcher matchId={params.id}>
-                {data => (
-                  <ul>
-                    {data.commentList.pages.map(page =>
-                      page.map(comment => (
-                        <li key={comment.commentId}>{comment.content}</li>
-                      )),
-                    )}
-                    <CommentForm mutate={mutate} />
-                  </ul>
+                {({ commentList, ...data }) => (
+                  <div className="max-h-[450px] overflow-y-auto p-5">
+                    <ul className="pb-8">
+                      <CommentList
+                        commentList={commentList.pages.flat()}
+                        scrollToBottom={scrollToBottom}
+                        {...data}
+                      />
+                      <CommentList commentList={comments} />
+                      <div ref={scrollRef}></div>
+                    </ul>
+                    <CommentForm
+                      matchId={params.id}
+                      mutate={mutate}
+                      scrollToBottom={scrollToBottom}
+                    />
+                  </div>
                 )}
               </MatchCommentFetcher>
             )}
