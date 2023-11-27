@@ -4,17 +4,21 @@ import { Suspense } from 'react';
 
 import MatchBanner from '@/components/match/Banner';
 import Cheer from '@/components/match/Cheer';
+import CommentForm from '@/components/match/CommentForm';
 import Lineup from '@/components/match/LineupList';
 import Panel from '@/components/match/Panel';
 import RecordList from '@/components/match/RecordList';
 import Video from '@/components/match/Video';
 import MatchByIdFetcher from '@/queries/useMatchById/Fetcher';
 import MatchCheerByIdFetcher from '@/queries/useMatchCheerById/Fetcher';
+import MatchCommentFetcher from '@/queries/useMatchCommentById/Fetcher';
 import MatchLineupFetcher from '@/queries/useMatchLineupById/Fetcher';
 import MatchTimelineFetcher from '@/queries/useMatchTimelineById/Fetcher';
 import MatchVideoFetcher from '@/queries/useMatchVideoById/Fetcher';
+import useSaveCommentMutation from '@/queries/useSaveCommentMutation/query';
 
 export default function Match({ params }: { params: { id: string } }) {
+  const { mutate } = useSaveCommentMutation();
   const options = [
     { label: '라인업' },
     { label: '응원댓글' },
@@ -57,6 +61,20 @@ export default function Match({ params }: { params: { id: string } }) {
                   </div>
                 )}
               </MatchTimelineFetcher>
+            )}
+            {selected === '응원댓글' && (
+              <MatchCommentFetcher matchId={params.id}>
+                {data => (
+                  <ul>
+                    {data.commentList.pages.map(page =>
+                      page.map(comment => (
+                        <li key={comment.commentId}>{comment.content}</li>
+                      )),
+                    )}
+                    <CommentForm mutate={mutate} />
+                  </ul>
+                )}
+              </MatchCommentFetcher>
             )}
             {selected === '경기영상' && (
               <MatchVideoFetcher matchId={params.id}>
