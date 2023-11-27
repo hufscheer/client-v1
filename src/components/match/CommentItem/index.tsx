@@ -30,7 +30,7 @@ export default function CommentItem({
       {isBlocked ? (
         <div
           className={$(
-            'w-fit rounded-xl border px-3 py-1',
+            'rounded-xl border px-3 py-1',
             isEven ? 'bg-[#b2c3ff]' : 'bg-[#ffb2b2]',
           )}
         >
@@ -39,7 +39,7 @@ export default function CommentItem({
       ) : (
         <div
           className={$(
-            'w-fit rounded-xl border px-3 py-1',
+            'rounded-xl border px-3 py-1',
             isEven ? 'bg-[#b2c3ff]' : 'bg-[#ffb2b2]',
           )}
         >
@@ -53,13 +53,16 @@ export default function CommentItem({
         )}
       >
         <time
-          className={$('px-2 text-gray-4', isEven ? 'border-l' : 'border-r')}
+          className={$(
+            'w-max px-2 text-gray-4',
+            isEven ? 'border-l' : 'border-r',
+          )}
         >
           {`${period} ${hours}:${minutes.toString().padStart(2, '0')}`}
         </time>
         <button
           onClick={() => handleClickReportButton({ commentId })}
-          className="mx-2 text-red-400"
+          className="mx-2 w-max text-red-400"
         >
           신고
         </button>
