@@ -20,7 +20,7 @@ export default function Header() {
   return (
     <header
       className={$(
-        'flex items-center justify-between p-4',
+        'relative flex items-center justify-between p-4',
         isAuthenticated && 'bg-primary text-white',
       )}
     >
@@ -37,7 +37,7 @@ export default function Header() {
           {isAuthenticated && <span>관리자</span>}
         </Link>
       </div>
-      <section>
+      <div>
         <button onClick={toggleSidebar}>
           <Icon
             iconName="hamburgerMenu"
@@ -49,8 +49,9 @@ export default function Header() {
             )}
           />
         </button>
-        {isSidebarOpen && <Sidebar onClickSidebar={toggleSidebar} />}
-      </section>
+
+        <Sidebar isSidebarOpen={isSidebarOpen} onClickSidebar={toggleSidebar} />
+      </div>
     </header>
   );
 }
