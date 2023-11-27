@@ -98,8 +98,8 @@ export default function Match({ params }: { params: { id: string } }) {
                         scrollToBottom={scrollToBottom}
                         {...data}
                       />
-                      <CommentList commentList={comments} />
-                      <div ref={scrollRef}></div>
+                      <CommentList.SocketList commentList={comments} />
+                      <li ref={scrollRef}></li>
                     </ul>
                     <CommentForm
                       matchId={params.id}
