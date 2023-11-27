@@ -11,10 +11,12 @@ type MatchCommentFetcher = {
     commentList,
     fetchNextPage,
     hasNextPage,
+    isFetching,
   }: {
     commentList: InfiniteData<MatchCommentType[]>;
     fetchNextPage: () => void;
     hasNextPage: boolean;
+    isFetching: boolean;
   }) => ReactNode;
 };
 
@@ -22,10 +24,10 @@ export default function MatchCommentFetcher({
   matchId,
   children,
 }: MatchCommentFetcher) {
-  const { commentList, error, fetchNextPage, hasNextPage } =
+  const { commentList, error, fetchNextPage, hasNextPage, isFetching } =
     useMatchCommentById(matchId);
 
   if (error) throw error;
 
-  return children({ commentList, fetchNextPage, hasNextPage });
+  return children({ commentList, fetchNextPage, hasNextPage, isFetching });
 }

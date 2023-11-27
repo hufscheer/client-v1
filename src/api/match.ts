@@ -79,8 +79,8 @@ export const getMatchVideoById = async (matchId: string) => {
 
 export const getMatchCommentById = async (
   matchId: string,
-  cursor: number | null,
-  size = 10,
+  cursor: number | string,
+  size = 20,
 ) => {
   const { data } = await instance.get<MatchCommentType[]>(
     `/games/${matchId}/comments?cursor=${cursor}&size=${size}`,
