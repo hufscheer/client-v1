@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 
@@ -31,7 +32,10 @@ export default function RootLayout({
       <body className={`${inter.className} m-auto max-w-md`}>
         <ReactQueryProvider>
           <Header />
-          <main className="px-4">{children}</main>
+          <main className="px-4">
+            {children}
+            <Analytics />
+          </main>
           <Footer />
         </ReactQueryProvider>
       </body>
