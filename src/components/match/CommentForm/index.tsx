@@ -18,7 +18,6 @@ export default function CommentForm({
 }: CommentFormProps) {
   const [inputValue, setInputValue] = useState('');
   const [selectedTeamId, setSelectedTeamId] = useState<number>(1);
-  const [isOpen, toggleOpen] = useState(false);
 
   const handleCommentSubmit = (
     e: FormEvent<HTMLFormElement>,
@@ -37,7 +36,7 @@ export default function CommentForm({
   return (
     <>
       <form
-        className="h-70px absolute -bottom-1 left-0 w-full"
+        className="h-70px absolute bottom-0 left-0 w-full translate-y-full"
         onSubmit={e =>
           handleCommentSubmit(e, {
             gameTeamId: Number(matchId),
@@ -45,22 +44,20 @@ export default function CommentForm({
           })
         }
       >
-        {isOpen && (
-          <fieldset className="absolute top-0 flex w-full -translate-y-full items-center justify-start gap-2 rounded-lg bg-white px-5 py-3 shadow-md">
-            {matchTeams.map(team => (
-              <label key={team.gameTeamId} className="flex items-center">
-                <input
-                  type="radio"
-                  checked={selectedTeamId === team.gameTeamId}
-                  value={team.gameTeamId}
-                  onChange={handleRadioClick}
-                  className="dark:border-gray-6 dark:bg-gray-6 h-4 w-4 border-gray-3 bg-gray-1 text-primary focus:ring-2 focus:ring-primary dark:ring-offset-black dark:focus:ring-primary"
-                />
-                {team.gameTeamName}
-              </label>
-            ))}
-          </fieldset>
-        )}
+        <fieldset className="absolute top-0 flex w-full -translate-y-full items-center justify-start gap-4 rounded-lg bg-white px-5 py-3">
+          {matchTeams.map(team => (
+            <label key={team.gameTeamId} className="flex items-center">
+              <input
+                type="radio"
+                checked={selectedTeamId === team.gameTeamId}
+                value={team.gameTeamId}
+                onChange={handleRadioClick}
+                className="dark:border-gray-6 dark:bg-gray-6 mr-1 h-4 w-4 border-gray-3 bg-gray-1 text-primary focus:ring-2 focus:ring-primary dark:ring-offset-black dark:focus:ring-primary"
+              />
+              {team.gameTeamName}
+            </label>
+          ))}
+        </fieldset>
 
         <div
           className="z-10 grid items-center rounded-lg bg-gray-2"
@@ -71,7 +68,6 @@ export default function CommentForm({
             value={inputValue}
             onChange={e => setInputValue(e.target.value)}
             placeholder="응원하는 팀에 댓글을 남겨보세요!"
-            onFocus={() => toggleOpen(true)}
           />
           <button className="rounded-xl bg-primary px-5 py-3 text-white">
             댓글

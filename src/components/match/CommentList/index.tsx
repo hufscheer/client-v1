@@ -44,7 +44,11 @@ export default function CommentList({
     <>
       <div ref={ref}></div>
       {commentList.map(comment => (
-        <CommentItem {...comment} key={comment.commentId} order={1} />
+        <CommentItem
+          {...comment}
+          key={comment.commentId}
+          order={comment.order}
+        />
       ))}
     </>
   );
@@ -56,7 +60,11 @@ CommentList.SocketList = function SocketList({
   return (
     <>
       {commentList.map(comment => (
-        <CommentItem {...comment} key={comment.commentId} order={1} />
+        <CommentItem
+          {...comment}
+          key={comment.commentId}
+          order={comment.order}
+        />
       ))}
     </>
   );

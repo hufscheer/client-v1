@@ -4,14 +4,14 @@ import { useRef, useState } from 'react';
 
 import AsyncBoundary from '@/components/common/AsyncBoundary';
 import Loader from '@/components/common/Loader';
-import MatchBanner from '@/components/match/Banner';
-import Cheer from '@/components/match/Cheer';
 import CommentForm from '@/components/match/CommentForm';
 import CommentList from '@/components/match/CommentList';
 import Lineup from '@/components/match/LineupList';
 import Panel from '@/components/match/Panel';
 import RecordList from '@/components/match/RecordList';
 import Video from '@/components/match/Video';
+import Cheer from '@/components/rummikub/Cheer';
+import RummiKubMatchBanner from '@/components/rummikub/MatchBanner';
 import useSocket from '@/hooks/useSocket';
 import MatchByIdFetcher from '@/queries/useMatchById/Fetcher';
 import MatchCheerByIdFetcher from '@/queries/useMatchCheerById/Fetcher';
@@ -22,7 +22,7 @@ import MatchVideoFetcher from '@/queries/useMatchVideoById/Fetcher';
 import useSaveCommentMutation from '@/queries/useSaveCommentMutation/query';
 import { MatchCommentType } from '@/types/match';
 
-export default function Match({ params }: { params: { id: string } }) {
+export default function Rummikute({ params }: { params: { id: string } }) {
   const [comments, setComments] = useState<MatchCommentType[]>([]);
 
   const handleSocketMessage = (comment: MatchCommentType) => {
@@ -57,13 +57,16 @@ export default function Match({ params }: { params: { id: string } }) {
   return (
     <section>
       <AsyncBoundary
-        errorFallback={props => <MatchBanner.ErrorFallback {...props} />}
-        loadingFallback={<MatchBanner.Skeleton />}
+        errorFallback={props => (
+          <RummiKubMatchBanner.ErrorFallback {...props} />
+        )}
+        loadingFallback={<RummiKubMatchBanner.Skeleton />}
       >
         <MatchByIdFetcher matchId={params.id}>
-          {data => <MatchBanner {...data} />}
+          {data => <RummiKubMatchBanner {...data} />}
         </MatchByIdFetcher>
       </AsyncBoundary>
+
       <AsyncBoundary
         errorFallback={props => <Cheer.ErrorFallback {...props} />}
         loadingFallback={<Loader />}
@@ -115,7 +118,7 @@ export default function Match({ params }: { params: { id: string } }) {
                 <MatchCommentFetcher matchId={params.id}>
                   {({ commentList, matchTeams, ...data }) => (
                     <div className="max-h-[450px] overflow-y-auto p-5">
-                      <ul className="pb-10">
+                      <ul className="pb-8">
                         <CommentList
                           commentList={commentList.pages.flat()}
                           scrollToBottom={scrollToBottom}

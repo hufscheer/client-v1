@@ -11,6 +11,7 @@ import { Image } from './svg/Image';
 import { PaperPlane } from './svg/PaperPlane';
 import { Pencil } from './svg/Pencil';
 import { PlusCircled } from './svg/PlusCircled';
+import { Profile } from './svg/Profile';
 import { Symbol } from './svg/Symbol';
 import { ThumbsUp } from './svg/Thumbsup';
 import { Trash } from './svg/Trash';
@@ -34,4 +35,5 @@ export const iconMap = {
   thumbsUp: ThumbsUp,
   trash: Trash,
   write: Write,
+  profile: Profile,
 };
