@@ -1,3 +1,4 @@
+import { FallbackProps } from '@/components/common/ErrorBoundary';
 import { MatchCard } from '@/components/common/MatchCard';
 import { MatchType } from '@/types/match';
 
@@ -21,3 +22,19 @@ export default function MatchBanner(props: MatchType) {
     </MatchCard>
   );
 }
+
+MatchBanner.ErrorFallback = function ErrorFallback({
+  resetErrorBoundary,
+}: FallbackProps) {
+  return (
+    <div className="relative my-5 flex h-full min-h-[200px] w-full flex-col items-center justify-center gap-5 rounded-xl border p-2">
+      <div className="flex flex-wrap justify-center gap-x-1">
+        <span>게임 정보를 불러올 수 없어요.</span>
+        <span>잠시 후 다시 시도해주세요!</span>
+      </div>
+      <button onClick={resetErrorBoundary} className="text-primary">
+        새로고침
+      </button>
+    </div>
+  );
+};

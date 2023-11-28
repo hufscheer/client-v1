@@ -1,7 +1,6 @@
 'use client';
 
-import { Suspense } from 'react';
-
+import AsyncBoundary from '@/components/common/AsyncBoundary';
 import SportsList from '@/components/league/SportsList';
 import MatchList from '@/components/match/MatchList';
 import { QUERY_PARAMS } from '@/constants/queryParams';
@@ -22,7 +21,10 @@ export default function Home() {
 
   return (
     <section className="flex flex-col items-center">
-      <Suspense>
+      <AsyncBoundary
+        errorFallback={() => <div>에러</div>}
+        loadingFallback={<div>로딩 중</div>}
+      >
         <SportsListFetcher leagueId={params.get(QUERY_PARAMS.league) || '1'}>
           {data => (
             <SportsList
@@ -32,7 +34,7 @@ export default function Home() {
             />
           )}
         </SportsListFetcher>
-      </Suspense>
+      </AsyncBoundary>
 
       <div className="mb-8 flex w-fit items-center gap-5 rounded-xl bg-gray-2 text-center">
         <button
@@ -67,15 +69,18 @@ export default function Home() {
         </button>
       </div>
 
-      <div className="flex flex-col gap-8">
-        <Suspense fallback={<div>MatchList 로딩중...</div>}>
-          <MatchListFetcher {...paramsObj}>
-            {({ matchList, ...props }) => (
+      <AsyncBoundary
+        errorFallback={props => <MatchList.ErrorFallback {...props} />}
+        loadingFallback={<div>로딩 중</div>}
+      >
+        <MatchListFetcher {...paramsObj}>
+          {({ matchList, ...props }) => (
+            <div className="flex w-full flex-col gap-8">
               <MatchList matchList={matchList.pages.flat()} {...props} />
-            )}
-          </MatchListFetcher>
-        </Suspense>
-      </div>
+            </div>
+          )}
+        </MatchListFetcher>
+      </AsyncBoundary>
     </section>
   );
 }
