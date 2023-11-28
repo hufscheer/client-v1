@@ -1,19 +1,31 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 import { getMatchList, MatchListParams } from '@/api/match';
 
 export const useMatchList = ({
   sportsId,
-  status,
+  status = 'playing',
   leagueId,
-}: MatchListParams) => {
-  const { data, error } = useSuspenseQuery({
-    queryKey: ['match-list', sportsId, status, leagueId],
-    queryFn: () => getMatchList({ sportsId, status, leagueId }),
-  });
+}: Omit<MatchListParams, 'cursor' | 'size'>) => {
+  const { data, error, isFetching, hasNextPage, fetchNextPage } =
+    useSuspenseInfiniteQuery({
+      queryKey: ['match-list', sportsId, status, leagueId],
+      queryFn: ({ pageParam }) =>
+        getMatchList({
+          sportsId,
+          status,
+          leagueId,
+          cursor: pageParam,
+        }),
+      initialPageParam: 0,
+      getNextPageParam: lastPage => lastPage[0]?.id || null,
+    });
 
   return {
     matchList: data,
     error,
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
   };
 };

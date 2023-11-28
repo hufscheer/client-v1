@@ -1,6 +1,6 @@
-export const convertObjectToQueryString = <T extends string, U>(
-  params: Record<T, U>,
-) => {
+export const convertObjectToQueryString = (params: {
+  [key: string]: string | string[];
+}) => {
   const queryString = new URLSearchParams();
 
   Object.entries(params).forEach(([key, value]) => {

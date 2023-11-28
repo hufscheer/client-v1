@@ -1,5 +1,5 @@
 export interface MatchListType extends MatchType {
-  gameId: number;
+  id: number;
 }
 
 export interface MatchType {
@@ -62,3 +62,5 @@ export type MatchCommentPayload = Pick<
 export type MatchVideoType = {
   videoId: string;
 };
+
+export type MatchStatus = 'playing' | 'scheduled' | 'finished';
