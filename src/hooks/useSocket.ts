@@ -28,7 +28,7 @@ export default function useSocket<T>({
         try {
           callback(JSON.parse(message.body));
         } catch (error) {
-          console.error(error);
+          throw new Error('소켓이 제대로 연결되지 않은 것 같아요!');
         }
       });
     };
