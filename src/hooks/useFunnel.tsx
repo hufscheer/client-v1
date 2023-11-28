@@ -1,5 +1,4 @@
-import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import {
   Children,
   isValidElement,
@@ -8,6 +7,8 @@ import {
   useCallback,
   useMemo,
 } from 'react';
+
+import useQueryParams from '@/hooks/useQueryParams';
 
 export interface FunnelProps<T extends string[]> {
   steps: T;
@@ -45,11 +46,11 @@ export const useFunnel = <T extends string[]>(
   defaultStep: T[number],
 ) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const { params, setInParams } = useQueryParams();
 
   const setStep = useCallback(
     (step: T[number]) => {
-      router.push({ query: { step } });
+      setInParams('step', step);
     },
     [router],
   );
@@ -57,13 +58,13 @@ export const useFunnel = <T extends string[]>(
   const FunnelComponent = useMemo(() => {
     return Object.assign(
       (props: Omit<FunnelProps<T>, 'step' | 'steps'>) => {
-        const step = searchParams.get('step') ?? defaultStep;
+        const step = params.get('step') ?? defaultStep;
 
         return <Funnel<T> steps={steps} step={step} {...props} />;
       },
       { Step },
     );
-  }, [defaultStep, searchParams, steps]);
+  }, [defaultStep, params, steps]);
 
   return [FunnelComponent, setStep] as const;
 };
