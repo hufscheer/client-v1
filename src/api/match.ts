@@ -4,6 +4,7 @@ import {
   MatchCommentType,
   MatchLineupType,
   MatchListType,
+  MatchStatus,
   MatchTimelineType,
   MatchType,
   MatchVideoType,
@@ -13,20 +14,21 @@ import { convertObjectToQueryString } from '@/utils/queryString';
 import instance from '.';
 
 export type MatchListParams = {
-  sportsId: number | number[];
-  status: 'playing' | 'scheduled' | 'finished';
-  leagueId: number;
-  cursor: number;
-  size: number;
+  sportsId?: string[];
+  status: MatchStatus;
+  leagueId?: string;
+  cursor?: number;
 };
 
-export const getMatchList = async (params: MatchListParams) => {
-  const queryString = convertObjectToQueryString<
-    keyof MatchListParams,
-    MatchListParams[keyof MatchListParams]
-  >(params);
+export const getMatchList = async (
+  { cursor, ...params }: MatchListParams,
+  size = 3,
+) => {
+  const queryString = convertObjectToQueryString(params);
 
-  const { data } = await instance.get<MatchListType[]>(`games?${queryString}`);
+  const { data } = await instance.get<MatchListType[]>(
+    `games?${queryString}&cursor=${cursor || ''}&size=${size}`,
+  );
 
   return data;
 };

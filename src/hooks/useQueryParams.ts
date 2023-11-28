@@ -1,5 +1,7 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
+import { MatchStatus } from '@/types/match';
+
 export default function useQueryParams() {
   const params = useSearchParams();
   const pathname = usePathname();
@@ -26,5 +28,35 @@ export default function useQueryParams() {
     router.push(`${pathname}?${newParams.toString()}`);
   };
 
-  return { params, appendToParams, setInParams };
+  type StoreWithStatus<T> = T & { status: MatchStatus };
+
+  const repeatIterator = <T extends { [key: string]: string | string[] }>(
+    store: StoreWithStatus<T>,
+    iterator: IterableIterator<[string, string]>,
+  ): StoreWithStatus<T> => {
+    const { value, done } = iterator.next();
+
+    if (!done) {
+      const [iterableKey, iterableValue] = value;
+
+      if (iterableKey in store) {
+        if (Array.isArray(store[iterableKey])) {
+          (store[iterableKey] as string[]).push(iterableValue);
+        } else {
+          (store[iterableKey] as string[]) = [
+            store[iterableKey] as string,
+            iterableValue,
+          ];
+        }
+      } else {
+        (store[iterableKey] as string) = iterableValue as string;
+      }
+
+      return repeatIterator(store, iterator);
+    }
+
+    return store;
+  };
+
+  return { params, repeatIterator, appendToParams, setInParams };
 }
