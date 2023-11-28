@@ -10,6 +10,13 @@ type CommentItemProps = {
   createdAt: string;
 };
 
+const teamColor = [
+  'bg-[#ffb2b2]',
+  'bg-[#fdd3b1]',
+  'bg-[#b2c3ff]',
+  'bg-[#a6e7be]',
+] as const;
+
 export default function CommentItem({
   commentId,
   content,
@@ -25,27 +32,18 @@ export default function CommentItem({
   const isEven = order % 2 === 0;
   const { period, hours, minutes } = parseTimeString(createdAt);
 
+  if (isBlocked)
+    return (
+      <div className="rounded-xl border bg-gray-2 px-3 py-1">
+        ⚠️ 관리자에 의해 차단된 댓글입니다.
+      </div>
+    );
+
   return (
     <li className={$('mb-1 flex items-end', isEven && 'flex-row-reverse')}>
-      {isBlocked ? (
-        <div
-          className={$(
-            'rounded-xl border px-3 py-1',
-            isEven ? 'bg-[#b2c3ff]' : 'bg-[#ffb2b2]',
-          )}
-        >
-          ⚠️ 관리자에 의해 차단된 댓글입니다.
-        </div>
-      ) : (
-        <div
-          className={$(
-            'rounded-xl border px-3 py-1',
-            isEven ? 'bg-[#b2c3ff]' : 'bg-[#ffb2b2]',
-          )}
-        >
-          {content}
-        </div>
-      )}
+      <div className={$('rounded-xl border px-3 py-1', teamColor[order - 1])}>
+        {content}
+      </div>
       <div
         className={$(
           'mb-1 flex items-end justify-between text-xs',
