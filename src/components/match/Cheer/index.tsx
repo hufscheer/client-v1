@@ -1,3 +1,4 @@
+import { FallbackProps } from '@/components/common/ErrorBoundary';
 import { MatchCheerType } from '@/types/match';
 
 import CheerTeam from '../CheerTeam';
@@ -25,3 +26,19 @@ export default function Cheer({ cheers }: CheerProps) {
     </div>
   );
 }
+
+Cheer.ErrorFallback = function ErrorFallback({
+  resetErrorBoundary,
+}: FallbackProps) {
+  return (
+    <div className="min-h-10 relative my-5 flex h-full w-full flex-col items-center justify-center gap-5 p-2">
+      <div className="flex flex-wrap justify-center gap-x-1">
+        <span>응원하기를 불러올 수 없어요. </span>
+        <span>잠시 후 다시 시도해주세요!</span>
+      </div>
+      <button onClick={resetErrorBoundary} className="text-primary">
+        새로고침
+      </button>
+    </div>
+  );
+};

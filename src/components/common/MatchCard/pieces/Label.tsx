@@ -8,17 +8,17 @@ type LabelProps = {
 
 export default function Label({ className }: LabelProps) {
   const { gameName, sportsName, startTime } = useMatchCardContext();
-  const { year, month, date, weekday } = parseTimeString(startTime);
+  const { month, date, weekday, period, hours, minutes } =
+    parseTimeString(startTime);
 
   return (
-    <div className={$(className)}>
-      {startTime && (
-        <time>
-          {year}. {month}. {date}. ({weekday})
-        </time>
-      )}
-      {sportsName && <div className="text-center">{sportsName}</div>}
-      {gameName && <div className="text-right">{gameName}</div>}
+    <div className={$('flex items-center justify-between', className)}>
+      <time>
+        {month}. {date}. {weekday}요일 {period} {hours}:{minutes}
+      </time>
+      <div className="text-right">
+        {sportsName} {gameName}
+      </div>
     </div>
   );
 }

@@ -36,3 +36,14 @@ export default function SportsList({
     </ul>
   );
 }
+
+SportsList.Skeleton = function Skeleton() {
+  return (
+    <ul className="mb-5 flex h-[40px] w-full max-w-md items-center justify-start gap-5 overflow-hidden">
+      <li className="text-gary-5 h-[40px] w-[70px] animate-pulse cursor-pointer rounded-xl bg-gray-2"></li>
+      <li className="text-gary-5 h-[40px] w-[70px] animate-pulse cursor-pointer rounded-xl bg-gray-2"></li>
+      <li className="text-gary-5 h-[40px] w-[70px] animate-pulse cursor-pointer rounded-xl bg-gray-2"></li>
+      <li className="text-gary-5 h-[40px] w-[70px] animate-pulse cursor-pointer rounded-xl bg-gray-2"></li>
+    </ul>
+  );
+};
