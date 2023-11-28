@@ -3,6 +3,8 @@ import { MatchCard } from '@/components/common/MatchCard';
 import { MatchType } from '@/types/match';
 
 export default function MatchBanner(props: MatchType) {
+  const [firstTeam, secondTeam] = props.gameTeams;
+
   return (
     <MatchCard {...props} className="flex flex-col">
       <MatchCard.Label className="absolute top-2 flex w-full justify-between px-2" />
@@ -13,11 +15,17 @@ export default function MatchBanner(props: MatchType) {
           height={200}
           className="h-[200px]"
         />
-        <MatchCard.Team teamIndex={1} className="flex flex-col items-center" />
-        <MatchCard.Score teamIndex={1} />
+        <MatchCard.Team
+          teamIndex={firstTeam.order}
+          className="flex flex-col items-center"
+        />
+        <MatchCard.Score teamIndex={firstTeam.order} />
         <MatchCard.Status />
-        <MatchCard.Score teamIndex={2} />
-        <MatchCard.Team teamIndex={2} className="flex flex-col items-center" />
+        <MatchCard.Score teamIndex={secondTeam.order} />
+        <MatchCard.Team
+          teamIndex={secondTeam.order}
+          className="flex flex-col items-center"
+        />
       </div>
     </MatchCard>
   );

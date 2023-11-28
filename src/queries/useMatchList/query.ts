@@ -18,7 +18,7 @@ export const useMatchList = ({
           cursor: pageParam,
         }),
       initialPageParam: 0,
-      getNextPageParam: lastPage => lastPage[0]?.id || null,
+      getNextPageParam: lastPage => lastPage.at(-1)?.id || null,
     });
 
   return {

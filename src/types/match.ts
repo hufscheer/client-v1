@@ -15,6 +15,7 @@ export type MatchTeamType = {
   gameTeamName: string;
   logoImageUrl: string;
   score: number;
+  order: number;
 };
 
 export type MatchCheerType = {
@@ -52,6 +53,7 @@ export type MatchCommentType = {
   gameTeamId: number;
   createdAt: string;
   isBlocked: boolean;
+  order: number;
 };
 
 export type MatchCommentPayload = Pick<

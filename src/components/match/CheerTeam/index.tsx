@@ -15,9 +15,9 @@ export default function CheerTeam({
       )}
       {...props}
     >
-      <div className="flex w-full items-center justify-center text-white">
+      <button className="flex w-full items-center justify-center text-white">
         {children}
-      </div>
+      </button>
     </div>
   );
 }
