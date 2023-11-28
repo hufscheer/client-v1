@@ -1,3 +1,4 @@
+import { Icon } from '@/components/common/Icon';
 import { QUERY_PARAMS } from '@/constants/queryParams';
 import { SportsType } from '@/types/league';
 import { $ } from '@/utils/core';
@@ -25,9 +26,10 @@ export default function SportsList({
         >
           <button
             onClick={() => onClick(QUERY_PARAMS.sports, String(sports.sportId))}
-            className="px-3 py-2"
+            className="flex items-center gap-2 px-3 py-2"
           >
-            {sports.name}
+            <span>{sports.name}</span>
+            <Icon iconName="cross" width="12" height="12" />
           </button>
         </li>
       ))}
