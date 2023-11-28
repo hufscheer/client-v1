@@ -47,11 +47,17 @@ export type MatchPlayerType = {
 };
 
 export type MatchCommentType = {
-  id: number;
+  commentId: number;
   content: string;
+  gameTeamId: number;
   createdAt: string;
   isBlocked: boolean;
 };
+
+export type MatchCommentPayload = Pick<
+  MatchCommentType,
+  'gameTeamId' | 'content'
+>;
 
 export type MatchVideoType = {
   videoId: string;

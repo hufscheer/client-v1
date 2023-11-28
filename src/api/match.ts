@@ -1,5 +1,6 @@
 import {
   MatchCheerType,
+  MatchCommentPayload,
   MatchCommentType,
   MatchLineupType,
   MatchListType,
@@ -74,4 +75,24 @@ export const getMatchVideoById = async (matchId: string) => {
   );
 
   return data;
+};
+
+export const getMatchCommentById = async (
+  matchId: string,
+  cursor: number | string,
+  size = 20,
+) => {
+  const { data } = await instance.get<MatchCommentType[]>(
+    `/games/${matchId}/comments?cursor=${cursor}&size=${size}`,
+  );
+
+  return data;
+};
+
+export const postMatchComment = async (payload: MatchCommentPayload) => {
+  await instance.post(`/comments`, payload);
+};
+
+export const postReportComment = async (payload: { commentId: number }) => {
+  await instance.post(`/reports`, payload);
 };
