@@ -3,8 +3,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { getAllLeaguesWithAuth } from '@/api/admin/league';
-import { LeagueType } from '@/types/admin/league';
+import { getAllLeagues } from '@/api/league';
+import { LeagueType } from '@/types/league';
 
 type SidebarProps = {
   isSidebarOpen: boolean;
@@ -15,12 +15,12 @@ export default function Sidebar({
   onClickSidebar,
 }: SidebarProps) {
   const [menuContent, setMenuContent] = useState<LeagueType[]>([
-    { name: '전체', leagueId: 0, startAt: '', endAt: '' },
+    { name: '전체', leagueId: 0 },
   ]);
 
   useEffect(() => {
     const getLeagueData = async () => {
-      const res = await getAllLeaguesWithAuth();
+      const res = await getAllLeagues();
 
       setMenuContent(prev => [...prev, ...res]);
     };
