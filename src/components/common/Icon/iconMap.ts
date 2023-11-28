@@ -2,6 +2,7 @@ import { BackgroundLogo } from './svg/BackgroundLogo';
 import { Calendar } from './svg/Calendar';
 import { CaretDown } from './svg/CaretDown';
 import { CaretUp } from './svg/CaretUp';
+import { CheckCircled } from './svg/CheckCircled';
 import { Clip } from './svg/Clip';
 import { Cross } from './svg/Cross';
 import { HamburgerMenu } from './svg/HamburgerMenu';
@@ -21,6 +22,7 @@ export const iconMap = {
   caretDown: CaretDown,
   caretUp: CaretUp,
   clip: Clip,
+  checkCircled: CheckCircled,
   cross: Cross,
   hamburgerMenu: HamburgerMenu,
   hcc: Hcc,

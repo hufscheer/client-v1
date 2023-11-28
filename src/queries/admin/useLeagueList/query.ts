@@ -29,6 +29,7 @@ export function useDeleteLeagueMutation() {
   const queryClient = useQueryClient();
 
   return useMutation({
+    mutationKey: ['delete-league'],
     mutationFn: deleteLeagueByIdWithAuth,
     onSuccess: () => {
       queryClient.invalidateQueries({
