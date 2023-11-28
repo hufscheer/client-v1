@@ -33,6 +33,5 @@ export type DeleteLeaguePayload = LeagueIdType;
 
 export type LeagueRegisterDataType = {
   leagueData: LeagueType[];
-  leagueSportsData?: SportsCategoriesType[];
   sportsListData: SportsCategoriesType[];
 };

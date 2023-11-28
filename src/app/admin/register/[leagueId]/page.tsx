@@ -2,15 +2,11 @@
 
 import { Suspense } from 'react';
 
-import RegisterLeague from '@/components/admin/register/League';
+import EditLeague from '@/components/admin/register/League/edit';
 import LeagueRegisterFetcher from '@/queries/admin/useLeagueRegister/Fetcher';
 import useSportsListByLeagueId from '@/queries/useSportsListByLeagueId/query';
 
-export default function EditLeague({
-  params,
-}: {
-  params: { leagueId: string };
-}) {
+export default function Edit({ params }: { params: { leagueId: string } }) {
   const { leagueId } = params;
   const { sportsList: leagueSportsData } = useSportsListByLeagueId(leagueId);
   return (
@@ -18,7 +14,7 @@ export default function EditLeague({
       <Suspense fallback={<div>리그 정보 로딩중...</div>}>
         <LeagueRegisterFetcher>
           {data => (
-            <RegisterLeague
+            <EditLeague
               data={{ ...data, leagueSportsData }}
               leagueId={Number(leagueId)}
             />

@@ -1,11 +1,18 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
-import LeagueList from '@/components/admin/league/LeagueList';
 import Button from '@/components/common/Button';
-import LeagueListFetcher from '@/queries/admin/useLeagueList/Fetcher';
+
+const LeagueListFetcher = dynamic(
+  () => import('@/queries/admin/useLeagueList/Fetcher'),
+  { ssr: false },
+);
+const LeagueList = dynamic(
+  () => import('@/components/admin/league/LeagueList'),
+);
 
 export default function LeaguePage() {
   return (

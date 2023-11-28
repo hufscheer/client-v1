@@ -3,7 +3,7 @@
 import { Suspense } from 'react';
 
 import RegisterWrapper from '@/components/admin/register/context/RegisterWrapper';
-import RegisterLeague from '@/components/admin/register/League';
+import RegisterLeague from '@/components/admin/register/League/';
 import RegisterTeam from '@/components/admin/register/Team';
 import { useFunnel } from '@/hooks/useFunnel';
 import LeagueRegisterFetcher from '@/queries/admin/useLeagueRegister/Fetcher';
