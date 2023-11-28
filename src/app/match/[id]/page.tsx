@@ -115,7 +115,7 @@ export default function Match({ params }: { params: { id: string } }) {
                 <MatchCommentFetcher matchId={params.id}>
                   {({ commentList, matchTeams, ...data }) => (
                     <div className="max-h-[450px] overflow-y-auto p-5">
-                      <ul className="pb-8">
+                      <ul className="pb-10">
                         <CommentList
                           commentList={commentList.pages.flat()}
                           scrollToBottom={scrollToBottom}
