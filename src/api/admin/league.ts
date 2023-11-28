@@ -28,9 +28,9 @@ export const deleteLeagueByIdWithAuth = async (body: DeleteLeaguePayload) => {
 };
 
 export const putLeagueWithAuth = async (data: PutLeaguePayload) => {
-  const { status } = await adminInstance.put('/league/', data);
+  await adminInstance.put('/league/', data);
 
-  return status;
+  return data.leagueId;
 };
 
 export const getSportsCategoriesWithAuth = async () => {
