@@ -18,7 +18,7 @@ export default function Team({ teamIndex, className }: TeamProps) {
       <div className={$(className)}>
         <Icon
           iconName="profile"
-          className="me-4 h-16 w-16 text-gray-200 dark:text-gray-700"
+          className="h-16 w-16 text-gray-200 dark:text-gray-700"
         />
       </div>
     );
