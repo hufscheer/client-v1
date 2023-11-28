@@ -38,3 +38,25 @@ MatchBanner.ErrorFallback = function ErrorFallback({
     </div>
   );
 };
+
+MatchBanner.Skeleton = function Skeleton() {
+  return (
+    <MatchCard
+      className="flex flex-col"
+      gameTeams={[]}
+      startTime={''}
+      gameQuarter={''}
+      gameName={''}
+      sportsName={''}
+    >
+      <div className="flex h-full min-h-[200px] items-center justify-around rounded-xl bg-gray-1 shadow-lg">
+        <MatchCard.Background
+          viewBox="-3 120 100 50"
+          width={150}
+          height={200}
+          className="h-[200px]"
+        />
+      </div>
+    </MatchCard>
+  );
+};

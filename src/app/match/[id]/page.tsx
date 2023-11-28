@@ -58,7 +58,7 @@ export default function Match({ params }: { params: { id: string } }) {
     <section>
       <AsyncBoundary
         errorFallback={props => <MatchBanner.ErrorFallback {...props} />}
-        loadingFallback={<div>배너 로딩중...</div>}
+        loadingFallback={<MatchBanner.Skeleton />}
       >
         <MatchByIdFetcher matchId={params.id}>
           {data => <MatchBanner {...data} />}

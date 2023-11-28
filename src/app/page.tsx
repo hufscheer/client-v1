@@ -23,7 +23,7 @@ export default function Home() {
     <section className="flex flex-col items-center">
       <AsyncBoundary
         errorFallback={() => <div>에러</div>}
-        loadingFallback={<div>로딩 중</div>}
+        loadingFallback={<SportsList.Skeleton />}
       >
         <SportsListFetcher leagueId={params.get(QUERY_PARAMS.league) || '1'}>
           {data => (
@@ -71,7 +71,7 @@ export default function Home() {
 
       <AsyncBoundary
         errorFallback={props => <MatchList.ErrorFallback {...props} />}
-        loadingFallback={<div>로딩 중</div>}
+        loadingFallback={<MatchList.Skeleton />}
       >
         <MatchListFetcher {...paramsObj}>
           {({ matchList, ...props }) => (

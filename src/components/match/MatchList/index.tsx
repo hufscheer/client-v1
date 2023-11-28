@@ -105,3 +105,46 @@ MatchList.ErrorFallback = function ErrorFallback({
     </div>
   );
 };
+
+MatchList.Skeleton = function Skeleton() {
+  return (
+    <>
+      <div className="mb-14 h-[200px] w-full">
+        <div className="mb-2 h-[30px] rounded-xl bg-gray-1 px-1 pb-1" />
+        <div className="flex h-[180px] items-center justify-around rounded-xl bg-gray-1 shadow-lg"></div>
+      </div>
+      <div className="mb-14 h-[200px] w-full">
+        <div className="mb-2 h-[30px] rounded-xl bg-gray-1 px-1 pb-1" />
+        <div className="flex h-[180px] items-center justify-around rounded-xl bg-gray-1 shadow-lg"></div>
+      </div>
+      <div className="mb-14 h-[200px] w-full">
+        <div className="mb-2 h-[30px] rounded-xl bg-gray-1 px-1 pb-1" />
+        <div className="flex h-[180px] items-center justify-around rounded-xl bg-gray-1 shadow-lg"></div>
+      </div>
+      <div className="mb-14 h-[200px] w-full">
+        <div className="mb-2 h-[30px] rounded-xl bg-gray-1 px-1 pb-1" />
+        <div className="flex h-[180px] items-center justify-around rounded-xl bg-gray-1 shadow-lg"></div>
+      </div>
+      <div className="mb-14 h-[200px] w-full">
+        <div className="mb-2 h-[30px] rounded-xl bg-gray-1 px-1 pb-1" />
+        <div className="flex h-[180px] items-center justify-around rounded-xl bg-gray-1 shadow-lg"></div>
+      </div>
+      <div className="mb-14 h-[200px] w-full">
+        <div className="mb-2 h-[30px] rounded-xl bg-gray-1 px-1 pb-1" />
+        <div className="flex h-[180px] items-center justify-around rounded-xl bg-gray-1 shadow-lg"></div>
+      </div>
+      <div className="mb-14 h-[200px] w-full">
+        <div className="mb-2 h-[30px] rounded-xl bg-gray-1 px-1 pb-1" />
+        <div className="flex h-[180px] items-center justify-around rounded-xl bg-gray-1 shadow-lg"></div>
+      </div>
+      <div className="mb-14 h-[200px] w-full">
+        <div className="mb-2 h-[30px] rounded-xl bg-gray-1 px-1 pb-1" />
+        <div className="flex h-[180px] items-center justify-around rounded-xl bg-gray-1 shadow-lg"></div>
+      </div>
+      <div className="mb-14 h-[200px] w-full">
+        <div className="mb-2 h-[30px] rounded-xl bg-gray-1 px-1 pb-1" />
+        <div className="flex h-[180px] items-center justify-around rounded-xl bg-gray-1 shadow-lg"></div>
+      </div>
+    </>
+  );
+};
