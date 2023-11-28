@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 
 import { FallbackProps } from '@/components/common/ErrorBoundary';
 import { MatchCard } from '@/components/common/MatchCard';
+import RummiKubMatchItem from '@/components/rummikub/MatchItem';
 import {
   COMMON_ERROR_MESSAGE,
   MATCH_LIST_API_ERROR_MESSAGE,
@@ -37,34 +38,48 @@ export default function MatchList({
   return (
     <>
       <ul>
-        {matchList.map(({ id, ...match }) => (
-          <li key={id} className="mb-14">
-            <Link href={`match/${id}`}>
-              <MatchCard {...match} className="flex flex-col">
-                <MatchCard.Label className="mb-2 border-b-2 border-b-gray-5 px-1 pb-1" />
-                <div className="flex h-full min-h-[180px] items-center justify-around rounded-xl bg-gray-1 shadow-lg">
-                  <MatchCard.Background
-                    viewBox="-13 117 120 50"
-                    width={150}
-                    height={170}
-                    className="h-[180px] fill-primary"
-                  />
+        {matchList.map(({ id, sportsName, ...match }) => (
+          <>
+            {sportsName === '루미큐브' ? (
+              <li key={id} className="mb-14">
+                <Link href={`rummikube/${id}`}>
+                  <RummiKubMatchItem {...match} sportsName={sportsName} />
+                </Link>
+              </li>
+            ) : (
+              <li key={id} className="mb-14">
+                <Link href={`match/${id}`}>
+                  <MatchCard
+                    {...match}
+                    sportsName={sportsName}
+                    className="flex flex-col"
+                  >
+                    <MatchCard.Label className="mb-2 border-b-2 border-b-gray-5 px-1 pb-1" />
+                    <div className="flex h-full min-h-[180px] items-center justify-around rounded-xl bg-gray-1 shadow-lg">
+                      <MatchCard.Background
+                        viewBox="-13 117 120 50"
+                        width={150}
+                        height={170}
+                        className="h-[180px] fill-primary"
+                      />
 
-                  <MatchCard.Team
-                    teamIndex={1}
-                    className="flex flex-col items-center"
-                  />
-                  <MatchCard.Score teamIndex={1} />
-                  <MatchCard.Status />
-                  <MatchCard.Score teamIndex={2} />
-                  <MatchCard.Team
-                    teamIndex={2}
-                    className="flex flex-col items-center"
-                  />
-                </div>
-              </MatchCard>
-            </Link>
-          </li>
+                      <MatchCard.Team
+                        teamIndex={1}
+                        className="flex flex-col items-center"
+                      />
+                      <MatchCard.Score teamIndex={1} />
+                      <MatchCard.Status />
+                      <MatchCard.Score teamIndex={2} />
+                      <MatchCard.Team
+                        teamIndex={2}
+                        className="flex flex-col items-center"
+                      />
+                    </div>
+                  </MatchCard>
+                </Link>
+              </li>
+            )}
+          </>
         ))}
       </ul>
       <div ref={ref}></div>
