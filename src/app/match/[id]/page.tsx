@@ -66,7 +66,7 @@ export default function Match({ params }: { params: { id: string } }) {
       </AsyncBoundary>
       <AsyncBoundary
         errorFallback={props => <Cheer.ErrorFallback {...props} />}
-        loadingFallback={<div>응원 로딩중...</div>}
+        loadingFallback={<Loader />}
       >
         <MatchCheerByIdFetcher matchId={params.id}>
           {data => <Cheer cheers={data} />}
@@ -113,7 +113,7 @@ export default function Match({ params }: { params: { id: string } }) {
                 loadingFallback={<Loader />}
               >
                 <MatchCommentFetcher matchId={params.id}>
-                  {({ commentList, ...data }) => (
+                  {({ commentList, matchTeams, ...data }) => (
                     <div className="max-h-[450px] overflow-y-auto p-5">
                       <ul className="pb-8">
                         <CommentList
@@ -125,6 +125,7 @@ export default function Match({ params }: { params: { id: string } }) {
                         <li ref={scrollRef}></li>
                       </ul>
                       <CommentForm
+                        matchTeams={matchTeams}
                         matchId={params.id}
                         mutate={mutate}
                         scrollToBottom={scrollToBottom}

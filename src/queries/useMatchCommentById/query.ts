@@ -1,6 +1,10 @@
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import {
+  useSuspenseInfiniteQuery,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 
-import { getMatchCommentById } from '@/api/match';
+import { getMatchById, getMatchCommentById } from '@/api/match';
+
 export default function useMatchCommentById(matchId: string) {
   const { data, error, fetchNextPage, hasNextPage, isFetching } =
     useSuspenseInfiniteQuery({
@@ -14,11 +18,19 @@ export default function useMatchCommentById(matchId: string) {
       }),
     });
 
+  const { data: matchTeams, error: matchError } = useSuspenseQuery({
+    queryKey: ['match-detail', 'for-comment', matchId],
+    queryFn: () => getMatchById(matchId),
+    select: data => data.gameTeams,
+  });
+
   return {
     commentList: data,
+    matchTeams,
     fetchNextPage,
     hasNextPage,
     isFetching,
     error,
+    matchError,
   };
 }

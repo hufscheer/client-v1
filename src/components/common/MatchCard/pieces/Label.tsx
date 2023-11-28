@@ -12,7 +12,7 @@ export default function Label({ className }: LabelProps) {
     parseTimeString(startTime);
 
   return (
-    <div className={$('flex items-center justify-between', className)}>
+    <div className={$('flex items-center justify-between text-sm', className)}>
       <time>
         {month}. {date}. {weekday}요일 {period} {hours}:{minutes}
       </time>

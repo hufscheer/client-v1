@@ -1,7 +1,7 @@
 import { InfiniteData } from '@tanstack/react-query';
 import { ReactNode } from 'react';
 
-import { MatchCommentType } from '@/types/match';
+import { MatchCommentType, MatchTeamType } from '@/types/match';
 
 import useMatchCommentById from './query';
 
@@ -9,11 +9,13 @@ type MatchCommentFetcherProps = {
   matchId: string;
   children: ({
     commentList,
+    matchTeams,
     fetchNextPage,
     hasNextPage,
     isFetching,
   }: {
     commentList: InfiniteData<MatchCommentType[]>;
+    matchTeams: MatchTeamType[];
     fetchNextPage: () => void;
     hasNextPage: boolean;
     isFetching: boolean;
@@ -24,10 +26,22 @@ export default function MatchCommentFetcher({
   matchId,
   children,
 }: MatchCommentFetcherProps) {
-  const { commentList, error, fetchNextPage, hasNextPage, isFetching } =
-    useMatchCommentById(matchId);
+  const {
+    commentList,
+    matchTeams,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+  } = useMatchCommentById(matchId);
 
   if (error) throw error;
 
-  return children({ commentList, fetchNextPage, hasNextPage, isFetching });
+  return children({
+    commentList,
+    matchTeams,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+  });
 }
