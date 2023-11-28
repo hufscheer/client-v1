@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import LocalStorage from '@/utils/LocalStorage';
+
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   headers: {
@@ -16,7 +18,7 @@ export const adminInstance = axios.create({
 });
 
 adminInstance.interceptors.request.use(config => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  config.headers.Authorization = `Bearer ${LocalStorage.getItem('token')}`;
 
   return config;
 });
