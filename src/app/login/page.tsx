@@ -1,19 +1,32 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { ChangeEvent, useState } from 'react';
 
-import { postLogin } from '@/api/auth';
+import Button from '@/components/common/Button';
+import Input from '@/components/common/Input/Input';
+import useValidate from '@/hooks/useValidate';
+import usePostLoginMutation from '@/queries/useLogin/query';
+import { AuthPayload } from '@/types/auth';
 
 export default function Login() {
-  const router = useRouter();
+  const [loginData, setLoginData] = useState<AuthPayload>({} as AuthPayload);
 
-  const login = async (email: string, password: string) => {
-    const data = await postLogin({
-      email: email,
-      password: password,
-    });
+  const { mutate } = usePostLoginMutation();
 
-    return data.access;
+  const { isError: isEmailEmpty } = useValidate(
+    loginData.email,
+    emailValue => !emailValue,
+  );
+  const { isError: isPasswordEmpty } = useValidate(
+    loginData.password,
+    pwValue => !pwValue,
+  );
+  const isAnyInvaild = isEmailEmpty || isPasswordEmpty;
+
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setLoginData(prev => ({ ...prev, [name]: value }));
   };
 
   const loginSubmitHandler = async (
@@ -21,32 +34,50 @@ export default function Login() {
   ) => {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const loginRes = await login(
-      formData.get('email') as string,
-      formData.get('password') as string,
-    );
-    if (!loginRes) return;
-
-    localStorage.setItem('token', loginRes);
-    router.push('/');
+    mutate(loginData);
   };
   return (
-    <div className="flex items-center justify-center ">
+    <div className="space-y-8 py-8">
+      <div className="text-2xl font-medium">관리자 로그인</div>
       <form onSubmit={loginSubmitHandler} className="flex flex-col gap-4">
-        <label className="flex flex-col">
-          Email:
-          <input type="text" name="email" placeholder="ID를 입력하세요." />
-        </label>
-        <label className="flex flex-col">
-          PW:
-          <input
-            type="password"
-            name="password"
-            placeholder="비밀번호를 입력하세요."
+        <label>
+          <div className="flex items-center justify-between">
+            <span>아이디</span>
+            {isEmailEmpty && (
+              <span className="text-sm text-red-400">필수 항목입니다.</span>
+            )}
+          </div>
+          <Input
+            name="email"
+            type="text"
+            value={loginData.email}
+            onChange={handleInput}
+            required
           />
         </label>
-        <button type="submit">로그인</button>
+        <label>
+          <div className="flex items-center justify-between">
+            <span>비밀번호</span>
+            {isPasswordEmpty && (
+              <span className="text-sm text-red-400">필수 항목입니다.</span>
+            )}
+          </div>
+          <Input
+            type="password"
+            name="password"
+            value={loginData.password}
+            onChange={handleInput}
+            required
+          />
+        </label>
+
+        <Button
+          className="mt-8 w-full rounded-lg bg-primary p-4 text-xl text-white hover:bg-[#303ECE] disabled:bg-gray-2 disabled:text-gray-4"
+          type="submit"
+          disabled={isAnyInvaild}
+        >
+          로그인하기
+        </Button>
       </form>
     </div>
   );
