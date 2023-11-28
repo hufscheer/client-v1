@@ -5,7 +5,7 @@ import { MatchCommentType } from '@/types/match';
 
 import useMatchCommentById from './query';
 
-type MatchCommentFetcher = {
+type MatchCommentFetcherProps = {
   matchId: string;
   children: ({
     commentList,
@@ -23,7 +23,7 @@ type MatchCommentFetcher = {
 export default function MatchCommentFetcher({
   matchId,
   children,
-}: MatchCommentFetcher) {
+}: MatchCommentFetcherProps) {
   const { commentList, error, fetchNextPage, hasNextPage, isFetching } =
     useMatchCommentById(matchId);
 
