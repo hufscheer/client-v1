@@ -11,16 +11,21 @@ import {
   usePostLeagueMutation,
   usePutLeagueMutation,
 } from '@/queries/admin/useLeagueRegister/query';
-import { LeagueDataType, LeagueRegisterDataType } from '@/types/admin/league';
+import {
+  LeagueDataType,
+  LeagueRegisterDataType,
+  SportsDataType,
+} from '@/types/admin/league';
+import { SportsType } from '@/types/league';
 import { updateSet } from '@/utils/set';
 import { parseTimeString } from '@/utils/time';
 
-export default function RegisterLeague({
+export default function EditLeague({
   data,
   leagueId,
   onNext,
 }: {
-  data: LeagueRegisterDataType;
+  data: LeagueRegisterDataType & { leagueSportsData: SportsType[] };
   leagueId?: number;
   onNext?: () => void;
 }) {
@@ -29,7 +34,7 @@ export default function RegisterLeague({
   );
   const [newSportsData, setNewSportsData] = useState<Set<number>>(new Set());
 
-  const { leagueData, sportsListData } = data;
+  const { leagueData, leagueSportsData, sportsListData } = data;
   const currentLeague = leagueData.find(e => e.leagueId === Number(leagueId));
 
   const router = useRouter();
@@ -46,6 +51,14 @@ export default function RegisterLeague({
         startAt: parseDate(currentLeague.startAt),
         endAt: parseDate(currentLeague.endAt),
       });
+    }
+    if (leagueSportsData) {
+      const reducedSportsData = leagueSportsData.reduce(
+        (acc, cur) => [...acc, cur.sportId],
+        [] as SportsDataType,
+      );
+
+      setNewSportsData(new Set(reducedSportsData));
     }
   }, []);
 
