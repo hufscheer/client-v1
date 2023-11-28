@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 
+type DataType = string | number | Date | File;
+
 export default function useValidate(
-  data: string | number | Date,
-  cb: (value: string | number | Date) => boolean,
+  data: DataType,
+  cb: (value: DataType) => boolean,
 ) {
   const [isError, setIsError] = useState(false);
 
