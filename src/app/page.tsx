@@ -38,7 +38,7 @@ export default function Home() {
         <button
           onClick={() => setInParams(QUERY_PARAMS.status, 'finished')}
           className={$(
-            'text-gary-5 rounded-xl px-5 py-3',
+            'rounded-xl px-5 py-3 text-gray-5',
             params.get(QUERY_PARAMS.status) === 'finished' &&
               'bg-primary text-white',
           )}
@@ -48,7 +48,7 @@ export default function Home() {
         <button
           onClick={() => setInParams(QUERY_PARAMS.status, 'playing')}
           className={$(
-            'text-gary-5 rounded-xl px-5 py-3',
+            'rounded-xl px-5 py-3 text-gray-5',
             (params.get(QUERY_PARAMS.status) === 'playing' || null) &&
               'bg-primary text-white',
           )}
@@ -58,7 +58,7 @@ export default function Home() {
         <button
           onClick={() => setInParams(QUERY_PARAMS.status, 'scheduled')}
           className={$(
-            'text-gary-5 rounded-xl px-5 py-3',
+            'rounded-xl px-5 py-3 text-gray-5',
             params.get(QUERY_PARAMS.status) === 'scheduled' &&
               'bg-primary text-white',
           )}
