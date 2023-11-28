@@ -1,3 +1,4 @@
+import { QUERY_PARAMS } from '@/constants/queryParams';
 import { SportsType } from '@/types/league';
 import { $ } from '@/utils/core';
 
@@ -23,7 +24,7 @@ export default function SportsList({
           )}
         >
           <button
-            onClick={() => onClick('sportsId', String(sports.sportId))}
+            onClick={() => onClick(QUERY_PARAMS.sports, String(sports.sportId))}
             className="px-3 py-2"
           >
             {sports.name}

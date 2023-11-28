@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 
 import SportsList from '@/components/league/SportsList';
 import MatchList from '@/components/match/MatchList';
+import { QUERY_PARAMS } from '@/constants/queryParams';
 import useQueryParams from '@/hooks/useQueryParams';
 import MatchListFetcher from '@/queries/useMatchList/Fetcher';
 import SportsListFetcher from '@/queries/useSportsListByLeagueId/Fetcher';
@@ -22,10 +23,10 @@ export default function Home() {
   return (
     <section className="flex flex-col items-center">
       <Suspense>
-        <SportsListFetcher leagueId={params.get('leagueId') || '1'}>
+        <SportsListFetcher leagueId={params.get(QUERY_PARAMS.league) || '1'}>
           {data => (
             <SportsList
-              selectedId={paramsObj['sportsId'] as string[]}
+              selectedId={paramsObj[QUERY_PARAMS.sports] as string[]}
               sportsList={data}
               onClick={appendToParams}
             />
@@ -35,28 +36,31 @@ export default function Home() {
 
       <div className="mb-8 flex w-fit items-center gap-5 rounded-xl bg-gray-2 text-center">
         <button
-          onClick={() => setInParams('status', 'finished')}
+          onClick={() => setInParams(QUERY_PARAMS.status, 'finished')}
           className={$(
             'text-gary-5 rounded-xl px-5 py-3',
-            params.get('status') === 'finished' && 'bg-primary text-white',
+            params.get(QUERY_PARAMS.status) === 'finished' &&
+              'bg-primary text-white',
           )}
         >
           종료
         </button>
         <button
-          onClick={() => setInParams('status', 'playing')}
+          onClick={() => setInParams(QUERY_PARAMS.status, 'playing')}
           className={$(
             'text-gary-5 rounded-xl px-5 py-3',
-            params.get('status') === 'playing' && 'bg-primary text-white',
+            (params.get(QUERY_PARAMS.status) === 'playing' || null) &&
+              'bg-primary text-white',
           )}
         >
           진행 중
         </button>
         <button
-          onClick={() => setInParams('status', 'scheduled')}
+          onClick={() => setInParams(QUERY_PARAMS.status, 'scheduled')}
           className={$(
             'text-gary-5 rounded-xl px-5 py-3',
-            params.get('status') === 'scheduled' && 'bg-primary text-white',
+            params.get(QUERY_PARAMS.status) === 'scheduled' &&
+              'bg-primary text-white',
           )}
         >
           예정
