@@ -23,8 +23,5 @@ export default function usePostLoginMutation() {
 
       router.push('/admin/league');
     },
-    // onError: () => {
-    //   setIsLoginFailed(true);
-    // },
   });
 }
