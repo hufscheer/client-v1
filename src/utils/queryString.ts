@@ -1,3 +1,11 @@
+const toSnakeCase = (text: string) => {
+  return text
+    .replace(/_/g, '_')
+    .replace(/([A-Z])/g, '_$1')
+    .replace(/^-/, '')
+    .toLowerCase();
+};
+
 export const convertObjectToQueryString = (params: {
   [key: string]: string | string[];
 }) => {
@@ -5,9 +13,11 @@ export const convertObjectToQueryString = (params: {
 
   Object.entries(params).forEach(([key, value]) => {
     if (Array.isArray(value)) {
-      value.forEach(valueItem => queryString.append(key, valueItem));
+      value.forEach(valueItem => {
+        queryString.append(toSnakeCase(key), valueItem || '');
+      });
     } else {
-      queryString.append(key, String(value));
+      queryString.append(toSnakeCase(key), value ?? '');
     }
   });
 
