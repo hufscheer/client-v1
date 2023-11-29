@@ -20,14 +20,11 @@ export type MatchListParams = {
   cursor?: number;
 };
 
-export const getMatchList = async (
-  { cursor, ...params }: MatchListParams,
-  size = 3,
-) => {
+export const getMatchList = async ({ cursor, ...params }: MatchListParams) => {
   const queryString = convertObjectToQueryString(params);
 
   const { data } = await instance.get<MatchListType[]>(
-    `games?${queryString}&cursor=${cursor || ''}&size=${size}`,
+    `games?${queryString}&cursor=${cursor || ''}`,
   );
 
   return data;
