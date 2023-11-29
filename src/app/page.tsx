@@ -22,10 +22,10 @@ export default function Home() {
   return (
     <section className="flex flex-col items-center">
       <AsyncBoundary
-        errorFallback={() => <div>에러</div>}
+        errorFallback={() => <SportsList.Skeleton />}
         loadingFallback={<SportsList.Skeleton />}
       >
-        <SportsListFetcher leagueId={params.get(QUERY_PARAMS.league) || '1'}>
+        <SportsListFetcher leagueId={params.get('leagueId') || '39'}>
           {data => (
             <SportsList
               selectedId={paramsObj[QUERY_PARAMS.sports] as string[]}
