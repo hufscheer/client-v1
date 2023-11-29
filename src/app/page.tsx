@@ -51,7 +51,8 @@ export default function Home() {
           onClick={() => setInParams(QUERY_PARAMS.status, 'playing')}
           className={$(
             'rounded-xl px-5 py-3 text-gray-5',
-            (params.get(QUERY_PARAMS.status) === 'playing' || null) &&
+            (params.get(QUERY_PARAMS.status) === 'playing' ||
+              params.get(QUERY_PARAMS.status) === null) &&
               'bg-primary text-white',
           )}
         >

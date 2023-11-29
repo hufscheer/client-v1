@@ -23,7 +23,7 @@ export default function CheerTeam({
 }: CheerTeamType) {
   const [count, setCount] = useState(0);
   const { mutate } = useCheerMutation({ matchId, gameTeamId });
-  const debouncedCount = useQueryDebounce<number>(count, 1000 * 5);
+  const debouncedCount = useQueryDebounce<number>(count, 1000);
   const queryClient = useQueryClient();
 
   useEffect(() => {

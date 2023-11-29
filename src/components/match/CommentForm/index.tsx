@@ -80,7 +80,7 @@ export default function CommentForm({
             onChange={e => setInputValue(e.target.value)}
             placeholder="응원하는 팀에 댓글을 남겨보세요!"
           />
-          <button className="rounded-xl bg-primary px-5 py-3 text-white">
+          <button className="whitespace-nowrap rounded-xl bg-primary px-5 py-3 text-white">
             댓글
           </button>
         </div>

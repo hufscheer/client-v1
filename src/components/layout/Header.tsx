@@ -20,7 +20,7 @@ export default function Header() {
   return (
     <header
       className={$(
-        'relative flex items-center justify-between p-4',
+        'relative mb-8 flex items-center justify-between p-4',
         isAuthenticated && 'bg-primary text-white',
       )}
     >
