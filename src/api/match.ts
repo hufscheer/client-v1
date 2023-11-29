@@ -44,6 +44,17 @@ export const getMatchCheerById = async (matchId: string) => {
   return data;
 };
 
+export const postCheer = async ({
+  matchId,
+  ...payload
+}: {
+  matchId: string;
+  gameTeamId: number;
+  cheerCount: number;
+}) => {
+  return await instance.post(`/games/${matchId}/cheer`, payload);
+};
+
 export const getGameComments = async (gameId: string, cursor = 1) => {
   const response = await instance.get<MatchCommentType[]>(
     `/games/${gameId}/comments?cursor=${cursor}`,

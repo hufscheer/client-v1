@@ -70,7 +70,11 @@ export default function Match({ params }: { params: { id: string } }) {
       >
         <MatchCheerByIdFetcher matchId={params.id}>
           {({ cheers, matchTeams }) => (
-            <Cheer cheers={cheers} matchTeams={matchTeams} />
+            <Cheer
+              matchId={params.id}
+              cheers={cheers}
+              matchTeams={matchTeams}
+            />
           )}
         </MatchCheerByIdFetcher>
       </AsyncBoundary>
