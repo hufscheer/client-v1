@@ -1,21 +1,29 @@
 import { ReactNode } from 'react';
 
-import { MatchCheerType } from '@/types/match';
+import { MatchCheerType, MatchTeamType } from '@/types/match';
 
 import { useMatchCheerById } from './query';
 
 type MatchCheerByIdFetcherProps = {
   matchId: string;
-  children: (data: MatchCheerType[]) => ReactNode;
+  children: ({
+    cheers,
+    matchTeams,
+  }: {
+    cheers: MatchCheerType[];
+    matchTeams: MatchTeamType[];
+  }) => ReactNode;
 };
 
 export default function MatchCheerByIdFetcher({
   matchId,
   children,
 }: MatchCheerByIdFetcherProps) {
-  const { cheers, error } = useMatchCheerById(matchId);
+  const { cheers, matchTeams, cheersError, matchTeamsError } =
+    useMatchCheerById(matchId);
 
-  if (error) throw error;
+  if (cheersError) throw cheersError;
+  if (matchTeamsError) throw matchTeamsError;
 
-  return children(cheers);
+  return children({ cheers, matchTeams });
 }
