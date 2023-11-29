@@ -12,37 +12,21 @@ export default function RummiKubMatchItem(match: MatchType) {
           height={170}
           className="z-[0] h-[180px] fill-primary"
         />
-        <MatchCard.Status className="mt-5 text-black" />
+        <MatchCard.Status className="my-2 text-black" />
 
         <div className="z-10 flex items-center justify-center gap-4">
-          <div className="flex flex-col items-center justify-center">
-            <MatchCard.Team
-              teamIndex={1}
-              className="flex flex-col items-center justify-center [&>img]:my-0"
-            />
-            <MatchCard.Score teamIndex={1} />
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <MatchCard.Team
-              teamIndex={2}
-              className="flex flex-col items-center justify-center [&>img]:my-0"
-            />
-            <MatchCard.Score teamIndex={2} />
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <MatchCard.Team
-              teamIndex={3}
-              className="flex flex-col items-center justify-center [&>img]:my-0"
-            />
-            <MatchCard.Score teamIndex={3} />
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <MatchCard.Team
-              teamIndex={4}
-              className="flex flex-col items-center justify-center [&>img]:my-0"
-            />
-            <MatchCard.Score teamIndex={4} />
-          </div>
+          {match.gameTeams.map(team => (
+            <div
+              key={team.gameTeamId}
+              className="flex flex-col items-center justify-center"
+            >
+              <MatchCard.Team
+                teamIndex={team.order}
+                className="flex flex-col items-center justify-center [&>img]:my-0"
+              />
+              <MatchCard.Score teamIndex={team.order} />
+            </div>
+          ))}
         </div>
         <div className="flex items-center justify-center"></div>
       </div>
