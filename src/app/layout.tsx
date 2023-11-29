@@ -15,10 +15,10 @@ const inter = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: 'HUFStreaming',
-  description: '한국외대 스포츠 경기 중계 플랫폼',
+  title: '훕치치!',
+  description: '한국외대 스포츠 경기 플랫폼',
   icons: {
-    icon: '/icon_hufstreaming.svg',
+    icon: '/icon_hufscheer.svg',
   },
 };
 
