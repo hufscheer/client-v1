@@ -20,14 +20,11 @@ export type MatchListParams = {
   cursor?: number;
 };
 
-export const getMatchList = async (
-  { cursor, ...params }: MatchListParams,
-  size = 3,
-) => {
+export const getMatchList = async ({ cursor, ...params }: MatchListParams) => {
   const queryString = convertObjectToQueryString(params);
 
   const { data } = await instance.get<MatchListType[]>(
-    `games?${queryString}&cursor=${cursor || ''}&size=${size}`,
+    `games?${queryString}&cursor=${cursor || ''}`,
   );
 
   return data;
@@ -45,6 +42,17 @@ export const getMatchCheerById = async (matchId: string) => {
   );
 
   return data;
+};
+
+export const postCheer = async ({
+  matchId,
+  ...payload
+}: {
+  matchId: string;
+  gameTeamId: number;
+  cheerCount: number;
+}) => {
+  return await instance.post(`/games/${matchId}/cheer`, payload);
 };
 
 export const getGameComments = async (gameId: string, cursor = 1) => {

@@ -4,6 +4,7 @@ const nextConfig = {
     domains: [
       'hufstreaming.s3.ap-northeast-2.amazonaws.com',
       'hufscheer-server.s3.ap-northeast-2.amazonaws.com',
+      'github.com',
     ],
   },
 };

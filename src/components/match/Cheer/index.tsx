@@ -1,27 +1,38 @@
 import { FallbackProps } from '@/components/common/ErrorBoundary';
-import { MatchCheerType } from '@/types/match';
+import { MatchCheerType, MatchTeamType } from '@/types/match';
 
 import CheerTeam from '../CheerTeam';
 
 type CheerProps = {
+  matchId: string;
   cheers: MatchCheerType[];
+  matchTeams: MatchTeamType[];
 };
 
-export default function Cheer({ cheers }: CheerProps) {
-  const [firstTeam, secondTeam] = cheers;
+export default function Cheer({ matchId, cheers, matchTeams }: CheerProps) {
+  const [firstTeamCheer, secondTeamCheer] = cheers;
+  const [firstTeam, secondTeam] = matchTeams;
 
   return (
     <div className="min-h-10 relative my-5 flex h-full w-full justify-center gap-5 p-2">
-      <CheerTeam className="bg-cheer-left">
-        🤜
-        <span className="ml-3">{firstTeam.cheerCount}</span>
+      <CheerTeam
+        className="flex-row-reverse bg-cheer-left"
+        matchId={matchId}
+        gameTeamId={firstTeam.gameTeamId}
+        cheerCount={firstTeamCheer.cheerCount}
+      >
+        <span>{firstTeam.gameTeamName} 🤜</span>
       </CheerTeam>
       <div className="absolute top-1/2 -translate-y-1/2 rounded-xl bg-white px-5 py-1 text-center font-bold text-gray-4">
         VS
       </div>
-      <CheerTeam className="bg-cheer-right">
-        <span className="mr-3">{secondTeam.cheerCount}</span>
-        🤛
+      <CheerTeam
+        matchId={matchId}
+        className="bg-cheer-right"
+        gameTeamId={secondTeam.gameTeamId}
+        cheerCount={secondTeamCheer.cheerCount}
+      >
+        <span>🤛 {secondTeam.gameTeamName}</span>
       </CheerTeam>
     </div>
   );

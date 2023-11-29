@@ -14,7 +14,7 @@ export default function RummiKubMatchBanner(match: MatchType) {
           className="z-[0] h-[180px] fill-primary"
         />
         <MatchCard.Status className="mt-5 text-black" />
-        <div className="z-10 flex items-center justify-center gap-4">
+        <div className="z-10 flex items-center justify-center gap-7">
           <div className="flex flex-col items-center justify-center">
             <MatchCard.Team
               teamIndex={1}

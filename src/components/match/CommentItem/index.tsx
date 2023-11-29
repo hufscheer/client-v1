@@ -12,8 +12,8 @@ type CommentItemProps = {
 
 const teamColor = [
   'bg-[#ffb2b2]',
-  'bg-[#fdd3b1]',
   'bg-[#b2c3ff]',
+  'bg-[#fdd3b1]',
   'bg-[#a6e7be]',
 ] as const;
 

@@ -72,7 +72,13 @@ export default function Rummikute({ params }: { params: { id: string } }) {
         loadingFallback={<Loader />}
       >
         <MatchCheerByIdFetcher matchId={params.id}>
-          {data => <Cheer cheers={data} />}
+          {({ cheers, matchTeams }) => (
+            <Cheer
+              matchId={params.id}
+              cheers={cheers}
+              matchTeams={matchTeams}
+            />
+          )}
         </MatchCheerByIdFetcher>
       </AsyncBoundary>
       <Panel options={options} defaultValue="라인업">

@@ -1,7 +1,8 @@
 import { UseMutateFunction } from '@tanstack/react-query';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
 
 import { MatchCommentPayload, MatchTeamType } from '@/types/match';
+import { $ } from '@/utils/core';
 
 type CommentFormProps = {
   matchId: string;
@@ -9,6 +10,13 @@ type CommentFormProps = {
   mutate: UseMutateFunction<void, Error, MatchCommentPayload, unknown>;
   scrollToBottom: () => void;
 };
+
+const teamColor = [
+  'bg-cheer-left',
+  'bg-[#fb923c] ',
+  'bg-cheer-right',
+  'bg-[#22c55e]',
+] as const;
 
 export default function CommentForm({
   matchId,
@@ -44,7 +52,7 @@ export default function CommentForm({
           })
         }
       >
-        <fieldset className="absolute top-0 flex w-full -translate-y-full items-center justify-start gap-4 rounded-lg bg-white px-5 py-3">
+        <fieldset className="absolute top-0 flex w-full -translate-y-full items-center justify-between gap-4 rounded-lg bg-white px-5 py-3">
           {matchTeams.map(team => (
             <label key={team.gameTeamId} className="flex items-center">
               <input
@@ -54,7 +62,10 @@ export default function CommentForm({
                 onChange={handleRadioClick}
                 className="dark:border-gray-6 dark:bg-gray-6 mr-1 h-4 w-4 border-gray-3 bg-gray-1 text-primary focus:ring-2 focus:ring-primary dark:ring-offset-black dark:focus:ring-primary"
               />
-              {team.gameTeamName}
+              🙋
+              <div
+                className={$('h-2 w-2 rounded-full', teamColor[team.order - 1])}
+              ></div>
             </label>
           ))}
         </fieldset>
