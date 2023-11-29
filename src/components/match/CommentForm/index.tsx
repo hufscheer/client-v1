@@ -13,8 +13,8 @@ type CommentFormProps = {
 
 const teamColor = [
   'bg-cheer-left',
-  'bg-[#fb923c] ',
   'bg-cheer-right',
+  'bg-[#fb923c] ',
   'bg-[#22c55e]',
 ] as const;
 
@@ -25,7 +25,9 @@ export default function CommentForm({
   scrollToBottom,
 }: CommentFormProps) {
   const [inputValue, setInputValue] = useState('');
-  const [selectedTeamId, setSelectedTeamId] = useState<number>(1);
+  const [selectedTeamId, setSelectedTeamId] = useState<number>(
+    matchTeams[0].gameTeamId,
+  );
 
   const handleCommentSubmit = (
     e: FormEvent<HTMLFormElement>,
