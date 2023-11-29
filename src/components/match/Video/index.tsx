@@ -34,8 +34,9 @@ Video.ErrorFallback = function ErrorFallback({
     message =
       VIDEO_API_ERROR_MESSAGE[code as keyof typeof VIDEO_API_ERROR_MESSAGE];
   } else if (error instanceof Error) {
-    message = '경기 영상이 등록되지 않았거나 불러올 수가 없어요!';
+    message = '경기 영상이 등록되지 않았어요!';
   }
+
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-5 rounded-xl py-10">
       <span className="text-gary-5">⚠️ {message}</span>
