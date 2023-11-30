@@ -8,7 +8,7 @@ import { Icon } from '@/components/common/Icon';
 import Input from '@/components/common/Input/Input';
 import { useLeagueIdContext } from '@/hooks/useLeagueIdContext';
 import useValidate from '@/hooks/useValidate';
-import { usePostTeamMutation } from '@/queries/admin/useTeamRegister/query';
+import usePostTeamMutation from '@/queries/admin/team/usePostTeamMutation';
 import { TeamType } from '@/types/admin/team';
 
 export default function RegisterTeam({

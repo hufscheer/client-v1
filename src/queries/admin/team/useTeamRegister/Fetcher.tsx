@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { useLeagueIdContext } from '@/hooks/useLeagueIdContext';
 import { TeamType } from '@/types/admin/team';
 
-import { useTeamListByLeagueId } from './query';
+import useTeamListByLeagueId from './query';
 
 type TeamRegisterFetcherProps = {
   children: (data: TeamType[] | string | undefined) => ReactNode;
