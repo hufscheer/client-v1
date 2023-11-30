@@ -14,7 +14,7 @@ const LeagueList = dynamic(
   () => import('@/components/admin/league/LeagueList'),
 );
 
-export default function LeaguePage() {
+export default function Page() {
   return (
     <div className="space-y-8">
       <div className="text-2xl font-medium">전체 리그</div>

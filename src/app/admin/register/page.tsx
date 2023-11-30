@@ -9,7 +9,7 @@ import { useFunnel } from '@/hooks/useFunnel';
 import LeagueRegisterFetcher from '@/queries/admin/league/useLeagueRegister/Fetcher';
 import TeamRegisterFetcher from '@/queries/admin/team/useTeamRegister/Fetcher';
 
-export default function Register() {
+export default function Page() {
   const [Funnel, setStep] = useFunnel(['league', 'team', 'player'], 'league');
 
   return (

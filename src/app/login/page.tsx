@@ -5,7 +5,7 @@ import { ChangeEvent, useState } from 'react';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input/Input';
 import useValidate from '@/hooks/useValidate';
-import usePostLoginMutation from '@/queries/useLogin/query';
+import usePostLoginMutation from '@/queries/admin/auth/usePostLoginMutation';
 import { AuthPayload } from '@/types/auth';
 
 export default function Login() {

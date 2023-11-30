@@ -6,7 +6,7 @@ import EditLeague from '@/components/admin/register/League/edit';
 import LeagueRegisterFetcher from '@/queries/admin/league/useLeagueRegister/Fetcher';
 import useSportsListByLeagueId from '@/queries/useSportsListByLeagueId/query';
 
-export default function Edit({ params }: { params: { leagueId: string } }) {
+export default function Page({ params }: { params: { leagueId: string } }) {
   const { leagueId } = params;
   const { sportsList: leagueSportsData } = useSportsListByLeagueId(leagueId);
   return (
