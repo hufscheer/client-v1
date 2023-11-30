@@ -34,6 +34,9 @@ export default function CommentForm({
     payload: MatchCommentPayload,
   ) => {
     e.preventDefault();
+
+    if (inputValue.trim() === '') return;
+
     mutate({ ...payload, gameTeamId: selectedTeamId });
     setInputValue('');
     scrollToBottom();
