@@ -14,7 +14,8 @@ export default function Label({ className }: LabelProps) {
   return (
     <div className={$('flex items-center justify-between text-sm', className)}>
       <time>
-        {month}. {date}. {weekday}요일 {period} {hours}:{minutes}
+        {month}. {date}. {weekday}요일 {period} {hours}:
+        {minutes.toString().padStart(2, '0')}
       </time>
       <div className="text-right">
         {sportsName} {gameName}

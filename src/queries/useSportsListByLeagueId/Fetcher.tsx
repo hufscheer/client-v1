@@ -9,28 +9,13 @@ type SportsListFetcherProps = {
   children: (data: SportsType[]) => ReactNode;
 };
 
-const DUMMY = [
-  {
-    sportId: 1,
-    name: '축구',
-  },
-  {
-    sportId: 3,
-    name: '농구',
-  },
-  {
-    sportId: 2,
-    name: '롤',
-  },
-];
-
 export default function SportsListFetcher({
   leagueId,
   children,
 }: SportsListFetcherProps) {
-  const { error } = useSportsListByLeagueId(leagueId);
+  const { sportsList, error } = useSportsListByLeagueId(leagueId);
 
   if (error) throw error;
 
-  return children(DUMMY);
+  return children(sportsList);
 }

@@ -52,7 +52,7 @@ export default function Sidebar({
                 <Link
                   href={{
                     pathname: '/',
-                    query: { leagueId: content.leagueId },
+                    query: { league_id: content.leagueId },
                   }}
                   className="flex items-center rounded-lg p-2 hover:bg-gray-2 dark:text-white dark:hover:bg-gray-5"
                 >

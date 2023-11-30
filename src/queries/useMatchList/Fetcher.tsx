@@ -26,7 +26,7 @@ export default function MatchListFetcher({
   ...props
 }: MatchListFetcherProps) {
   const { matchList, error, hasNextPage, fetchNextPage, isFetching } =
-    useMatchList(props satisfies { status: string });
+    useMatchList(props);
 
   if (error) throw error;
 

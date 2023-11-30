@@ -14,9 +14,9 @@ import { convertObjectToQueryString } from '@/utils/queryString';
 import instance from '.';
 
 export type MatchListParams = {
-  sportsId?: string[];
+  sport_id?: string[];
   status: MatchStatus;
-  leagueId?: string;
+  league_id?: string;
   cursor?: number;
 };
 
