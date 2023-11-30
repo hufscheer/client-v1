@@ -7,10 +7,8 @@ import Button from '@/components/common/Button';
 import CheckboxItem from '@/components/common/Checkbox/Item';
 import Input from '@/components/common/Input/Input';
 import useValidate from '@/hooks/useValidate';
-import {
-  usePostLeagueMutation,
-  usePutLeagueMutation,
-} from '@/queries/admin/useLeagueRegister/query';
+import usePostNewLeagueMutation from '@/queries/admin/league/usePostNewLeagueMutation';
+import usePutLeagueMutation from '@/queries/admin/league/usePutLeagueMutation';
 import {
   LeagueDataType,
   LeagueRegisterDataType,
@@ -39,7 +37,7 @@ export default function EditLeague({
 
   const router = useRouter();
 
-  const { mutate: postLeague } = usePostLeagueMutation();
+  const { mutate: postLeague } = usePostNewLeagueMutation();
   const { mutate: putLeague } = usePutLeagueMutation();
 
   useEffect(() => {

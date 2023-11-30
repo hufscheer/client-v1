@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
 import Button from '@/components/common/Button';
 import Card from '@/components/common/Card';
 import LeagueContent from '@/components/common/Card/league/Content';
-import { DELETE_DESCRIPTION } from '@/constants/adminDescription';
+import { DELETE_DESCRIPTION } from '@/constants/admin/description';
 import { useScrollLock } from '@/hooks/useScrollLock';
-import { useDeleteLeagueMutation } from '@/queries/admin/useLeagueList/query';
+import useDeleteLeagueMutation from '@/queries/admin/league/useDeleteLeagueMutation';
 import { LeagueType } from '@/types/admin/league';
 
 export default function LeagueList({ data }: { data: LeagueType[] }) {

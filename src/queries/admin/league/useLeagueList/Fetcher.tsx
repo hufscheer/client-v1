@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { LeagueType } from '@/types/admin/league';
 
-import { useLeagueList } from './query';
+import useLeagueList from './query';
 
 type LeagueListFetcherProps = {
   children: (data: LeagueType[]) => ReactNode;

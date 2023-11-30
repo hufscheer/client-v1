@@ -7,7 +7,7 @@ import { Suspense } from 'react';
 import Button from '@/components/common/Button';
 
 const LeagueListFetcher = dynamic(
-  () => import('@/queries/admin/useLeagueList/Fetcher'),
+  () => import('@/queries/admin/league/useLeagueList/Fetcher'),
   { ssr: false },
 );
 const LeagueList = dynamic(

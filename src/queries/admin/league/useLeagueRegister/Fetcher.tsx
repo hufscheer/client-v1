@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 
-import { useLeagueList } from '@/queries/admin/useLeagueList/query';
+import useLeagueList from '@/queries/admin/league/useLeagueList/query';
 import { LeagueRegisterDataType } from '@/types/admin/league';
 
-import { useSportsList } from './query';
+import useSportsList from './query';
 
 type LeagueRegisterFetcherProps = {
   children: ({
@@ -16,7 +16,7 @@ export default function LeagueRegisterFetcher({
   children,
 }: LeagueRegisterFetcherProps) {
   const { data: leagueData, error: leagueDataError } = useLeagueList();
-  const { sportsListData, sportsListError } = useSportsList();
+  const { data: sportsListData, error: sportsListError } = useSportsList();
 
   if (leagueDataError) throw leagueDataError;
   if (sportsListError) throw sportsListError;

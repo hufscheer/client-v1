@@ -6,8 +6,8 @@ import RegisterWrapper from '@/components/admin/register/context/RegisterWrapper
 import RegisterLeague from '@/components/admin/register/League/';
 import RegisterTeam from '@/components/admin/register/Team';
 import { useFunnel } from '@/hooks/useFunnel';
-import LeagueRegisterFetcher from '@/queries/admin/useLeagueRegister/Fetcher';
-import TeamRegisterFetcher from '@/queries/admin/useTeamRegister/Fetcher';
+import LeagueRegisterFetcher from '@/queries/admin/league/useLeagueRegister/Fetcher';
+import TeamRegisterFetcher from '@/queries/admin/team/useTeamRegister/Fetcher';
 
 export default function Register() {
   const [Funnel, setStep] = useFunnel(['league', 'team', 'player'], 'league');
