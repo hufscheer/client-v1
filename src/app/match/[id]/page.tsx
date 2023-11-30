@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 
 import AsyncBoundary from '@/components/common/AsyncBoundary';
 import Loader from '@/components/common/Loader';
+import FconlineUserLineup from '@/components/fcOnline/UserInfo';
 import MatchBanner from '@/components/match/Banner';
 import Cheer from '@/components/match/Cheer';
 import CommentForm from '@/components/match/CommentForm';
@@ -13,10 +14,10 @@ import Panel from '@/components/match/Panel';
 import RecordList from '@/components/match/RecordList';
 import Video from '@/components/match/Video';
 import useSocket from '@/hooks/useSocket';
+import FconlineLineupFetcher from '@/queries/useFconlineLineupById/Fetcher';
 import MatchByIdFetcher from '@/queries/useMatchById/Fetcher';
 import MatchCheerByIdFetcher from '@/queries/useMatchCheerById/Fetcher';
 import MatchCommentFetcher from '@/queries/useMatchCommentById/Fetcher';
-import MatchLineupFetcher from '@/queries/useMatchLineupById/Fetcher';
 import MatchTimelineFetcher from '@/queries/useMatchTimelineById/Fetcher';
 import MatchVideoFetcher from '@/queries/useMatchVideoById/Fetcher';
 import useSaveCommentMutation from '@/queries/useSaveCommentMutation/query';
@@ -86,14 +87,15 @@ export default function Match({ params }: { params: { id: string } }) {
                 errorFallback={props => <Lineup.ErrorFallback {...props} />}
                 loadingFallback={<Loader />}
               >
-                <MatchLineupFetcher matchId={params.id}>
-                  {([firstTeam, secondTeam]) => (
-                    <div className="grid grid-cols-2 py-5 [&>*:first-child>ul]:before:absolute [&>*:first-child>ul]:before:right-0 [&>*:first-child>ul]:before:h-full [&>*:first-child>ul]:before:border-l-2 [&>*:first-child>ul]:before:bg-gray-2">
-                      <Lineup {...firstTeam} />
-                      <Lineup {...secondTeam} />
-                    </div>
+                <FconlineLineupFetcher matchId={params.id}>
+                  {({ mergedUserInfo }) => (
+                    <FconlineUserLineup userInfos={mergedUserInfo} />
+                    // <div className="grid grid-cols-2 py-5 [&>*:first-child>ul]:before:absolute [&>*:first-child>ul]:before:right-0 [&>*:first-child>ul]:before:h-full [&>*:first-child>ul]:before:border-l-2 [&>*:first-child>ul]:before:bg-gray-2">
+                    //   <Lineup {...firstTeam} />
+                    //   <Lineup {...secondTeam} />
+                    // </div>
                   )}
-                </MatchLineupFetcher>
+                </FconlineLineupFetcher>
               </AsyncBoundary>
             )}
             {selected === '타임라인' && (
