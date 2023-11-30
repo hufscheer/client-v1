@@ -12,6 +12,8 @@ export const convertObjectToQueryString = (params: {
   const queryString = new URLSearchParams();
 
   Object.entries(params).forEach(([key, value]) => {
+    if (!value) return;
+
     if (Array.isArray(value)) {
       value.forEach(valueItem => {
         queryString.append(toSnakeCase(key), valueItem || '');
