@@ -81,7 +81,7 @@ export default function RegisterTeam({
   };
 
   return (
-    <div className="space-y-8">
+    <>
       <div className="text-2xl font-medium">새 팀 등록</div>
       <form className="flex flex-col space-y-4" onSubmit={onSubmit}>
         <label>
@@ -207,6 +207,6 @@ export default function RegisterTeam({
       >
         {onNext ? '다음으로' : '등록 마치기'}
       </Button>
-    </div>
+    </>
   );
 }

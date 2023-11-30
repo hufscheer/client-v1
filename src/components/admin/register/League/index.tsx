@@ -111,7 +111,7 @@ export default function RegisterLeague({
   };
 
   return (
-    <div className="space-y-8">
+    <>
       <div className="text-2xl font-medium">
         {currentLeague ? '리그 수정' : '새 리그 등록'}
       </div>
@@ -193,6 +193,6 @@ export default function RegisterLeague({
           {currentLeague ? '수정하기' : '다음으로'}
         </Button>
       </form>
-    </div>
+    </>
   );
 }

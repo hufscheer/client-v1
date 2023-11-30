@@ -14,6 +14,7 @@ export default function CheckboxItem({
   children,
   checked,
   onChange,
+  disabled,
 }: ComponentProps<'input'>) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -45,6 +46,7 @@ export default function CheckboxItem({
         checked={checked}
         ref={inputRef}
         onChange={onChange}
+        disabled={disabled}
         className="hidden"
       />
     </>
