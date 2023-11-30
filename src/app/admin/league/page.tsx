@@ -16,7 +16,7 @@ const LeagueList = dynamic(
 
 export default function LeaguePage() {
   return (
-    <div className="space-y-8 py-8">
+    <div className="space-y-8">
       <div className="text-2xl font-medium">전체 리그</div>
       <Suspense fallback={<div>리그 로딩중...</div>}>
         <LeagueListFetcher>

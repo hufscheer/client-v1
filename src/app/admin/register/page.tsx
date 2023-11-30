@@ -13,7 +13,7 @@ export default function Register() {
   const [Funnel, setStep] = useFunnel(['league', 'team', 'player'], 'league');
 
   return (
-    <RegisterWrapper className="space-y-8 py-8">
+    <RegisterWrapper className="space-y-8">
       <Funnel>
         <Funnel.Step name="league">
           <Suspense fallback={<div>리그 정보 로딩중...</div>}>
