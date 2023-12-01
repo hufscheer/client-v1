@@ -186,7 +186,7 @@ export default function RegisterLeague({
           ))}
         </label>
         <Button
-          className="w-full rounded-lg bg-primary p-4 text-xl text-white hover:bg-[#303ECE] disabled:bg-gray-2 disabled:text-gray-4"
+          className="w-full rounded-lg bg-[#0718AE] p-4 text-xl text-white hover:bg-[#303ECE] disabled:bg-gray-2 disabled:text-gray-4"
           disabled={isAnyInvalid}
           type="submit"
         >

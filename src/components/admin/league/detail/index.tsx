@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import Button from '@/components/common/Button';
@@ -138,7 +139,7 @@ export default function LeagueDetail({
           </Button>
         )}
       </div>
-      <form className="flex flex-col space-y-4" onSubmit={onSubmit}>
+      <form className="flex flex-col space-y-8" onSubmit={onSubmit}>
         <label>
           <div className="flex items-center justify-between">
             <span>리그 이름</span>
@@ -212,14 +213,22 @@ export default function LeagueDetail({
             </CheckboxItem>
           ))}
         </label>
-        {isEditMode && (
+
+        {isEditMode ? (
           <Button
-            className="w-full rounded-lg bg-primary p-4 text-xl text-white hover:bg-[#303ECE] disabled:bg-gray-2 disabled:text-gray-4"
+            className="w-full rounded-lg bg-[#0718AE] p-4 text-xl text-white hover:bg-[#303ECE] disabled:bg-gray-2 disabled:text-gray-4"
             disabled={isAnyInvalid}
             type="submit"
           >
             {currentLeague ? '수정하기' : '다음으로'}
           </Button>
+        ) : (
+          <Link
+            href="/admin/league/match"
+            className="w-full rounded-lg bg-[#0718AE] p-4 text-center text-xl text-white hover:bg-[#303ECE]"
+          >
+            이 리그의 매치 목록 조회하기
+          </Link>
         )}
       </form>
     </>
