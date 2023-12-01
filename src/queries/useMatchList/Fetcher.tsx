@@ -1,4 +1,3 @@
-import { InfiniteData } from '@tanstack/react-query';
 import { ReactNode } from 'react';
 
 import { MatchListParams } from '@/api/match';
@@ -8,27 +7,16 @@ import { useMatchList } from './query';
 
 interface MatchListFetcherProps
   extends Omit<MatchListParams, 'cursor' | 'size'> {
-  children: ({
-    matchList,
-    hasNextPage,
-    fetchNextPage,
-    isFetching,
-  }: {
-    matchList: InfiniteData<MatchListType[]>;
-    hasNextPage: boolean;
-    fetchNextPage: () => void;
-    isFetching: boolean;
-  }) => ReactNode;
+  children: ({ matchList }: { matchList: MatchListType[] }) => ReactNode;
 }
 
 export default function MatchListFetcher({
   children,
   ...props
 }: MatchListFetcherProps) {
-  const { matchList, error, hasNextPage, fetchNextPage, isFetching } =
-    useMatchList(props);
+  const { matchList, error } = useMatchList(props);
 
   if (error) throw error;
 
-  return children({ matchList, hasNextPage, fetchNextPage, isFetching });
+  return children({ matchList });
 }

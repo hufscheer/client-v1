@@ -75,9 +75,9 @@ export default function Home() {
         loadingFallback={<MatchList.Skeleton />}
       >
         <MatchListFetcher {...paramsObj}>
-          {({ matchList, ...props }) => (
+          {({ matchList }) => (
             <div className="flex w-full flex-col gap-8">
-              <MatchList matchList={matchList.pages.flat()} {...props} />
+              <MatchList matchList={matchList} />
             </div>
           )}
         </MatchListFetcher>

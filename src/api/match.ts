@@ -17,15 +17,13 @@ export type MatchListParams = {
   sport_id?: string[];
   status: MatchStatus;
   league_id?: string;
-  cursor?: number;
+  // cursor?: number;
 };
 
-export const getMatchList = async ({ cursor, ...params }: MatchListParams) => {
+export const getMatchList = async ({ ...params }: MatchListParams) => {
   const queryString = convertObjectToQueryString(params);
 
-  const { data } = await instance.get<MatchListType[]>(
-    `games?${queryString}&cursor=${cursor || ''}`,
-  );
+  const { data } = await instance.get<MatchListType[]>(`games?${queryString}`);
 
   return data;
 };

@@ -9,45 +9,26 @@ import {
   COMMON_ERROR_MESSAGE,
   MATCH_LIST_API_ERROR_MESSAGE,
 } from '@/constants/error';
-import useIntersect from '@/hooks/useInfiniteObserver';
 import { MatchListType } from '@/types/match';
 
 type MatchListProps = {
   matchList: MatchListType[];
-  hasNextPage: boolean;
-  fetchNextPage: () => void;
-  isFetching: boolean;
 };
 
-export default function MatchList({
-  matchList,
-  fetchNextPage,
-  hasNextPage,
-  isFetching,
-}: MatchListProps) {
-  const { ref } = useIntersect<HTMLDivElement>(async (entry, observer) => {
-    if (entry.isIntersecting) {
-      observer.unobserve(entry.target);
-
-      if (hasNextPage && !isFetching) {
-        fetchNextPage();
-      }
-    }
-  });
-
+export default function MatchList({ matchList }: MatchListProps) {
   return (
     <>
       <ul>
         {matchList.map(({ id, sportsName, ...match }) => (
           <>
             {sportsName === '루미큐브' ? (
-              <li key={id} className="mb-14">
+              <li key={match.startTime + id} className="mb-14">
                 <Link href={`rummikube/${id}`}>
                   <RummiKubMatchItem {...match} sportsName={sportsName} />
                 </Link>
               </li>
             ) : (
-              <li key={id} className="mb-14">
+              <li key={match.startTime + id} className="mb-14">
                 <Link href={`match/${id}`}>
                   <MatchCard
                     {...match}
@@ -82,7 +63,6 @@ export default function MatchList({
           </>
         ))}
       </ul>
-      <div ref={ref}></div>
     </>
   );
 }
