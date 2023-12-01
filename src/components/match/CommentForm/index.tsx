@@ -1,5 +1,5 @@
 import { UseMutateFunction } from '@tanstack/react-query';
-import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 import { MatchCommentPayload, MatchTeamType } from '@/types/match';
 import { $ } from '@/utils/core';
@@ -35,7 +35,7 @@ export default function CommentForm({
   ) => {
     e.preventDefault();
 
-    if (inputValue.trim() === '') return;
+    if (!payload.content.trim()) return;
 
     mutate({ ...payload, gameTeamId: selectedTeamId });
     setInputValue('');
