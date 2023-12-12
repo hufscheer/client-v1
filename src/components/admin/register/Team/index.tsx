@@ -5,7 +5,6 @@ import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 
 import Button from '@/components/common/Button';
 import { Icon } from '@/components/common/Icon';
-import Input from '@/components/common/Input/Input';
 import { useLeagueIdContext } from '@/hooks/useLeagueIdContext';
 import useValidate from '@/hooks/useValidate';
 import usePostTeamMutation from '@/queries/admin/team/usePostTeamMutation';
@@ -91,11 +90,12 @@ export default function RegisterTeam({
               <span className="text-sm text-red-400">필수 항목입니다.</span>
             )}
           </div>
-          <Input
+          <input
             name="name"
             type="text"
             value={teamName}
             onChange={handleInput}
+            className="mt-2 block w-full rounded-lg border border-gray-3/70 bg-secondary/25 p-4"
             required
           />
         </label>

@@ -6,7 +6,6 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import Button from '@/components/common/Button';
 import CheckboxItem from '@/components/common/Checkbox/Item';
 import { Icon } from '@/components/common/Icon';
-import Input from '@/components/common/Input/Input';
 import useValidate from '@/hooks/useValidate';
 import usePostNewLeagueMutation from '@/queries/admin/league/usePostNewLeagueMutation';
 import usePutLeagueMutation from '@/queries/admin/league/usePutLeagueMutation';
@@ -147,11 +146,12 @@ export default function LeagueDetail({
               <span className="text-sm text-red-400">필수 항목입니다.</span>
             )}
           </div>
-          <Input
+          <input
             name="name"
             type="text"
             value={newLeagueData.name}
             onChange={handleInput}
+            className="mt-2 block w-full rounded-lg border border-gray-3/70 bg-secondary/25 p-4"
             disabled={!isEditMode}
             required
           />
@@ -169,21 +169,23 @@ export default function LeagueDetail({
               )
             )}
           </div>
-          <Input
+          <input
             name="startAt"
             type="date"
             value={newLeagueData.startAt}
             onChange={handleInput}
+            className="mt-2 block w-full rounded-lg border border-gray-3/70 bg-secondary/25 p-4"
             min={`2023-${month}-${date.toString().padStart(2, '0')}`}
             max={'2023-12-3'}
             disabled={!isEditMode}
             required
           />
-          <Input
+          <input
             name="endAt"
             type="date"
             value={newLeagueData.endAt}
             onChange={handleInput}
+            className="mt-2 block w-full rounded-lg border border-gray-3/70 bg-secondary/25 p-4"
             min={`2023-${month}-${date.toString().padStart(2, '0')}`}
             max={'2023-12-3'}
             disabled={!isEditMode}
