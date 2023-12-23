@@ -24,7 +24,7 @@ export default function LeagueDetail({
   onNext,
 }: {
   data: LeagueRegisterDataType & { leagueSportsData: SportsType[] };
-  leagueId?: number;
+  leagueId: string;
   onNext?: () => void;
 }) {
   const [newLeagueData, setNewLeagueData] = useState<LeagueDataType>(
@@ -108,7 +108,7 @@ export default function LeagueDetail({
 
     if (leagueId) {
       putLeague({
-        leagueId,
+        leagueId: Number(leagueId),
         ...payload,
       });
     } else {
@@ -226,7 +226,7 @@ export default function LeagueDetail({
           </Button>
         ) : (
           <Link
-            href="/admin/league/match"
+            href={`/admin/league/${leagueId}/match`}
             className="w-full rounded-lg bg-[#0718AE] p-4 text-center text-xl text-white hover:bg-[#303ECE]"
           >
             이 리그의 매치 목록 조회하기
