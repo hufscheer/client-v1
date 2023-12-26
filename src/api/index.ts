@@ -27,11 +27,6 @@ const getAccessToken = () => {
 const onError = async (message: string) => {
   alert(message);
   return;
-  // TODO: toast 구현하기
-  // setAlertMessage({
-  //  type: 'error',
-  //  message,
-  // })
 };
 
 adminInstance.interceptors.request.use(config => {
@@ -41,8 +36,13 @@ adminInstance.interceptors.request.use(config => {
   return config;
 });
 
+let retryCounter = 0;
+
 adminInstance.interceptors.response.use(
-  res => res,
+  res => {
+    retryCounter = 0;
+    return res;
+  },
   async (error: AxiosError) => {
     if (error.code === 'ECONNABORTED') {
       alert('서버에 문제가 발생했습니다.');
@@ -54,17 +54,23 @@ adminInstance.interceptors.response.use(
         break;
       }
       case 401: {
-        try {
-          const existedToken = getAccessToken();
-          if (!existedToken) throw new Error('no accessible token');
-          return await adminInstance({
-            ...error.config,
-            headers: { Authorization: `Bearer ${existedToken}` },
-          });
-        } catch (e) {
-          const message =
-            e instanceof Error ? e.message : '401: 로그인이 필요합니다.';
-          onError(message);
+        if (retryCounter < 3) {
+          retryCounter++;
+          try {
+            const existedToken = getAccessToken();
+            if (!existedToken) throw new Error('no accessible token');
+            return await adminInstance({
+              ...error.config,
+              headers: { Authorization: `Bearer ${existedToken}` },
+            });
+          } catch (e) {
+            const message =
+              e instanceof Error ? e.message : '401: 로그인이 필요합니다.';
+            onError(message);
+            return (window.location.href = '/login');
+          }
+        } else {
+          onError('재시도 횟수를 초과하였습니다. 로그인 페이지로 이동합니다.');
           return (window.location.href = '/login');
         }
       }
